@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/nvhoangICT/nha-tro/issues"
   },
-  "homepage": "https://github.com/nvhoangICT/nha-tro#readme"
+  "homepage": "https://github.com/nvhoangICT/nha-tro#readme",
+  "devDependencies": {
+    "sequelize": "^6.20.1",
+    "sequelize-cli": "^6.4.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "mysql2": "^2.3.3"
+  }
 }
