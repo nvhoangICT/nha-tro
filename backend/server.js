@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const configViewEngine = require('./src/config/viewEngine')
 const webRoutes = require('./src/routes/webRoutes')
-const dotenv = require('dotenv')
+require('dotenv').config()
 
 let app = express()
 
