@@ -12,11 +12,11 @@ const { Sequelize } = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize('nha_tro', 'root', 'password', {
-    host: '127.0.0.1:3306',
+    host: '127.0.0.1',
     dialect: 'mysql' /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
 });
 
-let connect = async () => {
+let connectDB = async () => {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
