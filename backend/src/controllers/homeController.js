@@ -3,7 +3,7 @@ const db = require('../models/index')
 
 let getHomePage = async (req, res) => {
     try {
-        let data = await db.User.findAll();
+        let data = await db.Owner.findAll();
         return res.render('homePage.ejs', {
             data: JSON.stringify(data)
         })
