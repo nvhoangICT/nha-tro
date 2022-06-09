@@ -25,7 +25,7 @@ a:hover {
   color: #000000;
 }
 .link:hover {
-  color: #e86ed0;
+  color:#d80aaf;
 }
 p {
   font-weight: 500;
@@ -260,18 +260,18 @@ h6 span{
   text-align: center;
   border: none;
   background-color: #f9b5d7;
-  color: #e86ed0;
+  color: #d80aaf;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
 }
 .btn:active,
 .btn:focus{  
   background-color: #e86ed0;
-  color: #f9b5d7;
+  color: #ffffff;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 .btn:hover{  
   background-color: #e86ed0;
-  color: #f9b5d7;
+  color: #ffffff;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
