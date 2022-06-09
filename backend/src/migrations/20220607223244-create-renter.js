@@ -31,9 +31,6 @@ module.exports = {
       citizenId: {
         type: Sequelize.STRING
       },
-      university: {
-        type: Sequelize.TEXT
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
