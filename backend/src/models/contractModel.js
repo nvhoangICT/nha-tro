@@ -14,9 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Contract.init({
-    ownerId: DataTypes.STRING,
-    renterId: DataTypes.STRING,
-    houseId: DataTypes.STRING,
+    contractId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      defaultValue: sequelize.UUIDV4,
+    },
+    ownerId: DataTypes.UUID,
+    renterId: DataTypes.UUID,
+    houseId: DataTypes.INTEGER,
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     capacity: DataTypes.INTEGER

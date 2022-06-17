@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   House.init({
     ownerId: DataTypes.STRING,
-    districtId: DataTypes.STRING,
+    districtId: DataTypes.INTEGER,
     status: DataTypes.BOOLEAN
   }, {
     sequelize,

@@ -14,8 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Image.init({
-    name: DataTypes.STRING,
-    houseId: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    houseId: DataTypes.UUID,
   }, {
     sequelize,
     modelName: 'Image',
