@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -10,9 +11,9 @@ const Footer = () => {
                             <h2 class="ftco-heading-2">Uptown</h2>
                             <p>Sự hài lòng của khách hàng là niềm hạnh phúc của chúng tôi</p>
                             <ul class="ftco-footer-social list-unstyled mt-5">
-                                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                                <li><a href="#"><span class="icon-instagram"></span></a></li>
+                                <li><Link to="#"><span class="icon-twitter"></span></Link></li>
+                                <li><Link to="#"><span class="icon-facebook"></span></Link></li>
+                                <li><Link to="#"><span class="icon-instagram"></span></Link></li>
                             </ul>
                         </div>
                     </div>
@@ -20,9 +21,9 @@ const Footer = () => {
                         <div class="ftco-footer-widget mb-4 ml-md-4">
                             <h2 class="ftco-heading-2">Cộng đồng</h2>
                             <ul class="list-unstyled">
-                                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Tìm nhà trọ</a></li>
-                                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Reviews</a></li>
-                                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</a></li>
+                                <li><Link to="#"><span class="icon-long-arrow-right mr-2"></span>Tìm nhà trọ</Link></li>
+                                <li><Link to="#"><span class="icon-long-arrow-right mr-2"></span>Reviews</Link></li>
+                                <li><Link to="#"><span class="icon-long-arrow-right mr-2"></span>FAQs</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -30,7 +31,7 @@ const Footer = () => {
                         <div class="ftco-footer-widget mb-4 ml-md-4">
                             <h2 class="ftco-heading-2">Câu chuyện</h2>
                             <ul class="list-unstyled">
-                                <li><a href="#"><span class="icon-long-arrow-right mr-2"></span>Blog</a></li>
+                                <li><Link to="#"><span class="icon-long-arrow-right mr-2"></span>Blog</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -40,8 +41,8 @@ const Footer = () => {
                             <div class="block-23 mb-3">
                                 <ul>
                                     <li><span class="icon icon-map-marker"></span><span class="text">1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội</span></li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+84 987 654 321</span></a></li>
-                                    <li><a href="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@yourdomain.com</span></a></li>
+                                    <li><Link to="#"><span class="icon icon-phone"></span><span class="text">+84 987 654 321</span></Link></li>
+                                    <li><Link to="#"><span class="icon icon-envelope pr-4"></span><span class="text">info@yourdomain.com</span></Link></li>
                                 </ul>
                             </div>
                         </div>
