@@ -27,6 +27,11 @@ let webRoutes = (app) => {
     router.post("/put-crud", testController.putCRUD);
     router.get("/delete-crud", testController.deleteCRUD);
 
+    // API
+
+    router.post("/api/login", loginController.handleLogin);
+    router.get("/login", loginController.getPageLogin);
+
     return app.use("/", router);
 }
 

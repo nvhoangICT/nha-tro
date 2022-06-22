@@ -1,30 +1,26 @@
-const validationResult = require("express-validator");
+// const { validationResult } = require("express-validator");
 const loginService = require("../services/loginService");
 
 let getPageLogin = (req, res) => {
-    return res.render("login.ejs", {
-        errors: req.flash("errors")
+    return res.render("homePage.ejs", {
+        title: "Login",
+        message: req.statusMessage,
     });
 };
 
 let handleLogin = async (req, res) => {
-    let errorsArr = [];
-    let validationErrors = validationResult(req);
-    if (!validationErrors.isEmpty()) {
-        let errors = Object.values(validationErrors.mapped());
-        errors.forEach((item) => {
-            errorsArr.push(item.msg);
+    let email = req.body.email;
+    let password = req.body.password;
+    if (!email || !password) {
+        return res.status(400).json({
+            message: "Email and password are required"
         });
-        req.flash("errors", errorsArr);
-        return res.redirect("/login");
     }
-
-    try {
-        await loginService.handleLogin(req.body.email, req.body.password);
-        return res.redirect("/");
-    } catch (err) {
-        req.flash("errors", err);
-        return res.redirect("/login");
+    let user = await loginService.handleLogin(req, res);
+    if (!user) {
+        return res.status(400).json({
+            message: "Email or password is incorrect"
+        });
     }
 };
 
@@ -43,7 +39,7 @@ let checkLoggedOut = (req, res, next) => {
 };
 
 let postLogOut = (req, res) => {
-    req.session.destroy(function(err) {
+    req.session.destroy(function (err) {
         return res.redirect("/login");
     });
 };
