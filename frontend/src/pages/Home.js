@@ -9,6 +9,7 @@ import Blog from '../components/HomeComponent/Blog'
 import Header from '../components/HomeComponent/Header'
 import Footer from '../components/HomeComponent/Footer'
 import '../assets/scss/style.scss'
+import AdvancedSearch from '../components/SearchComponent/AdvancedSearch'
 
 const Home = () => {
   return (

@@ -9,6 +9,7 @@ import './styles.css'
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
     const [beds, setBeds] = useState(0)
     const [baths, setBaths] = useState(0)
 
@@ -48,12 +49,26 @@ const AddProperty = ({ onLogin }) => {
                                                             className="form-style"
                                                             placeholder="Mô tả"
                                                             autoComplete="off"
+                                                            value={address}
+                                                            onChange={(e) => setAddress(e.target.value)}
+                                                        />
+                                                        <i className="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                    <div className="form-group mt-2">
+                                                        <input
+                                                            type="price"
+                                                            name="price"
+                                                            className="form-style"
+                                                            placeholder="Giá tiền"
+                                                            autoComplete="off"
+                                                            value={address}
+                                                            onChange={(e) => setAddress(e.target.value)}
                                                         />
                                                         <i className="input-icon uil uil-lock-alt"></i>
                                                     </div>
                                                     <div className="form-group mt-2">
                                                         <select className="form-style" value={beds} onChange={setBeds}>
-                                                            <option className="form-style" value="">--Phòng ngủ--</option>
+                                                            <option className="form-style" value="">-- Số phòng ngủ --</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option>
@@ -62,7 +77,7 @@ const AddProperty = ({ onLogin }) => {
                                                     </div>
                                                     <div className="form-group mt-2">
                                                         <select className="form-style" value={baths} onChange={setBaths}>
-                                                            <option className="form-style" value="">--Phòng tắm--</option>
+                                                            <option className="form-style" value="">-- Số phòng tắm --</option>
                                                             <option value="0.5">0.5</option>
                                                             <option value="1">1</option>
                                                             <option value="2">2</option>
