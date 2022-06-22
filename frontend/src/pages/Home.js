@@ -1,16 +1,19 @@
 import React from 'react'
-import Process from '../components/Process'
-import Properties from '../components/Properties'
-import Searchbar from '../components/Searchbar'
-import Services from '../components/Services'
-import About from '../components/About'
-import Statistic from '../components/Statistic'
-import Testimony from '../components/Testimony'
-import Blog from '../components/Blog'
+import Process from '../components/HomeComponent/Process'
+import Properties from '../components/HomeComponent/Properties'
+import Searchbar from '../components/HomeComponent/Searchbar'
+import Services from '../components/HomeComponent/Services'
+import About from '../components/HomeComponent/About'
+import Statistic from '../components/HomeComponent/Statistic'
+import Blog from '../components/HomeComponent/Blog'
+import Header from '../components/HomeComponent/Header'
+import Footer from '../components/HomeComponent/Footer'
+import '../assets/scss/style.scss'
 
 const Home = () => {
   return (
     <>
+      <Header />
       <Searchbar />
       <Services />
       <Properties />
@@ -19,6 +22,7 @@ const Home = () => {
       <Statistic />
       {/* <Testimony /> */}
       <Blog />
+      <Footer />
     </>
   )
 }

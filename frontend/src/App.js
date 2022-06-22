@@ -15,21 +15,46 @@ import { Route, Routes } from 'react-router-dom';
 // import './assets/css/style.css';
 
 import Home from './pages/Home';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { Fragment } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import Auth from './modules/Auth/Auth';
+import './assets/scss/style.scss'
+// import AuthorizedApp from './modules/AuthorizedApp';
 
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  function onLogin(req, res) {
+    res.redirect('/')
+  }
+
+  function handleLogout() {
+    fetch('/logout', {
+      method: "DELETE"
+    }).then(setUser(null))
+  }
+
+  useEffect(() => {
+    fetch('/me').then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          setUser(data)
+        })
+      }
+    })
+  }, [])
+
   return (
-    <Fragment>
-      <Header />
+    <React.Fragment>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
-      <Footer />
-    </Fragment>
+      {/* user ?
+          <AuthorizedApp user={user} handleLogout={handleLogout} />
+          :
+          <Auth onLogin={onLogin} /> */}
+    </React.Fragment>
   );
 }
 
