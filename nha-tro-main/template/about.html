@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script>
+		function includeHTML() {
+		  var z, i, elmnt, file, xhttp;
+		  /*loop through a collection of all HTML elements:*/
+		  z = document.getElementsByTagName("*");
+		  for (i = 0; i < z.length; i++) {
+			elmnt = z[i];
+			/*search for elements with a certain atrribute:*/
+			file = elmnt.getAttribute("include-html");
+			if (file) {
+			  /*make an HTTP request using the attribute value as the file name:*/
+			  xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+				if (this.readyState == 4) {
+				  if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+				  if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+				  /*remove the attribute, and call this function once more:*/
+				  elmnt.removeAttribute("include-html");
+				  includeHTML();
+				}
+			  }      
+			  xhttp.open("GET", file, true);
+			  xhttp.send();
+			  /*exit the function:*/
+			  return;
+			}
+		  }
+		};
+  </script>
+
+  <head>
+    <title>Uptown - Câu chuyện</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+	  <div include-html="./header.html"></div>
+    
+    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ <i class="ion-ios-arrow-forward"></i></a></span> <span>Câu chuyện <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Câu chuyện</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+		<section class="ftco-section ftco-no-pb">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/about.jpg);">
+					</div>
+					<div class="col-md-6 wrap-about py-md-5 ftco-animate">
+	          <div class="heading-section p-md-5">
+	            <h2 class="mb-4">Chúng tôi là ai?</h2>
+
+	            <p>Uptown là trang tìm nhà ở chất lượng cao, mức giá hợp lý, phục vụ cho đối tượng người trẻ, tập trung vào đối tượng sinh viên tại Việt Nam.</p>
+	            <p>Chúng tôi muốn trở thành một nền móng quan trọng, giúp các bạn sinh viên trưởng thành và đạt được những bước ngoặt lớn hơn trong cuộc sống.<br />
+                Tham vọng nâng cao chất lượng cuộc sống thông qua việc đặt ra tiêu chuẩn về nhà ở cho những người trẻ.<br />
+                Đảm bảo nguồn nhà chất lượng cao với mức giá hợp lý, trải nghiệm tìm kiếm và ổn định cuộc sống nhanh nhất.<br />
+                Nâng cao trải nghiệm sống, học tập và làm việc của người trẻ tại Việt Nam.</p>
+	          </div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="ftco-counter img" id="section-counter">
+    	<div class="container">
+    		<div class="row">
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="305">0</strong>
+                <span>Cư dân <br>được phục vụ</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="1090">0</strong>
+                <span>Nhà trọ <br>còn trống</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text text-border d-flex align-items-center">
+                <strong class="number" data-number="209">0</strong>
+                <span>Nhà đã <br>cho thuê</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 py-4 mb-4">
+              <div class="text d-flex align-items-center">
+                <strong class="number" data-number="67">0</strong>
+                <span>Đối tác <br>Chủ nhà</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    	</div>
+    </section>
+
+    <section class="ftco-section testimony-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Khách hàng chứng thực</span>
+            <h2 class="mb-3">Cộng đồng hạnh phúc</h2>
+          </div>
+        </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                    <p class="mb-4"><h4>Ở gần trường, lợi trăm đường</h4>
+                      Sau khi tìm được nhà nhờ Uptown, việc đến trường của mình trở nên dễ dàng hơn. Không cần dậy sớm, không cần chen lấn trên đường giữa giờ cao điểm. Hôm nào mình cũng được thoải mái thời gian để “get ready”, rồi mới thảnh thơi đi bộ tới trường. Ở gần trường đúng là lợi trăm đường luôn á.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Hồng Quang</p>
+		                    <span class="position">Cư dân</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                    <p class="mb-4"><h4>Chân ái của những ai thích minimalism</h4>
+                      Là một người theo đuổi phong cách sống tối giản, mình gặp được Uptown như gặp được chân ái của cuộc đời. Căn hộ nhỏ nhắn nhưng đầy đủ tiện nghi, được thiết kế theo hướng tối giản và tối ưu không gian khiến mình yêu ngay từ cái nhìn đầu tiên.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Đức Quyền</p>
+		                    <span class="position">Cư dân</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                    <p class="mb-4"><h4>Chi phí “hạt rẻ” cho sinh viên</h4>
+                      Mình đã mê mẩn những căn studio từ lâu, mong muốn một ngày được ở đó nhưng vì là sinh viên nên không đủ khả năng chi trả. Nhưng Uptown đã biến ước mơ của mình thành hiện thực. Căn hộ cao cấp nhưng giá lại vô cùng hợp lý, rất phù hợp với sinh viên như mình.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/team-4.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Cát Tường</p>
+		                    <span class="position">Cư dân</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                    <p class="mb-4"><h4>Mê mẩn với không gian xanh</h4>
+                      Không gian ở nhà trọ phải nói là mê chữ ê kéo dài! Mỗi lần mời bạn bè đến thăm nhà, mọi người đều lầm tưởng nhà trọ ở đây là một quán cafe. Không gian được phủ xanh bởi cây cối, từng góc trong nhà cũng được bày trí rất chỉn chu, siêu hợp với những người mê sống ảo như mình.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/team-3.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Ngọc Ly</p>
+		                    <span class="position">Cư dân</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap py-4">
+                  <div class="text">
+                    <p class="mb-4"><h4>Một ngôi nhà thứ hai</h4>
+                      Nhà trọ của Uptown với mình không phải chỉ là một nơi ở tạm thời mà thực sự đã trở thành ngôi nhà thứ hai. Ở đây, mình có thêm bạn bè mới, những người hàng xóm thân thiện. Mọi người quan tâm và giúp đỡ nhau giống như một gia đình vậy.</p>
+                    <div class="d-flex align-items-center">
+                    	<div class="user-img" style="background-image: url(images/team-7.jpg)"></div>
+                    	<div class="pl-3">
+		                    <p class="name">Ngọc Quỳnh</p>
+		                    <span class="position">Cư dân</span>
+		                  </div>
+	                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div include-html="./footer.html"></div>
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+  <script>includeHTML();</script>
+  
+  </body>
+</html>
