@@ -15,40 +15,44 @@ import { Route, Routes } from 'react-router-dom';
 // import './assets/css/style.css';
 
 import Home from './pages/Home';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Auth from './modules/Auth/Auth';
 import './assets/scss/style.scss'
+import AddProperty from './modules/AddProperty/AddProperty';
+import ListProperty from './modules/Property/ListProperty';
 // import AuthorizedApp from './modules/AuthorizedApp';
 
 
 function App() {
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
-  function onLogin(req, res) {
-    res.redirect('/')
-  }
+  // function onLogin(req, res) {
+  //   res.redirect('/')
+  // }
 
-  function handleLogout() {
-    fetch('/logout', {
-      method: "DELETE"
-    }).then(setUser(null))
-  }
+  // function handleLogout() {
+  //   fetch('/logout', {
+  //     method: "DELETE"
+  //   }).then(setUser(null))
+  // }
 
-  useEffect(() => {
-    fetch('/me').then((r) => {
-      if (r.ok) {
-        r.json().then((data) => {
-          setUser(data)
-        })
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   fetch('/me').then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((data) => {
+  //         setUser(data)
+  //       })
+  //     }
+  //   })
+  // }, [])
 
   return (
     <React.Fragment>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/add-property" element={<AddProperty />} />
+        <Route path="/explore" element={<ListProperty />} />
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

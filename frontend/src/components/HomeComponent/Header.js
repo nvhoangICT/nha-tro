@@ -12,13 +12,13 @@ const Header = () => {
 
                 <div className="collapse navbar-collapse" id="ftco-nav">
                     <ul className="navbar-nav ml-auto">
-                        {/* <li className="nav-item"><Link to="/" className="nav-link">Trang chủ</Link></li> */}
+                        <li className="nav-item"><Link to="/" className="nav-link">Quản lý</Link></li>
                         {/* <li className="nav-item"><Link to="about.html" className="nav-link">Câu chuyện</Link></li>
                         <li className="nav-item"><Link to="services.html" className="nav-link">Dịch vụ</Link></li> */}
-                        <li className="nav-item"><Link to="properties.html" className="nav-link">Tìm phòng</Link></li>
+                        <li className="nav-item"><Link to="/explore/id" className="nav-link">Tìm phòng</Link></li>
                         {/* <li className="nav-item"><Link to="blog.html" className="nav-link">Bài viết</Link></li>
                         <li className="nav-item"><Link to="contact.html" className="nav-link">Liên hệ</Link></li> */}
-                        <li className="nav-item"><Link to="/auth" className="nav-link">Đăng phòng</Link></li>
+                        <li className="nav-item"><Link to="/add-property" className="nav-link">Đăng phòng</Link></li>
                         <li className="nav-item"><Link to="/auth" className="nav-link" style={{color: '#e86ed0'}}>Đăng nhập</Link></li>
                     </ul>
                 </div>

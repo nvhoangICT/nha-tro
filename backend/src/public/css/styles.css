@@ -3,10 +3,10 @@
 /* Please ❤ this if you like it! */
 
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800,900');
 
 body{
-	/* font-family: 'Poppins', sans-serif; */
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 1.7;
@@ -61,6 +61,7 @@ h6 span{
   width: 60px;
   height: 16px;
   border-radius: 8px;
+  color: #f7f7f7;
   padding: 0;
   margin: 10px auto;
   cursor: pointer;
