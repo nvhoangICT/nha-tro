@@ -24,6 +24,7 @@ import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
 // import AuthorizedApp from './modules/AuthorizedApp';
 import Cookies from 'js-cookie'
+import GoogleMap from './modules/GoogleMap/GoogleMap';
 
 function App() {
   // const [token, setToken] = useState(Cookies.get())
@@ -56,7 +57,16 @@ function App() {
         <Route path="/add-property" element={<AddProperty />} />
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
-        <Route path="/item" element={<PropertyDetails title="Phòng trọ" address="Hoàng Mai" bg="url(images/nha-tro-1.png)" />} />
+        <Route path="/item"
+          element={
+            <PropertyDetails
+              title="Phòng Trọ 2 Người"
+              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
+              bg="url(images/nha-tro-1.png)"
+            />
+          }
+        />
+        {/* <Route path="/map" element={<GoogleMap />} /> */}
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

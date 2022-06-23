@@ -1,6 +1,7 @@
+// import { Marker } from '@react-google-maps/api'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './styles.css'
+import GoogleMap from '../GoogleMap/GoogleMap'
 
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
@@ -118,8 +119,12 @@ const PropertyDetails = (props) => {
                                     </div>
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                        <GoogleMap
+                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpCgPt0W2mw-lp5So6AeMEqQXUas2itkA&callback=initMap`}
+                                            loadingElement={<div style={{ height: `100%` }} />}
+                                            containerElement={<div style={{ height: `90vh`, margin: `auto`, border: '2px solid black' }} />}
+                                            mapElement={<div style={{ height: `100%` }} />}
+                                        />
                                     </div>
 
                                     <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
@@ -181,7 +186,9 @@ const PropertyDetails = (props) => {
                                                                 <i className="ion-ios-star"></i>
                                                                 <i className="ion-ios-star"></i>
                                                             </span>
-                                                            <span className="text-right"><Link to="#" className="reply"><i className="icon-reply"></i></Link></span>
+                                                            <span className="text-right">
+                                                                <Link to="#" className="reply"><i className="icon-reply"></i></Link>
+                                                            </span>
                                                         </p>
                                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
                                                     </div>
