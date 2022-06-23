@@ -15,7 +15,7 @@ import { Route, Routes } from 'react-router-dom';
 // import './assets/css/style.css';
 
 import Home from './pages/Home';
-import React from 'react';
+import React, { useState } from 'react';
 import Auth from './modules/Auth/Auth';
 import './assets/scss/style.scss'
 import AddProperty from './modules/AddProperty/AddProperty';
@@ -23,10 +23,10 @@ import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
 // import AuthorizedApp from './modules/AuthorizedApp';
-
+import Cookies from 'js-cookie'
 
 function App() {
-  // const [user, setUser] = useState(null)
+  // const [token, setToken] = useState(Cookies.get())
 
   // function onLogin(req, res) {
   //   res.redirect('/')
@@ -56,7 +56,7 @@ function App() {
         <Route path="/add-property" element={<AddProperty />} />
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
-        <Route path="/item" element={<PropertyDetails bg="url(images/nha-tro-1.png)" />} />
+        <Route path="/item" element={<PropertyDetails title="Phòng trọ" address="Hoàng Mai" bg="url(images/nha-tro-1.png)" />} />
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

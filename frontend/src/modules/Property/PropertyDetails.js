@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './styles.css'
 
 const PropertyDetails = (props) => {
+    const [toggle, setToggle] = useState(1)
+    const toggleTab = (index) => {
+        setToggle(index);
+    }
+
     return (
         <>
             <section className="ftco-section ftco-property-details">
@@ -12,10 +17,10 @@ const PropertyDetails = (props) => {
                             <div className="property-details">
                                 <div className="img" style={{ backgroundImage: props.bg }}></div>
                                 <div className="text text-center">
-                                    <span className="subheading">Oakland</span>
-                                    <h2>The Blue Sky Home</h2>
+                                    <span className="subheading">{props.address}</span>
+                                    <h2>{props.title}</h2>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div className="row">
@@ -23,24 +28,68 @@ const PropertyDetails = (props) => {
                             <div className="bd-example bd-example-tabs">
                                 <div className="d-flex justify-content-center">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        
+
                                         <li className="nav-item">
-                                            <Link className="nav-link active" id="pills-description-tab" data-toggle="pill" to="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Tiện ích</Link>
+                                            <button
+                                                className={toggle === 1 ? "nav-link active" : "nav-link"}
+                                                id="pills-description-tab"
+                                                data-toggle="pill"
+                                                to="#pills-description"
+                                                role="tab"
+                                                aria-controls="pills-description"
+                                                aria-expanded="true"
+                                                onClick={() => toggleTab(1)}
+                                            >
+                                                Tiện ích
+                                            </button>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link" id="pills-manufacturer-tab" data-toggle="pill" to="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Mô tả</Link>
+                                            <button
+                                                className={toggle === 2 ? "nav-link active" : "nav-link"}
+                                                id="pills-manufacturer-tab"
+                                                data-toggle="pill"
+                                                to="#pills-manufacturer"
+                                                role="tab"
+                                                aria-controls="pills-manufacturer"
+                                                aria-expanded="true"
+                                                onClick={() => toggleTab(2)}
+                                            >
+                                                Mô tả
+                                            </button>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link" id="pills-map-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Bản đồ</Link>
+                                            <button
+                                                className={toggle === 3 ? "nav-link active" : "nav-link"}
+                                                id="pills-map-tab"
+                                                data-toggle="pill"
+                                                to="#pills-review"
+                                                role="tab"
+                                                aria-controls="pills-review"
+                                                aria-expanded="true"
+                                                onClick={() => toggleTab(3)}
+                                            >
+                                                Bản đồ
+                                            </button>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link" id="pills-review-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Phản hồi</Link>
+                                            <button
+                                                className={toggle === 4 ? "nav-link active" : "nav-link"}
+                                                id="pills-review-tab"
+                                                data-toggle="pill"
+                                                to="#pills-review"
+                                                role="tab"
+                                                aria-controls="pills-review"
+                                                aria-expanded="true"
+                                                onClick={() => toggleTab(4)}
+                                            >
+                                                Phản hồi
+                                            </button>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div className="tab-content" id="pills-tabContent">
-                                    <div className="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                                    <div className={toggle === 1 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
                                         <div className="row">
                                             <div className="col-md-4">
                                                 <ul className="features">
@@ -63,17 +112,17 @@ const PropertyDetails = (props) => {
                                         </div>
                                     </div>
 
-                                    <div className="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
+                                    <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
                                         <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                     </div>
 
-                                    <div className="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                                    <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
                                         <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                                     </div>
 
-                                    <div className="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                                    <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                                         <div className="row">
                                             <div className="col-md-7">
                                                 <h3 className="head">23 lượt phản hồi</h3>
