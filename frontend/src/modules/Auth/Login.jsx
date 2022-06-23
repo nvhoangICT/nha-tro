@@ -27,7 +27,6 @@ const Login = () => {
                         <div className="form-group">
                             <input
                                 type="email"
-                                name="loginEmail"
                                 className="form-style"
                                 placeholder="Your Email"
                                 autoComplete="off"
@@ -39,10 +38,8 @@ const Login = () => {
                         <div className="form-group mt-2">
                             <input
                                 type="password"
-                                name="loginPassword"
                                 className="form-style"
                                 placeholder="Your Password"
-                                id="password"
                                 autoComplete="off"
                                 value={loginPassword}
                                 onChange={(e) => setLoginPassword(e.target.value)}
@@ -51,9 +48,8 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn mt-4" onClick={(e) => { handleLogin(e) }}>submit</button>
                         <p className="mb-0 mt-4 text-center">
-                            <Link to="#" className="link">Forgot your password?</Link>
+                            <Link to="/" className="link">Forgot your password?</Link>
                         </p>
-
                     </div>
                 </div>
             </div>
