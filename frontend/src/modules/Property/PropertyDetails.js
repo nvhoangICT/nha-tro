@@ -1,13 +1,24 @@
 // import { Marker } from '@react-google-maps/api'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import GoogleMap from '../GoogleMap/GoogleMap'
+import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
+
+
 
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
     const toggleTab = (index) => {
         setToggle(index);
     }
+    const [isZoomed, setIsZoomed] = useState(false)
+    const handleImgLoad = useCallback(() => {
+        setIsZoomed(true)
+    }, [])
+    const handleZoomChange = useCallback(shouldZoom => {
+        setIsZoomed(shouldZoom)
+    }, [])
 
     return (
         <>
@@ -16,8 +27,18 @@ const PropertyDetails = (props) => {
                     <div className="row justify-content-center">
                         <div className="col-md-12">
                             <div className="property-details">
-                                <div className="img" style={{ backgroundImage: props.bg }}></div>
-                                <div className="text text-center">
+                                <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
+                                    <picture>
+                                        <img
+                                            alt="that wanaka tree"
+                                            onLoad={handleImgLoad}
+                                            src={props.bg}
+                                            maxHeight={600}
+                                            width={1200}
+                                        />
+                                    </picture>
+                                </ControlledZoom>
+                                <div className="text text-center mt-4">
                                     <span className="subheading">{props.address}</span>
                                     <h2>{props.title}</h2>
                                 </div>
@@ -120,7 +141,7 @@ const PropertyDetails = (props) => {
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
                                         <GoogleMap
-                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpCgPt0W2mw-lp5So6AeMEqQXUas2itkA&callback=initMap`}
+                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpCgPt0W2mw-lp5So6AeMEqQXUas2itkA&v=3.exp&libraries=geometry,drawing,places`}
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: `90vh`, margin: `auto`, border: '2px solid black' }} />}
                                             mapElement={<div style={{ height: `100%` }} />}

@@ -1,30 +1,16 @@
 
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-// import "./assets/css/open-iconic-bootstrap.min.css";
-// import "./assets/css/animate.css";
-// // import "./assets/css/owl.carousel.min.css";
-// import "./assets/css/owl.theme.default.min.css";
-// import "./assets/css/magnific-popup.css";
-// // import "./assets/css/aos.css";
-// import "./assets/css/ionicons.min.css";
-// import "./assets/css/bootstrap-datepicker.css";
-// import "./assets/css/jquery.timepicker.css";
-// import "./assets/css/flaticon.css";
-// import "./assets/css/icomoon.css";
-// import './assets/css/style.css';
 
 import Home from './pages/Home';
-import React, { useState } from 'react';
+import React from 'react';
 import Auth from './modules/Auth/Auth';
 import './assets/scss/style.scss'
 import AddProperty from './modules/AddProperty/AddProperty';
 import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
-// import AuthorizedApp from './modules/AuthorizedApp';
-import Cookies from 'js-cookie'
-import GoogleMap from './modules/GoogleMap/GoogleMap';
+import ChangeInformation from './modules/ChangeInformation/changeInformation';
 
 function App() {
   // const [token, setToken] = useState(Cookies.get())
@@ -60,12 +46,13 @@ function App() {
         <Route path="/item"
           element={
             <PropertyDetails
-              title="Phòng Trọ 2 Người"
-              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
-              bg="url(images/nha-tro-1.png)"
+              title="Phòng Trọ 2 Người" 
+              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai" 
+              bg="images/nha-tro-3.jpg"
             />
           }
         />
+        <Route path="/change-info" element={<ChangeInformation />} />
         {/* <Route path="/map" element={<GoogleMap />} /> */}
       </Routes>
       {/* user ?

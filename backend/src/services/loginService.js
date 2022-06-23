@@ -17,9 +17,8 @@ let handleLogin = async (req, res) => {
         if (user && isValid) {
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
-            // localStorage.setItem("refreshToken", refreshToken);
             res.cookie('refreshToken', refreshToken, {
-                httpOnly: true,
+                httpOnly: true, 
                 maxAge: 1000 * 60 * 60 * 24 * 7,
                 samesite: "strict",
                 secure: false
