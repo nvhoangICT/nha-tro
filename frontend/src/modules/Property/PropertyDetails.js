@@ -1,8 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 import './styles.css'
 
 const PropertyDetails = (props) => {
+    const [show, setShow] = useState(1)
+    console.log(show);
     return (
         <>
             <section className="ftco-section ftco-property-details">
@@ -23,24 +24,25 @@ const PropertyDetails = (props) => {
                             <div className="bd-example bd-example-tabs">
                                 <div className="d-flex justify-content-center">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        
+                                        <li className="nav-item" >
+                                            <div onClick={()=>{setShow(1)}} className="nav-div active" id="pills-description-tab" data-toggle="pill" to="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Tiện ích</div>
+                                        </li>
+                                        
+                                        <li className="nav-item" >
+                                            <div onClick={()=>{setShow(2)}} className="nav-div" id="pills-manufacturer-tab" data-toggle="pill" to="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Mô tả</div>
+                                        </li>
+                                        
                                         <li className="nav-item">
-                                            <Link className="nav-link active" id="pills-description-tab" data-toggle="pill" to="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Tiện ích</Link>
+                                            <div onClick={()=>{setShow(3)}} className="nav-div" id="pills-map-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Bản đồ</div>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link" id="pills-manufacturer-tab" data-toggle="pill" to="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Mô tả</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" id="pills-map-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Bản đồ</Link>
-                                        </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" id="pills-review-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Phản hồi</Link>
+                                            <div onClick={()=>{setShow(4)}} className="nav-div" id="pills-review-tab" data-toggle="pill" to="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Phản hồi</div>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <div className="tab-content" id="pills-tabContent">
-                                    <div className="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
+                                    {(show === 1)&&<div className="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
                                         <div className="row">
                                             <div className="col-md-4">
                                                 <ul className="features">
@@ -61,19 +63,19 @@ const PropertyDetails = (props) => {
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div>}
 
-                                    <div className="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
+                                    {(show === 2)&&<div className="tab-pane fade show active" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
                                         <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                                    </div>
+                                    </div>}
 
-                                    <div className="tab-pane fade" id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-                                    </div>
+                                    {(show===3)&&<div className="tab-pane fade show active" id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                                        
+                                    <span>Chức năng đang hoàn thiện</span>
+                                    </div>}
 
-                                    <div className="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                                    {(show===4)&&<div className="tab-pane fade show active" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                                         <div className="row">
                                             <div className="col-md-7">
                                                 <h3 className="head">23 lượt phản hồi</h3>
@@ -92,7 +94,7 @@ const PropertyDetails = (props) => {
                                                                 <i className="ion-ios-star"></i>
                                                                 <i className="ion-ios-star"></i>
                                                             </span>
-                                                            <span className="text-right"><Link to="#" className="reply"><i className="icon-reply"></i></Link></span>
+                                                            <span className="text-right"><div to="#" className="reply"><i className="icon-reply"></i></div></span>
                                                         </p>
                                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
                                                     </div>
@@ -112,7 +114,7 @@ const PropertyDetails = (props) => {
                                                                 <i className="ion-ios-star"></i>
                                                                 <i className="ion-ios-star"></i>
                                                             </span>
-                                                            <span className="text-right"><Link to="#" className="reply"><i className="icon-reply"></i></Link></span>
+                                                            <span className="text-right"><div to="#" className="reply"><i className="icon-reply"></i></div></span>
                                                         </p>
                                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
                                                     </div>
@@ -132,7 +134,7 @@ const PropertyDetails = (props) => {
                                                                 <i className="ion-ios-star"></i>
                                                                 <i className="ion-ios-star"></i>
                                                             </span>
-                                                            <span className="text-right"><Link to="#" className="reply"><i className="icon-reply"></i></Link></span>
+                                                            <span className="text-right"><div to="#" className="reply"><i className="icon-reply"></i></div></span>
                                                         </p>
                                                         <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
                                                     </div>
@@ -201,7 +203,7 @@ const PropertyDetails = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
