@@ -2,19 +2,24 @@
 const bcrypt = require('bcrypt');
 const db = require('../models');
 const uuid = require('random-uuid-v4');
+const { response } = require('express');
 
 const salt = bcrypt.genSaltSync(10);
 
 let addUser = async (data) => {
-    let encryptedPassword = await hashPassword(data.password);
-
-    let userID = uuid();
-    await db.User.create({
-        id: userID,
-        name: data.name,
-        email: data.email,
-        password: encryptedPassword,
-    });
+    try {
+        let encryptedPassword = await hashPassword(data.password);
+        let userID = uuid();
+        await db.User.create({
+            id: userID,
+            name: data.name,
+            email: data.email,
+            password: encryptedPassword,
+        });
+        return res.status(200).json({ user });
+    } catch (err) {
+        return res.status(400).send(e.message);
+    }
 }
 
 let hashPassword = (password) => {

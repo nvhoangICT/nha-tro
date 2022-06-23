@@ -24,6 +24,11 @@ let handleLogin = async (req, res) => {
     }
 };
 
+let requestRefreshToken = async (req, res) => {
+    const refreshToken = req.cookies.refreshToken;
+    
+}
+
 let checkLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         return res.redirect("/login");

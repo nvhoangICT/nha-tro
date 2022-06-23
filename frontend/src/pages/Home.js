@@ -9,12 +9,13 @@ import Blog from '../components/HomeComponent/Blog'
 import Header from '../components/HomeComponent/Header'
 import Footer from '../components/HomeComponent/Footer'
 import '../assets/scss/style.scss'
-import AdvancedSearch from '../components/SearchComponent/AdvancedSearch'
+// import AdvancedSearch from '../components/SearchComponent/AdvancedSearch'
+import UserHeader from '../components/HomeComponent/UserHeader'
 
 const Home = () => {
   return (
     <>
-      <Header />
+      {0 ? <UserHeader /> : <Header /> }
       <Searchbar />
       <Services />
       <Properties />

@@ -8,8 +8,7 @@ let getCRUD = async (req, res) => {
 
 let postCRUD = async (req, res) => {
     let data = await registerService.addUser(req.body);
-    console.log(data)
-    return res.send('postCRUD');
+    return res.status(200).json(newUser);;
 }
 
 let readAllCRUD = async (req, res) => {
