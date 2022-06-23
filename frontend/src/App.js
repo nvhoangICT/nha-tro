@@ -22,6 +22,7 @@ import AddProperty from './modules/AddProperty/AddProperty';
 import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
+import ChangeInformation from './modules/ChangeInformation/changeInformation';
 // import AuthorizedApp from './modules/AuthorizedApp';
 
 
@@ -57,6 +58,9 @@ function App() {
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
         <Route path="/item" element={<PropertyDetails bg="url(images/nha-tro-1.png)" />} />
+        <Route path="/change-information" element={<ChangeInformation />} />
+
+
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />
