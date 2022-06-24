@@ -60,7 +60,7 @@ const Register = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <i className="input-icon uil uil-lock-alt"></i>
+                            <i className="input-icon uil uil-lock-alt"></i> 
                         </div>
                         <button type="submit" className="btn mt-4" onClick={(e) => { handleSignup(e) }}>submit</button>
                     </div>
