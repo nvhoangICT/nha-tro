@@ -30,12 +30,12 @@ let webRoutes = (app) => {
     router.get("/delete-crud", testController.deleteCRUD);
 
     // API
-    // router.post("/api/register", registerController.createUser);
-    // router.post("/api/login", loginController.handleLogin);
+    router.post("/api/register", registerController.createUser);
+    router.post("/api/login", loginController.handleLogin);
     // router.post("/api/refresh", loginController.refreshToken);
     
-    router.post("/api/register", authController.registerUser);
-    router.post("/api/login", authController.loginUser);
+    // router.post("/api/register", authController.registerUser);
+    // router.post("/api/login", authController.loginUser);
 
     router.get("/login", loginController.getPageLogin);
     router.post("/logout", logoutController.logout);
