@@ -20,7 +20,7 @@ const Login = () => {
 
     return (
         <>
-            <div className="card-front">
+            <div className="card-front" style={{height:'80%', marginTop:'40px'}}>
                 <div className="center-wrap">
                     <div className="section text-center">
                         <h4 className="mb-4 pb-3">Log In</h4>

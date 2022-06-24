@@ -1,4 +1,5 @@
 // const { validationResult } = require("express-validator");
+const { JsonWebTokenError } = require("jsonwebtoken");
 const loginService = require("../services/loginService");
 
 let getPageLogin = (req, res) => {
@@ -26,7 +27,23 @@ let handleLogin = async (req, res) => {
 
 let requestRefreshToken = async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
-    
+    if (!refreshToken) {
+        return res.status(401).json("You must be logged in to refresh your account");
+    }
+    jwt.verify(refreshToken, process.env.JWT_SECRET, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        const newAccessToken = loginService.getAccessToken(user);
+        const newRefreshToken = loginService.getRefreshToken(user);
+        res.cookie('refreshToken', newRefreshToken, {
+            httpOnly: true, 
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            samesite: "strict",
+            secure: false
+        });
+        res.status(200).json({accessToken: newAccessToken})
+    })
 }
 
 let checkLoggedIn = (req, res, next) => {
@@ -54,5 +71,5 @@ module.exports = {
     handleLogin,
     checkLoggedIn,
     checkLoggedOut,
-    postLogOut
+    postLogOut,
 };

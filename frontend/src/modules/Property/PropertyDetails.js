@@ -30,8 +30,8 @@ const PropertyDetails = (props) => {
                                 <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
                                     <picture>
                                         <img
-                                            alt="that wanaka tree"
-                                            onLoad={handleImgLoad}
+                                            alt="a house"
+                                            // onLoad={handleImgLoad}
                                             src={props.bg}
                                             maxHeight={600}
                                             width={1200}

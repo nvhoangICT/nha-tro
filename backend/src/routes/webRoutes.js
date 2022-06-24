@@ -4,7 +4,9 @@ const homeController = require('../controllers/homeController')
 const loginController = require('../controllers/loginController')
 const registerController = require('../controllers/registerController')
 const testController = require('../controllers/testController')
+const logoutController = require('../controllers/logoutController')
 const passport = require('passport');
+const authController = require('../controllers/authController')
 
 let webRoutes = (app) => {
     // router.get("/", loginController.checkLoggedIn);
@@ -28,11 +30,15 @@ let webRoutes = (app) => {
     router.get("/delete-crud", testController.deleteCRUD);
 
     // API
-    router.post("/api/register", registerController.createUser);
-    router.post("/api/login", loginController.handleLogin);
+    // router.post("/api/register", registerController.createUser);
+    // router.post("/api/login", loginController.handleLogin);
     // router.post("/api/refresh", loginController.refreshToken);
-    router.get("/login", loginController.getPageLogin);
+    
+    router.post("/api/register", authController.registerUser);
+    router.post("/api/login", authController.loginUser);
 
+    router.get("/login", loginController.getPageLogin);
+    router.post("/logout", logoutController.logout);
     return app.use("/", router);
 }
 

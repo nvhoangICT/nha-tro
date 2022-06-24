@@ -22,7 +22,7 @@ const Register = () => {
 
     return (
         <>
-            <div className="card-back">
+            <div className="card-back" style={{height:'80%', marginTop:'40px'}}>
                 <div className="center-wrap">
                     <div className="section text-center">
                         <h4 className="pb-3">Sign Up</h4>

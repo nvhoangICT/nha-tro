@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 // const validatePassword = require("express-validator");
 let jwt = require('jsonwebtoken');
 require("dotenv").config();
+const loginController = require('../controllers/loginController');
 
 let handleLogin = async (req, res) => {
     try {
@@ -17,12 +18,13 @@ let handleLogin = async (req, res) => {
         if (user && isValid) {
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
-            res.cookie('refreshToken', refreshToken, {
-                httpOnly: true, 
-                maxAge: 1000 * 60 * 60 * 24 * 7,
-                samesite: "strict",
-                secure: false
-            });
+            localStorage.setItem('refreshToken', refreshToken);
+            // res.cookie('refreshToken', refreshToken, {
+            //     httpOnly: true, 
+            //     maxAge: 1000 * 60 * 60 * 24 * 7,
+            //     samesite: "strict",
+            //     secure: false
+            // });
             const { password, ...others } = user.dataValues;
             return res.status(200).json({ ...others, accessToken, refreshToken });
         }
