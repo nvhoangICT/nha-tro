@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nvhoangICT/nha-tro/issues"
   },
-  "homepage": "https://github.com/nvhoangICT/nha-tro#readme"
+  "homepage": "https://github.com/nvhoangICT/nha-tro#readme",
+  "devDependencies": {
+    "@iconify/react": "^3.2.2"
+  }
 }

@@ -1,62 +1,119 @@
 import { useState } from 'react';
+import '../ChangeInformation/style.css'
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/apiRequest'
 
-export default function ChangeInformation() {
+const ChangeInformation = () => {
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [dob, setDob] = useState("");
+    const [address, setAddress] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
 
-    // States for registration
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleChangeInfo = (e) => {
+        e.preventDefault();
+        const changeInformation = {
+            name:name,
+            dob:dob,
+            address:address,
+            email: email,
+            phone:phone,
+            password: password
+        };
+        // changeInformation(newUser, dispatch, navigate);
+    }
     return (
-        <div className="form">
-            <div>
-                <h1>Thay đổi thông tin người dùng</h1>
-            </div>
 
-            <form action="" className="form" >
+        <>
+          
+                <div className="image ChangeInforBG" style={{ height: '60%', marginTop: '40%' }}>
+                    <div className="center-wrap ChangeInforBG" >
+                        <div className="section text-center" >
+                            <h4 className="pb-3">Thay đổi thông tin người dùng</h4>
+                            <div className="form-group" >
+                                <input
+                                    type="text"
+                                    name="name"
+                                    className="form-style"
+                                    placeholder="Họ tên"
+                                    autoComplete="off"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                <i className="input-icon uil uil-user"></i>
+                            </div>
+                            <div className='form-group mt-2'>
+                                <input
+                                    type="dob"
+                                    name="dob"
+                                    className="form-style"
+                                    placeholder="Ngày sinh : DD/MM/YYYY"
+                                    autoComplete="off"
+                                    value={dob}
+                                    onChange={(e) => setDob(e.target.value)}
+                                />
+                                <i className="input-icon uil uil-calendar-alt"></i>
+                            </div>
+                            <div className="form-group mt-2">
+                                <input
+                                    type="address"
+                                    name="address"
+                                    className="form-style"
+                                    placeholder="Địa chỉ"
+                                    autoComplete="off"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                />
+                                <i className="input-icon uil-map-marker"></i>
 
-                <div className="spacer"></div>
+                            </div>
+                            <div className="form-group mt-2">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="form-style"
+                                    placeholder="example@email.com"
+                                    autoComplete="off"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <i className="input-icon uil uil-at"></i>
+                            </div>
+                            <div className="form-group mt-2">
+                                <input
+                                    type="phone"
+                                    name="phone"
+                                    className="form-style"
+                                    placeholder="Phone Number"
+                                    autoComplete="off"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                />
+                                <i className="input-icon uil uil-phone"></i>
+                            </div>
+                            <div className="form-group mt-2">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="form-style"
+                                    placeholder="Your Password"
+                                    autoComplete="off"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <i className="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <button type="submit" className="btn mt-4" onClick={(e) => { handleChangeInfo(e) }}>submit</button>
 
-                <div className="form-group">
-                    <label for="fullname" className="form-label">Tên đầy đủ</label>
-                    <input size id="fullname" name="fullname" type="text" placeholder="VD: Sơn Đặng" className="form-control" />
-                    <span className="form-message"></span>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="form-group">
-                    <label for="email" className="form-label">Email</label>
-                    <input id="email" name="email" type="text" placeholder="VD: email@domain.com" className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-
-                <div className="form-group">
-                    <label for="password" className="form-label">Mật khẩu</label>
-                    <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-
-                <div className="form-group">
-                    <label for="password_confirmation" className="form-label">Nhập lại mật khẩu</label>
-                    <input id="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu" type="password" className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-                <div className="form-group">
-                    <label for="address" className="form-label">Địa chỉ</label>
-                    <input id="address" name="address" type="address" placeholder="Số nhà / Đường / Huyện /Tỉnh " className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-                <div className="form-group">
-                    <label for="phone" className="form-label">Số điện thoại</label>
-                    <input id="phone" name="phone" type="phone" placeholder="" className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-                <div className="form-group">
-                    <label for="date" className="form-label">Ngày tháng năm sinh</label>
-                    <input id="date" name="date" type="date"  className="form-control" />
-                    <span className="form-message"></span>
-                </div>
-                <button className="form-submit">Sửa đổi</button>
-            </form>
-        </div>
-    );
+             
+        </>
+    )
 }
+export default ChangeInformation

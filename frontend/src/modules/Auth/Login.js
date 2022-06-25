@@ -34,6 +34,7 @@ const Login = () => {
                                 onChange={(e) => setLoginEmail(e.target.value)}
                             />
                             <i className="input-icon uil uil-at"></i>
+                            
                         </div>
                         <div className="form-group mt-2">
                             <input

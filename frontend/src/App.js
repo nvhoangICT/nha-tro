@@ -10,7 +10,7 @@ import AddProperty from './modules/AddProperty/AddProperty';
 import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
-import ChangeInformation from './modules/ChangeInformation/changeInformation';
+import ChangeInformation from './modules/ChangeInformation/ChangeInformation';
 
 function App() {
   // const [token, setToken] = useState(Cookies.get())
