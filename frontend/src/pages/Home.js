@@ -1,7 +1,7 @@
 import React from 'react'
 import Process from '../components/HomeComponent/Process'
 import Properties from '../components/HomeComponent/Properties'
-import Searchbar from '../components/HomeComponent/Searchbar'
+import Intro from '../components/HomeComponent/Intro'
 import Services from '../components/HomeComponent/Services'
 import About from '../components/HomeComponent/About'
 import Statistic from '../components/HomeComponent/Statistic'
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       {0 ? <UserHeader /> : <Header /> }
-      <Searchbar />
+      <Intro />
       <Services />
       <Properties />
       <Process />

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import AdvancedSearch from '../SearchComponent/AdvancedSearch'
+// import AdvancedSearch from '../SearchComponent/AdvancedSearch'
+import SearchBar from '../SearchComponent/SearchBar'
+import Data from '../SearchComponent/Data.json'
 
-const Searchbar = () => {
+const Intro = () => {
     const [keyword, setKeyword] = useState("")
 
     const handleSearch = (e) => {
@@ -25,12 +27,7 @@ const Searchbar = () => {
                                         <div className="col-lg-10 align-items-end">
                                             <div className="form-group">
                                                 <div className="form-field">
-                                                    {/* <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Tìm địa điểm"
-                                                    />
-                                                    <button onClick={(e) => handleSearch(e)}><span className="ion-ios-search"></span></button> */}
+                                                    <SearchBar data={Data}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -50,4 +47,4 @@ const Searchbar = () => {
     )
 }
 
-export default Searchbar
+export default Intro
