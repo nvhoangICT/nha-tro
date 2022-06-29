@@ -1,6 +1,7 @@
 // const { validationResult } = require("express-validator");
 const { JsonWebTokenError } = require("jsonwebtoken");
 const loginService = require("../services/loginService");
+require("dotenv").config();
 
 let getPageLogin = (req, res) => {
     return res.render("homePage.ejs", {

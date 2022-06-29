@@ -7,21 +7,10 @@ const testController = require('../controllers/testController')
 const logoutController = require('../controllers/logoutController')
 const passport = require('passport');
 const authController = require('../controllers/authController')
+const propertyController = require('../controllers/propertyController')
 
 let webRoutes = (app) => {
-    // router.get("/", loginController.checkLoggedIn);
-    // router.get("/login",loginController.checkLoggedOut, loginController.getPageLogin);
-    // router.post("/login", passport.authenticate("local", {
-    //     successRedirect: "/",
-    //     failureRedirect: "/login",
-    //     successFlash: true,
-    //     failureFlash: true
-    // }));
-
-    // router.get("/register", registerController.getPageRegister);
-    // router.post("/register", auth.validateRegister, registerController.createNewUser);
-    // router.post("/logout", loginController.postLogOut);
-
+    // API USER 
     router.get("/get-crud", testController.getCRUD);
     router.post("/post-crud", testController.postCRUD);
     router.get("/read-crud", testController.readAllCRUD);
@@ -29,16 +18,19 @@ let webRoutes = (app) => {
     router.post("/put-crud", testController.putCRUD);
     router.get("/delete-crud", testController.deleteCRUD);
 
-    // API
+    // API AUTHENTICATION
     router.post("/api/register", registerController.createUser);
     router.post("/api/login", loginController.handleLogin);
     // router.post("/api/refresh", loginController.refreshToken);
-    
-    // router.post("/api/register", authController.registerUser);
-    // router.post("/api/login", authController.loginUser);
-
-    router.get("/login", loginController.getPageLogin);
     router.post("/logout", logoutController.logout);
+
+    // API CRUD ROOM
+    router.post("/api/add-property", propertyController.postProperty);
+    router.get("/api/read-property", propertyController.readAllProperty);
+    router.get("/api/edit-property", propertyController.editProperty);
+    router.post("/api/put-property", propertyController.putProperty);
+    router.get("/api/delete-property", propertyController.deleteProperty);
+
     return app.use("/", router);
 }
 
