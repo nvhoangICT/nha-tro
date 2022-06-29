@@ -114,7 +114,6 @@ const ChangeInformation = () => {
                                                             <i className="input-icon uil uil-lock-alt"></i>
                                                         </div>
                                                         <button type="submit" className="btn mt-4" onClick={(e) => { handleChangeInfo(e) }}>submit</button>
-
                                                     </div>
                                                 </div>
                                             </div>
