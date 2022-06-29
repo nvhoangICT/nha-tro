@@ -48,7 +48,7 @@ const PropertyDetails = (props) => {
                     <div className="row">
                         <div className="col-md-12 pills">
                             <div className="bd-example bd-example-tabs">
-                                <div className="d-flex justify-content-center">
+                                <div className="d-flex justify-content-left">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
                                         <li className="nav-item">
