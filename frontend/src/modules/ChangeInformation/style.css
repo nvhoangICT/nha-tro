@@ -293,7 +293,7 @@ h6 span{
 }
 
 .ChangeInforBG{
-  background-image: url('../../assets/images/bg_1.jpg');
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg');
   background-size: cover;
-  
+  background-size: 300%;
 }
