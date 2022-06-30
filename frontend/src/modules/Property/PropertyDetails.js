@@ -107,6 +107,32 @@ const PropertyDetails = (props) => {
                                                 Phản hồi
                                             </button>
                                         </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                id="pills-review-tab"
+                                                data-toggle="pill"
+                                                to="#pills-review"
+                                                role="tab"
+                                                aria-controls="pills-review"
+                                                aria-expanded="true"
+                                            >
+                                                0983221312 
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <button
+                                                className={"nav-link active"}
+                                                id="pills-review-tab"
+                                                data-toggle="pill"
+                                                to="#pills-review"
+                                                role="tab"
+                                                aria-controls="pills-review"
+                                                aria-expanded="true"
+                                                style={{ backgroundColor: "green" }}
+                                            >
+                                                Liên hệ
+                                            </button>
+                                        </li>
                                     </ul>
                                 </div>
 

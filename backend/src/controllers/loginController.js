@@ -38,7 +38,7 @@ let requestRefreshToken = async (req, res) => {
         const newAccessToken = loginService.getAccessToken(user);
         const newRefreshToken = loginService.getRefreshToken(user);
         res.cookie('refreshToken', newRefreshToken, {
-            httpOnly: true, 
+            httpOnly: false, 
             maxAge: 1000 * 60 * 60 * 24 * 7,
             samesite: "strict",
             secure: false

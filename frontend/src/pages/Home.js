@@ -11,11 +11,16 @@ import Footer from '../components/HomeComponent/Footer'
 import '../assets/scss/style.scss'
 // import AdvancedSearch from '../components/SearchComponent/AdvancedSearch'
 import UserHeader from '../components/HomeComponent/UserHeader'
+import Cookies from 'js-cookie'
 
 const Home = () => {
+
+  let refreshToken = Cookies.get('refreshToken')
+
+
   return (
     <>
-      {0 ? <UserHeader /> : <Header /> }
+      {refreshToken ? <UserHeader /> : <Header />}
       <Intro />
       <Services />
       <Properties />

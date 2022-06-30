@@ -42,11 +42,11 @@ function SearchBar({ data }) {
       </form>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 3).map((value, key) => {
+          {filteredData.slice(0, 1).map((value, key) => {
             return (
-              <Link className="dataItem" to={value.link} target="_blank">
-                <p>{value.title} </p>
-              </Link>
+              <a className="dataItem" href={value.link} target="_blank">
+                <p>{value.title}</p>
+              </a>
             );
           })}
         </div>

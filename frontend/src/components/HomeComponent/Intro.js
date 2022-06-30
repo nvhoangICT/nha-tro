@@ -5,11 +5,11 @@ import SearchBar from '../SearchComponent/SearchBar'
 import Data from '../SearchComponent/Data.json'
 
 const Intro = () => {
-    const [keyword, setKeyword] = useState("")
+    // const [keyword, setKeyword] = useState("")
 
-    const handleSearch = (e) => {
+    // const handleSearch = (e) => {
         
-    }
+    // }
 
     return (
         <>

@@ -8,6 +8,7 @@ const logoutController = require('../controllers/logoutController')
 const passport = require('passport');
 const authController = require('../controllers/authController')
 const propertyController = require('../controllers/propertyController')
+const dashboardController = require('../controllers/dashboardController')
 
 let webRoutes = (app) => {
     // API USER 
@@ -30,6 +31,8 @@ let webRoutes = (app) => {
     router.get("/api/edit-property", propertyController.editProperty);
     router.post("/api/put-property", propertyController.putProperty);
     router.get("/api/delete-property", propertyController.deleteProperty);
+
+    router.get("/dashboard", dashboardController.getDashboard);
 
     return app.use("/", router);
 }

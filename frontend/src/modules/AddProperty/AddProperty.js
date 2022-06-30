@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../../components/HomeComponent/Header'
 import './styles.css'
 // import axios from 'axios'
 // import { loginUser } from '../../redux/apiRequest'
@@ -19,6 +20,7 @@ const AddProperty = ({ onLogin }) => {
 
     return (
         <>
+            <Header />
             <div className="section" style={{ backgroundImage: `url(images/bg_3.jpg)` }}>
                 <div className="container">
                     <div className="row full-height justify-content-center">
