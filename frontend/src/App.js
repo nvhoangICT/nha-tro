@@ -13,6 +13,7 @@ import PropertyDetails from './modules/Property/PropertyDetails';
 import ChangeInformation from './modules/ChangeInformation/ChangeInformation';
 
 function App() {
+
   // const [token, setToken] = useState(Cookies.get())
 
   // function onLogin(req, res) {
@@ -48,7 +49,7 @@ function App() {
             <PropertyDetails
               title="Phòng Trọ 2 Người" 
               address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai" 
-              bg="images/nha-tro-3.jpg"
+              bg="https://images1.apartments.com/i2/J8Gdf_yX9fqD9XJTjj-TPBf1yoAzlijuAMqeaBWa2EQ/116/regents-park-chicago-il-1-br-1-ba---715-sf.jpg?p=1"
             />
           }
         />

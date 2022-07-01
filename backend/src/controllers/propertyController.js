@@ -1,9 +1,10 @@
 
 const { v4: uuidv4 } = require('uuid');
 const db = require('../models/index')
+const propertyService = require('../services/propertyService')
 
 let getProperty = async (req, res) => {
-    // return res.render('auth.ejs')
+    res.status(200).json({ properties })
 }
 
 let postProperty = async (req, res) => {
@@ -34,7 +35,7 @@ let postProperty = async (req, res) => {
 let readAllProperty = async (req, res) => {
     let data = await propertyService.getAllProperty();
     console.log(data)
-    return res.render('display.ejs', { data: data })
+    return res.status(200).json({ data: data })
 }
 
 let editProperty = async (req, res) => {

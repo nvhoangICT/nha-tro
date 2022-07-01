@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <>
-      {refreshToken ? <UserHeader /> : <Header />}
+      <Header />
       <Intro />
       <Services />
       <Properties />

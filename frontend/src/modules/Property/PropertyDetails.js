@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
-
-
+import RequestTour from '../RequestTour/RequestTour'
+import Header from '../../components/HomeComponent/Header'
+import { IoPhonePortraitOutline } from "react-icons/io5";
 
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
@@ -19,9 +20,11 @@ const PropertyDetails = (props) => {
     const handleZoomChange = useCallback(shouldZoom => {
         setIsZoomed(shouldZoom)
     }, [])
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
+            <Header />
             <section className="ftco-section ftco-property-details">
                 <div className="container">
                     <div className="row justify-content-center">
@@ -50,7 +53,6 @@ const PropertyDetails = (props) => {
                             <div className="bd-example bd-example-tabs">
                                 <div className="d-flex justify-content-left">
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
                                         <li className="nav-item">
                                             <button
                                                 className={toggle === 1 ? "nav-link active" : "nav-link"}
@@ -93,6 +95,7 @@ const PropertyDetails = (props) => {
                                                 Bản đồ
                                             </button>
                                         </li>
+
                                         <li className="nav-item">
                                             <button
                                                 className={toggle === 4 ? "nav-link active" : "nav-link"}
@@ -108,16 +111,24 @@ const PropertyDetails = (props) => {
                                             </button>
                                         </li>
                                         <li className="nav-item">
-                                            <Link
+                                            <button
+                                                className={toggle === 5 ? "nav-link active" : "nav-link"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
                                                 to="#pills-review"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
+                                                onClick={() => toggleTab(5)}
                                             >
-                                                0983221312 
-                                            </Link>
+                                                Tham quan
+                                            </button>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a href="tel:+1-224-203-2815" className="propertyPhoneNumber">
+                                                <IoPhonePortraitOutline style={{ marginBottom: '5px' }} />
+                                                <span className="phone-text">&ensp;224-203-2815&ensp;</span>
+                                            </a>
                                         </li>
                                         <li className="nav-item">
                                             <button
@@ -129,9 +140,11 @@ const PropertyDetails = (props) => {
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
                                                 style={{ backgroundColor: "green" }}
+                                                onClick={() => setIsOpen(true)}
                                             >
                                                 Liên hệ
                                             </button>
+                                            {isOpen && <RequestTour setIsOpen={setIsOpen} />}
                                         </li>
                                     </ul>
                                 </div>
@@ -303,6 +316,12 @@ const PropertyDetails = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={toggle === 5 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
+                                        <div className="itemWrapper playerActive">
+                                            <iframe src={'https://my.matterport.com/show/?model=AseRoob7d5G&amp;play=1'} style={{ height: '800px', width: '1200px' }}></iframe>
                                         </div>
                                     </div>
                                 </div>

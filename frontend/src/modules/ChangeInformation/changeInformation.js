@@ -3,8 +3,9 @@ import '../ChangeInformation/style.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/apiRequest'
+import Header from '../../components/HomeComponent/Header';
 
-const ChangeInformation = () => {
+const ChangeInformation = (props) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [dob, setDob] = useState("");
@@ -28,6 +29,7 @@ const ChangeInformation = () => {
     }
     return (
         <>
+        <Header />
             <div className="section" style={{ backgroundImage: `url(images/bg_3.jpg)` }}>
                 <div className="container">
                     <div className="row full-height justify-content-center">
@@ -47,10 +49,22 @@ const ChangeInformation = () => {
                                                                 className="form-style"
                                                                 placeholder="Họ tên"
                                                                 autoComplete="off"
-                                                                value={name}
+                                                                value={props.name}
                                                                 onChange={(e) => setName(e.target.value)}
                                                             />
                                                             <i className="input-icon uil uil-user"></i>
+                                                        </div>
+                                                        <div className="form-group mt-2">
+                                                            <input
+                                                                type="email"
+                                                                name="email"
+                                                                className="form-style"
+                                                                placeholder="example@email.com"
+                                                                autoComplete="off"
+                                                                value={props.email}
+                                                                onChange={(e) => setEmail(e.target.value)}
+                                                            />
+                                                            <i className="input-icon uil uil-at"></i>
                                                         </div>
                                                         <div className='form-group mt-2'>
                                                             <input
@@ -76,18 +90,6 @@ const ChangeInformation = () => {
                                                             />
                                                             <i className="input-icon uil-map-marker"></i>
 
-                                                        </div>
-                                                        <div className="form-group mt-2">
-                                                            <input
-                                                                type="email"
-                                                                name="email"
-                                                                className="form-style"
-                                                                placeholder="example@email.com"
-                                                                autoComplete="off"
-                                                                value={email}
-                                                                onChange={(e) => setEmail(e.target.value)}
-                                                            />
-                                                            <i className="input-icon uil uil-at"></i>
                                                         </div>
                                                         <div className="form-group mt-2">
                                                             <input

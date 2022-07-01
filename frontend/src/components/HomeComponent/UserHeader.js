@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const UserHeader = () => {
+    const user = useSelector((state) => state.auth.login.currentUser)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div className="container">
@@ -12,7 +15,7 @@ const UserHeader = () => {
 
                 <div className="collapse navbar-collapse" id="ftco-nav">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item"><a href="http://localhost:8081" className="nav-link">Quản lý</a></li>
+                        <li className="nav-item"><a href="http://localhost:3006" className="nav-link">Quản lý</a></li>
                         {/* <li className="nav-item"><Link to="about.html" className="nav-link">Câu chuyện</Link></li>
                         <li className="nav-item"><Link to="services.html" className="nav-link">Dịch vụ</Link></li> */}
                         <li className="nav-item"><Link to="/explore" className="nav-link">Tìm phòng</Link></li>
