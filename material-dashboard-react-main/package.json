@@ -4,7 +4,7 @@
   "private": true,
   "author": "Creative Tim",
   "license": "See license in https://www.creative-tim.com/license",
-  "description": "React version of Material Dashboard 2 by Creative Tim",
+  "description": "React version of Uptown Dashboard by Creative Tim",
   "bugs": {
     "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
   },
@@ -33,6 +33,7 @@
     "react-chartjs-2": "3.0.4",
     "react-dom": "17.0.2",
     "react-github-btn": "1.2.1",
+    "react-redux": "^8.0.2",
     "react-router-dom": "6.2.1",
     "react-scripts": "5.0.0",
     "react-table": "7.7.0",
@@ -42,7 +43,7 @@
     "yup": "0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

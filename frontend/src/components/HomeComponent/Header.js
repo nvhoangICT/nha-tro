@@ -29,7 +29,9 @@ const Header = () => {
                                 <li className="nav-item">
                                     <Link to="/change-info" className="nav-link" style={{ color: '#e86ed0' }}>{user.name}</Link>
                                 </li>
-                                <li className="nav-item"><Link to="/logout" className="nav-link">Đăng xuất</Link></li>
+                                <li className="nav-item">
+                                    <Link to="/logout" className="nav-link">Đăng xuất</Link>
+                                    </li>
                             </>
                         }
                     </ul>
