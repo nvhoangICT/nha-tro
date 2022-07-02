@@ -128,23 +128,22 @@ const PropertyDetails = (props) => {
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item">
                                             <a href="tel:+1-224-203-2815" className="propertyPhoneNumber">
-                                                <IoPhonePortraitOutline style={{ marginBottom: '5px' }} />
-                                                <span className="phone-text">&ensp;224-203-2815&ensp;</span>
+                                                <IoPhonePortraitOutline style={{ marginBottom: '3px' }} />
+                                                <span className="phone-text">&ensp;096-203-2815&ensp;</span>
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <Link
+                                            <a
                                                 className={"nav-link active"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
-                                                to="/request-tour"
+                                                href="/request-tour"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
-                                                
                                             >
-                                                <button style={{ backgroundColor: "green" }}>Liên hệ</button>
-                                            </Link>
+                                                <button className={"nav-link active"} style={{ backgroundColor: "#7ac70c" }}>Liên hệ</button>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
