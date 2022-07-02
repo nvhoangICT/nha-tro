@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Header from '../../components/HomeComponent/Header'
 import './styles.css'
 // import axios from 'axios'
@@ -11,8 +10,28 @@ const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
+    const [name, setName] = useState("")
     const [beds, setBeds] = useState(0)
     const [baths, setBaths] = useState(0)
+
+    const options = [
+        {
+          label: "Apple",
+          value: "apple",
+        },
+        {
+          label: "Mango",
+          value: "mango",
+        },
+        {
+          label: "Banana",
+          value: "banana",
+        },
+        {
+          label: "Pineapple",
+          value: "pineapple",
+        },
+      ];
 
     const HandleAddProperty = (e) => {
         e.preventDefault();
@@ -28,11 +47,39 @@ const AddProperty = ({ onLogin }) => {
                             <div className="section pb-5 pt-5 pt-sm-2 text-center">
                                 <div className="card-3d-wrap mx-auto">
                                     <div className="card-3d-wrapper">
-                                        <div className="card-front">
+                                        <div className="card-front" style={{ height: '120%', marginTop: '-20%', width: '100%' }}>
                                             <div className="center-wrap">
                                                 <div className="section text-center">
                                                     <h4 className="mb-4 pb-3">Đăng phòng trọ</h4>
                                                     <div className="form-group">
+                                                        <select className="form-style" onChange={setName}>
+                                                            <option className="form-style" value="">-- Kiểu phòng trọ --</option>
+                                                            <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+                                                            <option value="Căn hộ">Căn hộ</option>
+                                                            <option value="Phòng trọ">Phòng trọ</option>
+                                                        </select>
+                                                        <i className="input-icon uil uil-home-alt"></i>
+                                                    </div>
+                                                    <div className="form-group mt-2">
+                                                        <select className="form-style" onChange={setBeds}>
+                                                            <option className="form-style" value="">-- Số phòng ngủ --</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                        <i className="input-icon uil uil-bed"></i>
+                                                    </div>
+                                                    <div className="form-group mt-2">
+                                                        <select className="form-style" onChange={setBaths}>
+                                                            <option className="form-style" value="">-- Số phòng tắm --</option>
+                                                            <option value="0.5">0.5</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="2">3</option>
+                                                        </select>
+                                                        <i className="input-icon uil uil-bath"></i>
+                                                    </div>
+                                                    <div className="form-group mt-2">
                                                         <input
                                                             type="address"
                                                             name="address"
@@ -42,7 +89,7 @@ const AddProperty = ({ onLogin }) => {
                                                             value={address}
                                                             onChange={(e) => setAddress(e.target.value)}
                                                         />
-                                                        <i className="input-icon uil uil-at"></i>
+                                                        <i className="input-icon uil uil-location-pin-alt"></i>
                                                     </div>
                                                     <div className="form-group mt-2">
                                                         <input
@@ -51,10 +98,10 @@ const AddProperty = ({ onLogin }) => {
                                                             className="form-style"
                                                             placeholder="Mô tả"
                                                             autoComplete="off"
-                                                            value={address}
-                                                            onChange={(e) => setAddress(e.target.value)}
+                                                            value={description}
+                                                            onChange={(e) => setDescription(e.target.value)}
                                                         />
-                                                        <i className="input-icon uil uil-lock-alt"></i>
+                                                        <i className="input-icon uil uil-newspaper"></i>
                                                     </div>
                                                     <div className="form-group mt-2">
                                                         <input
@@ -63,29 +110,10 @@ const AddProperty = ({ onLogin }) => {
                                                             className="form-style"
                                                             placeholder="Giá tiền"
                                                             autoComplete="off"
-                                                            value={address}
-                                                            onChange={(e) => setAddress(e.target.value)}
+                                                            value={price}
+                                                            onChange={(e) => setPrice(e.target.value)}
                                                         />
-                                                        <i className="input-icon uil uil-lock-alt"></i>
-                                                    </div>
-                                                    <div className="form-group mt-2">
-                                                        <select className="form-style" value={beds} onChange={setBeds}>
-                                                            <option className="form-style" value="">-- Số phòng ngủ --</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                        </select>
-                                                        <i className="input-icon uil uil-users-alt"></i>
-                                                    </div>
-                                                    <div className="form-group mt-2">
-                                                        <select className="form-style" value={baths} onChange={setBaths}>
-                                                            <option className="form-style" value="">-- Số phòng tắm --</option>
-                                                            <option value="0.5">0.5</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="2">3</option>
-                                                        </select>
-                                                        <i className="input-icon uil uil-users-alt"></i>
+                                                        <i className="input-icon uil uil-dollar-alt"></i>
                                                     </div>
                                                     <button type="submit" className="btn mt-4" onClick={(e) => { HandleAddProperty(e) }}>submit</button>
                                                 </div>

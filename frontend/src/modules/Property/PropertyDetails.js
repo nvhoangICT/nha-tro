@@ -20,7 +20,6 @@ const PropertyDetails = (props) => {
     const handleZoomChange = useCallback(shouldZoom => {
         setIsZoomed(shouldZoom)
     }, [])
-    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <>
@@ -37,7 +36,7 @@ const PropertyDetails = (props) => {
                                             // onLoad={handleImgLoad}
                                             src={props.bg}
                                             maxHeight={600}
-                                            width={1200}
+                                            width={1220}
                                         />
                                     </picture>
                                 </ControlledZoom>
@@ -51,7 +50,7 @@ const PropertyDetails = (props) => {
                     <div className="row">
                         <div className="col-md-12 pills">
                             <div className="bd-example bd-example-tabs">
-                                <div className="d-flex justify-content-left">
+                                <div className="d-flex"  style={{justifyContent: 'space-between'}}>
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item">
                                             <button
@@ -124,6 +123,9 @@ const PropertyDetails = (props) => {
                                                 Tham quan
                                             </button>
                                         </li>
+                                    </ul>
+
+                                    <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item">
                                             <a href="tel:+1-224-203-2815" className="propertyPhoneNumber">
                                                 <IoPhonePortraitOutline style={{ marginBottom: '5px' }} />
@@ -131,20 +133,18 @@ const PropertyDetails = (props) => {
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={"nav-link active"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
-                                                to="#pills-review"
+                                                to="/request-tour"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
-                                                style={{ backgroundColor: "green" }}
-                                                onClick={() => setIsOpen(true)}
+                                                
                                             >
-                                                Liên hệ
-                                            </button>
-                                            {isOpen && <RequestTour setIsOpen={setIsOpen} />}
+                                                <button style={{ backgroundColor: "green" }}>Liên hệ</button>
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>

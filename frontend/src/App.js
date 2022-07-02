@@ -11,6 +11,7 @@ import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
 import ChangeInformation from './modules/ChangeInformation/ChangeInformation';
+import RequestTour from './modules/RequestTour/RequestTour'
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           }
         />
         <Route path="/change-info" element={<ChangeInformation />} />
+        <Route path="/request-tour" element={<RequestTour />} />
         {/* <Route path="/map" element={<GoogleMap />} /> */}
       </Routes>
       {/* user ?
