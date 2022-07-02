@@ -22,7 +22,7 @@ const Intro = () => {
                             <div className="text text-center">
                                 <h1 className="mb-4" style={{ fontFamily: "Arial" }}>Tìm nhà trọ một cách dễ dàng<br /></h1>
                                 <p style={{ fontSize: "18px" }}>Sự hài lòng của khách hàng là niềm hạnh phúc của chúng tôi</p>
-                                <form action="#" className="search-location mt-md-5">
+                                <form action="#" className="search-location md-5">
                                     <div className="row justify-content-center">
                                         <div className="col-lg-10 align-items-end">
                                             <div className="form-group">
