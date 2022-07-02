@@ -2,10 +2,12 @@ import React from 'react'
 import './styles.css'
 import Login from './Login'
 import Register from './Register'
+import Header from '../../components/HomeComponent/Header'
 
 const Auth = ({ onLogin }) => {
     return (
         <>
+            <Header />
             <div className="section" style={{ backgroundImage: `url(images/bg_3.jpg)` }}>
                 <div className="container">
                     <div className="row full-height justify-content-center">
