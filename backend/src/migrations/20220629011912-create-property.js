@@ -26,7 +26,7 @@ module.exports = {
       },
       bathroom: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       yearBuilt: {
         allowNull: false,
@@ -53,10 +53,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       districtId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      wardId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

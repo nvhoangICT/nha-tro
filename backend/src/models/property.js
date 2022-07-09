@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     area: DataTypes.STRING,
     bedroom: DataTypes.INTEGER,
-    bathroom: DataTypes.INTEGER,
+    bathroom: DataTypes.FLOAT,
     yearBuilt: DataTypes.INTEGER,
     price: DataTypes.FLOAT,
     waterPrice: DataTypes.FLOAT,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN,
     description: DataTypes.STRING,
     districtId: DataTypes.INTEGER,
-    wardId: DataTypes.INTEGER
+  
   }, {
     sequelize,
     modelName: 'Property',
