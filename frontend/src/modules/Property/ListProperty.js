@@ -1,9 +1,21 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
-
-
 import Item from '../../components/ItemComponent/Item'
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
+const baseURL = "http://localhost:8081";
+
 const ListProperty = () => {
+  const [post, setPost] = useState();
+
+  useEffect(async () => {
+    await axios.get(`${baseURL}/api/read-property`).then((response) => {
+      setPost(response.data);
+      console.log(post.data[0]);
+    });
+  }, []);
+
   return (
     <>
       <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
@@ -33,7 +45,7 @@ const ListProperty = () => {
                 baths="2"
                 area="50"
                 title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
+                address={post.data[0].address}
               />
             </div>
 
