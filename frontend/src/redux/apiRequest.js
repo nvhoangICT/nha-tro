@@ -13,6 +13,7 @@ export const loginUser = async (user, dispatch, navigate) => {
                 withCredentials: true
             }
         );
+        localStorage.setItem('refreshToken', res.data.refreshToken);
         dispatch(loginSuccess(res.data));
         // console.log(res.data)
         navigate("/");

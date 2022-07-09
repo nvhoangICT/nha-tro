@@ -30,8 +30,12 @@ const Header = () => {
                                     <Link to="/change-info" className="nav-link" style={{ color: '#e86ed0' }}>{user.name}</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/logout" className="nav-link">Đăng xuất</Link>
-                                    </li>
+                                    <a href="/" className="nav-link"
+                                        onClick={() => {
+                                            localStorage.setItem('refreshToken', null);
+                                        }}
+                                    >Đăng xuất</a>
+                                </li>
                             </>
                         }
                     </ul>
