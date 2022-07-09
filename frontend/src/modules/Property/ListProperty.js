@@ -30,8 +30,19 @@ const ListProperty = () => {
       });
   }
 
+  async function updatePost() {
+    await axios.put(`${baseURL}/api/put-property`, {
+      name: "Hello World!",
+      address: "This is an updated post."
+    })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+
   return (
-    <>
+    <div>
       <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
         style={{ backgroundImage: `url('images/bg_3.jpg')` }} data-stellar-background-ratio="0.5">
         <div className="overlay"></div>
@@ -85,8 +96,8 @@ const ListProperty = () => {
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </section >
+    </div >
   )
 }
 

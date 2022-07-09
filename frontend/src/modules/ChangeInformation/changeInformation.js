@@ -11,7 +11,7 @@ const ChangeInformation = (props) => {
     const [dob, setDob] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
-    const [gender, setGender] = useState("");
+    const [gender, setGender] = useState(0);
     const [phone, setPhone] = useState("");
     const [citizenId, setCitizenId] = useState("");
     const [avatar, setAvatar] = useState("");
@@ -98,7 +98,7 @@ const ChangeInformation = (props) => {
                                                         </div>
                                                         <div className="form-group mt-2">
                                                             <select className="form-style" onChange={(e) => setGender(e.target.value)}>
-                                                                <option className="form-style" value={gender}>-- Giới tính --</option>
+                                                                <option className="form-style" value="">-- Giới tính --</option>
                                                                 <option value="0">Nam</option>
                                                                 <option value="1">Nữ</option>
                                                             </select>
