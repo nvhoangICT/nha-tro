@@ -19,12 +19,12 @@ let handleLogin = async (req, res) => {
             const accessToken = generateAccessToken(user);
             const refreshToken = generateRefreshToken(user);
             // localStorage.setItem('refreshToken', refreshToken);
-            res.cookie('refreshToken', refreshToken, {
-                httpOnly: false, 
-                maxAge: 1000 * 60 * 60 * 24 * 7,
-                samesite: "strict",
-                secure: false
-            });
+            // res.cookie('refreshToken', refreshToken, {
+            //     httpOnly: false, 
+            //     maxAge: 1000 * 60 * 60 * 24 * 7,
+            //     samesite: "strict",
+            //     secure: false
+            // });
             const { password, ...others } = user.dataValues;
             return res.status(200).json({ ...others, accessToken, refreshToken });
         }

@@ -25,7 +25,7 @@ let webRoutes = (app) => {
     router.post("/api/register", registerController.createUser);
     router.post("/api/login", loginController.handleLogin);
     // router.post("/api/refresh", loginController.refreshToken);
-    router.post("/logout", logoutController.logout);
+    router.post("api/logout", logoutController.logout);
 
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);

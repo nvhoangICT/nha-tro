@@ -67,7 +67,7 @@ const ListProperty = () => {
                 return(
                   <Item
                     key = {index}
-                    backgroundImage= {item.backgroundImage}
+                    backgroundImage={item.backgroundImage}
                     price={item.price}
                     beds={item.bedroom}
                     baths={item.bathroom}
