@@ -29,8 +29,8 @@ export default function TestProperties() {
   return (
     <div>
       
-      <h1>{post.name}</h1>
-   
+      <h1>{post.data.address}</h1>
+
       <button onClick={updatePost}>Update Post</button>
     </div>
   );

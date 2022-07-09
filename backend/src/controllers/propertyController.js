@@ -60,7 +60,7 @@ let editProperty = async (req, res) => {
 let putProperty = async (req, res) => {
     let data = req.body;
     let allProperties = await propertyService.updatePropertyData(data);
-    return res.render('display.ejs', { data: allProperties })
+    return res.status(200).json({data: allProperties});
 }
 
 let deleteProperty = async (req, res) => {
