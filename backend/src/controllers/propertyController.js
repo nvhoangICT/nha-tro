@@ -37,6 +37,12 @@ let readAllProperty = async (req, res) => {
     return res.status(200).json({ data: data })
 }
 
+let readProperty = async (req, res) => {
+    let data = await propertyService.getPropertyById();
+    return res.status(200).json({ data: data })
+}
+
+
 let editProperty = async (req, res) => {
     let PropertyID = req.query.id;
     if (PropertyID) {
@@ -62,4 +68,4 @@ let deleteProperty = async (req, res) => {
     return res.render('display.ejs', { data: allProperts })
 }
 
-module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty }
+module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty}

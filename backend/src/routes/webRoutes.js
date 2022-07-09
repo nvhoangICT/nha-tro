@@ -33,7 +33,7 @@ let webRoutes = (app) => {
     router.get("/api/edit-property", propertyController.editProperty);
     router.post("/api/put-property", propertyController.putProperty);
     router.get("/api/delete-property", propertyController.deleteProperty);
-    router.get("/api/get-property/{:id}", propertyService.getPropertyById);
+    router.get("/api/get-property/{:id}", propertyController.readProperty);
 
     router.get("/dashboard", dashboardController.getDashboard);
 
