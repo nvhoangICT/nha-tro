@@ -179,7 +179,8 @@ const PropertyDetails = (props) => {
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
                                         <GoogleMap
-                                            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDpCgPt0W2mw-lp5So6AeMEqQXUas2itkA&v=3.exp&libraries=geometry,drawing,places`}
+                                            // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
+                                            googleMapURL={`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyA0Dx_boXQiwvdz8sJHoYeZNVTdoWONYkU`}
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: `90vh`, margin: `auto`, border: '2px solid black' }} />}
                                             mapElement={<div style={{ height: `100%` }} />}

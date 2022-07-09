@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/apiRequest'
 import Header from '../../components/HomeComponent/Header';
+import storage from "../../firebase/firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const ChangeInformation = (props) => {
     const [name, setName] = useState("");
@@ -15,6 +17,11 @@ const ChangeInformation = (props) => {
     const [phone, setPhone] = useState("");
     const [citizenId, setCitizenId] = useState("");
     const [avatar, setAvatar] = useState("");
+
+    const [file, setFile] = useState("");
+ 
+    // progress
+    const [percent, setPercent] = useState(0);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,10 +36,40 @@ const ChangeInformation = (props) => {
             password: password
         };
         // changeInformation(newUser, dispatch, navigate);
+
+        if (!file) {
+            alert("Please choose a file first!")
+        }
+        const storageRef = ref(storage, `/files/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const percent = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+
+                // update progress
+                setPercent(percent);
+            },
+            (err) => console.log(err),
+            () => {
+                // download url
+                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                    console.log(url);
+                });
+            }
+        );
     }
+    
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+    }
+
     return (
         <>
-        <Header />
+            <Header />
             <div className="section" style={{ backgroundImage: `url(images/bg_3.jpg)` }}>
                 <div className="container">
                     <div className="row full-height justify-content-center">
@@ -77,7 +114,7 @@ const ChangeInformation = (props) => {
                                                                 placeholder="Ngày sinh : DD/MM/YYYY"
                                                                 autoComplete="off"
                                                                 value={dob}
-                                                                min="1997-01-01" 
+                                                                min="1997-01-01"
                                                                 max="2030-12-31"
                                                                 onChange={(e) => setDob(e.target.value)}
                                                             />
@@ -147,8 +184,7 @@ const ChangeInformation = (props) => {
                                                                 className="form-style"
                                                                 placeholder="Ảnh đại diện"
                                                                 autoComplete="off"
-                                                                value={avatar}
-                                                                onChange={(e) => setAvatar(e.target.value)}
+                                                                onChange={(e) => setFile(e.target.files[0])}
                                                             />
                                                             <i className="input-icon uil uil-image"></i>
                                                         </div>
