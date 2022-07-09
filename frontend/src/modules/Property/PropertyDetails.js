@@ -8,8 +8,12 @@ import RequestTour from '../RequestTour/RequestTour'
 import Header from '../../components/HomeComponent/Header'
 import { IoPhonePortraitOutline } from "react-icons/io5";
 
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
+
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
+    const [image, setImage] = useState("")
     const toggleTab = (index) => {
         setToggle(index);
     }
@@ -20,6 +24,29 @@ const PropertyDetails = (props) => {
     const handleZoomChange = useCallback(shouldZoom => {
         setIsZoomed(shouldZoom)
     }, [])
+
+    const storage = getStorage();
+    getDownloadURL(ref(storage, '/files/cap-anh-em-ngoc-son-ngoc-hai-me-hat-nhung-re-loi-khac-nhau-1.jpeg'))
+        .then((url) => {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = (event) => {
+                const blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element
+            const img = document.getElementById('myimg');
+            img.setAttribute('src', url);
+        })
+        .catch((error) => {
+            // Handle any errors
+        });
+
 
     return (
         <>
@@ -32,9 +59,9 @@ const PropertyDetails = (props) => {
                                 <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
                                     <picture>
                                         <img
+                                            id="myimg"
                                             alt="a house"
                                             // onLoad={handleImgLoad}
-                                            src={props.bg}
                                             maxHeight={600}
                                             width={1220}
                                         />
@@ -50,7 +77,7 @@ const PropertyDetails = (props) => {
                     <div className="row">
                         <div className="col-md-12 pills">
                             <div className="bd-example bd-example-tabs">
-                                <div className="d-flex"  style={{justifyContent: 'space-between'}}>
+                                <div className="d-flex" style={{ justifyContent: 'space-between' }}>
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item">
                                             <button
