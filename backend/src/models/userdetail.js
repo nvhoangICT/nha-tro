@@ -14,8 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserDetail.init({
+    id: {
+      type: DataTypes.CHAR(36),
+      primaryKey: true,
+    },
     gender: DataTypes.BOOLEAN,
-    dob: DataTypes.DATE,
+    dob: DataTypes.DATEONLY,
     phone: DataTypes.STRING,
     address: DataTypes.STRING,
     citizenId: DataTypes.STRING,
