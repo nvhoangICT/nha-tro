@@ -11,7 +11,10 @@ const ChangeInformation = (props) => {
     const [dob, setDob] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
+    const [gender, setGender] = useState("");
     const [phone, setPhone] = useState("");
+    const [citizenId, setCitizenId] = useState("");
+    const [avatar, setAvatar] = useState("");
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -44,7 +47,7 @@ const ChangeInformation = (props) => {
                                                         <h4 className="pb-3">Thay đổi thông tin người dùng</h4>
                                                         <div className="form-group" >
                                                             <input
-                                                                type="text"
+                                                                type="input"
                                                                 name="name"
                                                                 className="form-style"
                                                                 placeholder="Họ tên"
@@ -56,7 +59,7 @@ const ChangeInformation = (props) => {
                                                         </div>
                                                         <div className="form-group mt-2">
                                                             <input
-                                                                type="email"
+                                                                type="input"
                                                                 name="email"
                                                                 className="form-style"
                                                                 placeholder="example@email.com"
@@ -68,19 +71,21 @@ const ChangeInformation = (props) => {
                                                         </div>
                                                         <div className='form-group mt-2'>
                                                             <input
-                                                                type="dob"
+                                                                type="date"
                                                                 name="dob"
                                                                 className="form-style"
                                                                 placeholder="Ngày sinh : DD/MM/YYYY"
                                                                 autoComplete="off"
                                                                 value={dob}
+                                                                min="1997-01-01" 
+                                                                max="2030-12-31"
                                                                 onChange={(e) => setDob(e.target.value)}
                                                             />
                                                             <i className="input-icon uil uil-calendar-alt"></i>
                                                         </div>
                                                         <div className="form-group mt-2">
                                                             <input
-                                                                type="address"
+                                                                type="input"
                                                                 name="address"
                                                                 className="form-style"
                                                                 placeholder="Địa chỉ"
@@ -92,11 +97,19 @@ const ChangeInformation = (props) => {
 
                                                         </div>
                                                         <div className="form-group mt-2">
+                                                            <select className="form-style" onChange={(e) => setGender(e.target.value)}>
+                                                                <option className="form-style" value={gender}>-- Giới tính --</option>
+                                                                <option value="0">Nam</option>
+                                                                <option value="1">Nữ</option>
+                                                            </select>
+                                                            <i className="input-icon uil uil-users-alt"></i>
+                                                        </div>
+                                                        <div className="form-group mt-2">
                                                             <input
-                                                                type="phone"
+                                                                type="input"
                                                                 name="phone"
                                                                 className="form-style"
-                                                                placeholder="Phone Number"
+                                                                placeholder="Số điện thoại"
                                                                 autoComplete="off"
                                                                 value={phone}
                                                                 onChange={(e) => setPhone(e.target.value)}
@@ -105,15 +118,39 @@ const ChangeInformation = (props) => {
                                                         </div>
                                                         <div className="form-group mt-2">
                                                             <input
+                                                                type="input"
+                                                                name="citizenId"
+                                                                className="form-style"
+                                                                placeholder="CMND/CCCD"
+                                                                autoComplete="off"
+                                                                value={citizenId}
+                                                                onChange={(e) => setCitizenId(e.target.value)}
+                                                            />
+                                                            <i className="input-icon uil uil-postcard"></i>
+                                                        </div>
+                                                        {/* <div className="form-group mt-2">
+                                                            <input
                                                                 type="password"
                                                                 name="password"
                                                                 className="form-style"
-                                                                placeholder="Your Password"
+                                                                placeholder="Mật khẩu"
                                                                 autoComplete="off"
                                                                 value={password}
                                                                 onChange={(e) => setPassword(e.target.value)}
                                                             />
                                                             <i className="input-icon uil uil-lock-alt"></i>
+                                                        </div> */}
+                                                        <div className="form-group mt-2">
+                                                            <input
+                                                                type="file"
+                                                                name="avatar"
+                                                                className="form-style"
+                                                                placeholder="Ảnh đại diện"
+                                                                autoComplete="off"
+                                                                value={avatar}
+                                                                onChange={(e) => setAvatar(e.target.value)}
+                                                            />
+                                                            <i className="input-icon uil uil-image"></i>
                                                         </div>
                                                         <button type="submit" className="btn mt-4" onClick={(e) => { handleChangeInfo(e) }}>submit</button>
                                                     </div>
