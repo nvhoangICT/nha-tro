@@ -6,18 +6,30 @@ import React, { useState, useEffect } from "react";
 
 const baseURL = "http://localhost:8081";
 
-const ListProperty = () => {
-  const [post, setPost] = useState();
+function ListProperty() {
+  const [post, setPost] = useState([]);
 
   useEffect(async () => {
     await axios.get(`${baseURL}/api/read-property`).then((response) => {
       setPost(response.data);
-      console.log(post.data[0]);
+      console.log(response.data);
+      console.log(post.address)
     });
   }, []);
 
+  async function updatePost() {
+    await axios.put(`${baseURL}/api/put-property`, {
+      name: "Hello World!",
+      address: "This is an updated post."
+    })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+
   return (
-    <>
+    <div>
       <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
         style={{ backgroundImage: `url('images/bg_3.jpg')` }} data-stellar-background-ratio="0.5">
         <div className="overlay"></div>
@@ -45,7 +57,7 @@ const ListProperty = () => {
                 baths="2"
                 area="50"
                 title="Nhà nguyên căn"
-                address={post.data[0].address}
+                address="Hai Bà Trưng"
               />
             </div>
 
@@ -168,8 +180,8 @@ const ListProperty = () => {
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </section >
+    </div >
   )
 }
 
