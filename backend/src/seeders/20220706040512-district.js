@@ -5,39 +5,57 @@ module.exports = {
     return queryInterface.bulkInsert('Districts', [
       {
         "id" : "1",
-        "name" : "Hoàng Mai"
+        "name" : "Hoàng Mai",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" : "2",
-        "name" : "Cầu Giấy"
+        "name" : "Cầu Giấy",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"3",
-        "name" :"Đống Đa"
+        "name" :"Đống Đa",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"4",
-        "name" :"Hai Bà Trưng"
+        "name" :"Hai Bà Trưng",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"5",
-        "name" :"Nam Từ Liêm"
+        "name" :"Nam Từ Liêm",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"6",
-        "name" :"Bắc Từ Liêm"
+        "name" :"Bắc Từ Liêm",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"7",
-        "name" :"Hoàn Kiếm"
+        "name" :"Hoàn Kiếm",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"8",
-        "name" :"Thanh Xuân"
+        "name" :"Thanh Xuân",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       },
       {
         "id" :"9",
-        "name" :"Ba Đình"
+        "name" :"Ba Đình",
+        "createdAt": "2022-06-28 07:42:41",
+        "updatedAt": "2022-06-28 07:42:41"
       }
     ]
     );
