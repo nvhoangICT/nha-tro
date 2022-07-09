@@ -27,6 +27,10 @@ let webRoutes = (app) => {
     // router.post("/api/refresh", loginController.refreshToken);
     router.post("api/logout", logoutController.logout);
 
+    // API FORGET PASSWORD
+    router.get("api/forget-password/", authController.forgetPassword);
+    router.post("api/forget-password", authController.forgetPassword);
+
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);
     router.get("/api/read-property", propertyController.readAllProperty);

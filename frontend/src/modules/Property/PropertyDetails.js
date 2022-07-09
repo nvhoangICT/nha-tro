@@ -7,9 +7,27 @@ import 'react-medium-image-zoom/dist/styles.css'
 import RequestTour from '../RequestTour/RequestTour'
 import Header from '../../components/HomeComponent/Header'
 import { IoPhonePortraitOutline } from "react-icons/io5";
+import { Box, Button, Modal, TextField, Typography } from "@mui/material"
+import SendIcon from '@mui/icons-material/Send'
+
+
 
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
+const style = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    position: 'absolute',
+    top: '30%',
+    left: '42%',
+    transfrom: 'translate(-50%, -50%)',
+    width: 300,
+    bgcolor: '#f5f5f5',
+    border: '1px solid #000',
+    p: 4
+}
 
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
@@ -24,6 +42,16 @@ const PropertyDetails = (props) => {
     const handleZoomChange = useCallback(shouldZoom => {
         setIsZoomed(shouldZoom)
     }, [])
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
+
+    const handleClose = () => {
+        setOpen(false);
+    }
 
     const storage = getStorage();
     getDownloadURL(ref(storage, '/files/cap-anh-em-ngoc-son-ngoc-hai-me-hat-nhung-re-loi-khac-nhau-1.jpeg'))
@@ -169,7 +197,32 @@ const PropertyDetails = (props) => {
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
                                             >
-                                                <button className={"nav-link active"} style={{ backgroundColor: "#7ac70c" }}>Liên hệ</button>
+                                                <button
+                                                    className={"nav-link active"}
+                                                    style={{ backgroundColor: "#7ac70c" }}
+                                                    onClick={handleOpen}
+                                                >Liên hệ</button>
+                                                <Modal
+                                                    open={open}
+                                                    onClose={handleClose}
+                                                    aria-labelledby="modal-modal-title"
+                                                    aria-describedby="modal-modal-description"
+                                                >
+                                                    <Box sx={style}>
+                                                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                            Quên mật khẩu
+                                                        </Typography>
+                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                            <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                                        </Typography>
+                                                        <Button
+                                                            endIcon={<SendIcon />}
+                                                            variant="contained"
+                                                            sx={{ mt: 2 }}
+                                                            href="#outlined-buttons"
+                                                        >Gửi</Button>
+                                                    </Box>
+                                                </Modal>
                                             </a>
                                         </li>
                                     </ul>
