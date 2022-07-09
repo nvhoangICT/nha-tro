@@ -7,14 +7,28 @@ import React, { useState, useEffect } from "react";
 const baseURL = "http://localhost:8081";
 
 const ListProperty = () => {
-  const [post, setPost] = useState();
+  const [post, setPost] = useState(null);
+  const [listProps, setListProps] = useState([])
 
   useEffect(async () => {
     await axios.get(`${baseURL}/api/read-property`).then((response) => {
-      setPost(response.data);
-      console.log(post.data[0]);
+      // setPost(response.data);
+      // console.log(post.data[0].address);
+      console.log(response.data.data);
+      setListProps(listProps => listProps = response.data.data)
     });
   }, []);
+  console.log(listProps);
+
+  async function updatePost() {
+    await axios.put(`${baseURL}/api/put-property`, {
+      name: "Hello World!",
+      address: "This is an updated post."
+    })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
 
   return (
     <>
@@ -36,119 +50,22 @@ const ListProperty = () => {
       <section className="ftco-section">
         <div className="container">
           <div className="row">
+            
             <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address={post.data[0].address}
-              />
-            </div>
-
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
-            </div>
-            <div className="col-md-4">
-              <Item
-                id="1"
-                backgroundImage="url(images/nha-tro-1.png)"
-                price="5,000,000"
-                beds="3"
-                baths="2"
-                area="50"
-                title="Nhà nguyên căn"
-                address="Hai Bà Trưng"
-              />
+              {listProps.map((item, index) => {
+                return(
+                  <Item
+                    key = {index}
+                    backgroundImage= {item.backgroundImage}
+                    price={item.price}
+                    beds={item.bedroom}
+                    baths={item.bathroom}
+                    area={item.area}
+                    title={item.name}
+                    address={item.address}
+                  />
+                )
+              })}
             </div>
           </div>
 
