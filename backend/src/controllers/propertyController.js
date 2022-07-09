@@ -34,7 +34,6 @@ let postProperty = async (req, res) => {
 
 let readAllProperty = async (req, res) => {
     let data = await propertyService.getAllProperty();
-    console.log(data)
     return res.status(200).json({ data: data })
 }
 
@@ -60,7 +59,7 @@ let putProperty = async (req, res) => {
 let deleteProperty = async (req, res) => {
     let PropertyID = req.query.id;
     let allPropertys = await propertyService.deleteProperty(PropertyID);
-    return res.render('display.ejs', { data: allPropertys })
+    return res.render('display.ejs', { data: allProperts })
 }
 
 module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty }

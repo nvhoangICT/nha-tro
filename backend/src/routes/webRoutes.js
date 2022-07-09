@@ -10,6 +10,8 @@ const authController = require('../controllers/authController')
 const propertyController = require('../controllers/propertyController')
 const dashboardController = require('../controllers/dashboardController')
 
+const propertyService = require('../services/propertyService');
+
 let webRoutes = (app) => {
     // API USER 
     router.get("/get-crud", testController.getCRUD);
@@ -31,6 +33,7 @@ let webRoutes = (app) => {
     router.get("/api/edit-property", propertyController.editProperty);
     router.post("/api/put-property", propertyController.putProperty);
     router.get("/api/delete-property", propertyController.deleteProperty);
+    router.get("/api/get-property/{:id}", propertyService.getPropertyById);
 
     router.get("/dashboard", dashboardController.getDashboard);
 
