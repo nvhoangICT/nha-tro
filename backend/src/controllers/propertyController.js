@@ -38,7 +38,8 @@ let readAllProperty = async (req, res) => {
 }
 
 let readProperty = async (req, res) => {
-    let data = await propertyService.getPropertyById();
+    console.log(req)
+    let data = await propertyService.getPropertyById(req.params.ID);
     return res.status(200).json({ data: data })
 }
 
