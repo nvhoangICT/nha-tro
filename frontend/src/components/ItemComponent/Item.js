@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Item = (props) => {
     const {price, beds, baths, area, title, address, backgroundImage} = props
     return (
-        <div className="property-wrap">
+        <div className="property-wrap col-md-6 col-lg-4">
             <Link to={`/item`} className="img" style={{ backgroundImage:backgroundImage }}></Link>
             <div className="text">
                 <p className="price"><span className="orig-price">{price}đ<small>/mo</small></span></p>

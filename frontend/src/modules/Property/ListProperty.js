@@ -1,24 +1,32 @@
-
-import { Link } from 'react-router-dom'
-import Item from '../../components/ItemComponent/Item'
+import { Link } from 'react-router-dom';
+import Item from '../../components/ItemComponent/Item';
 import axios from "axios";
+import Pagination from './Pagination';
+// import { Pagination } from '@mui/material';
 import React, { useState, useEffect } from "react";
 
 const baseURL = "http://localhost:8081";
 
 const ListProperty = () => {
   const [post, setPost] = useState(null);
-  const [listProps, setListProps] = useState([])
-
+  const [listProps, setListProps] = useState([]);
+  const[loading,setLoading]=useState(false);
+  const [currentPage,setCurrentPage]=useState(1);
+  const [postsPerPage,setPostsPerPage]=useState(9);
+  const [posts, setPosts] = useState([]);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   useEffect(async () => {
     await axios.get(`${baseURL}/api/read-property`).then((response) => {
       // setPost(response.data);
       // console.log(post.data[0].address);
-      console.log(response.data.data);
+      setPost(response.data.data);
+      setLoading(false);
+      console.log(response.data.data)
+      // console.log(response.data.data);
       setListProps(listProps => listProps = response.data.data)
     });
   }, []);
-  console.log(listProps);
+  // console.log(listProps);
 
   async function updatePost() {
     await axios.put(`${baseURL}/api/put-property`, {
@@ -29,18 +37,9 @@ const ListProperty = () => {
         setPost(response.data);
       });
   }
-
-  async function updatePost() {
-    await axios.put(`${baseURL}/api/put-property`, {
-      name: "Hello World!",
-      address: "This is an updated post."
-    })
-      .then((response) => {
-        setPost(response.data);
-      });
-  }
-
-
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <div>
       <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
@@ -60,10 +59,9 @@ const ListProperty = () => {
 
       <section className="ftco-section">
         <div className="container">
-          <div className="row">
-            
-            <div className="col-md-4">
-              {listProps.map((item, index) => {
+          <div className="row">  
+            <div className="row">
+              {currentPosts.map((item, index) => {
                 return(
                   <Item
                     key = {index}
@@ -77,23 +75,19 @@ const ListProperty = () => {
                   />
                 )
               })}
+              
             </div>
           </div>
-
           <div className="row mt-5">
-            <div className="col text-center">
-              <div className="block-27">
-                <ul>
-                  <li><Link to="#">&lt;</Link></li>
-                  <li className="active"><span>1</span></li>
-                  <li><Link to="#">2</Link></li>
-                  <li><Link to="#">3</Link></li>
-                  <li><Link to="#">4</Link></li>
-                  <li><Link to="#">5</Link></li>
-                  <li><Link to="#">&gt;</Link></li>
-                </ul>
-              </div>
-            </div>
+          <div className='container mt-5'>
+      
+      
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={listProps.length}
+        paginate={paginate}
+      />
+    </div>
           </div>
         </div>
       </section >
@@ -101,4 +95,4 @@ const ListProperty = () => {
   )
 }
 
-export default ListProperty
+export default ListProperty;
