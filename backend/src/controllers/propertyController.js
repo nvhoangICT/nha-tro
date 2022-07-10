@@ -21,7 +21,7 @@ let postProperty = async (req, res) => {
             price: req.body.price,
             waterPrice: req.body.waterPrice,
             electricPrice: req.body.electricPrice,
-            status: req.body.status,
+            status: 0,
             description: req.body.description,
             districtId: req.body.districtId,
         });

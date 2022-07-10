@@ -36,11 +36,11 @@ const ChangeInformation = (props) => {
             password: password
         };
         // changeInformation(newUser, dispatch, navigate);
-
+        let i = 1;
         if (!file) {
             alert("Please choose a file first!")
         }
-        const storageRef = ref(storage, `/files/${file.name}`)
+        const storageRef = ref(storage, `/files/${i++}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on(
