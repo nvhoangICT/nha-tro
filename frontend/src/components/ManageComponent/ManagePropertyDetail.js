@@ -1,18 +1,13 @@
 // import { Marker } from '@react-google-maps/api'
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import GoogleMap from '../GoogleMap/GoogleMap'
-import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
+import GoogleMap from '../../modules/GoogleMap/GoogleMap'
 import 'react-medium-image-zoom/dist/styles.css'
-import RequestTour from '../RequestTour/RequestTour'
 import Header from '../../components/HomeComponent/Header'
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send'
-
-
-
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { Table } from 'react-bootstrap'
 
 const style = {
     display: "flex",
@@ -29,7 +24,7 @@ const style = {
     p: 4
 }
 
-const PropertyDetails = (props) => {
+const ManagePropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
     const [image, setImage] = useState("")
     const toggleTab = (index) => {
@@ -70,7 +65,7 @@ const PropertyDetails = (props) => {
     //         // Or inserted into an <img> element
     //         const img = document.getElementById('myimg');
     //         img.setAttribute('src', url);
-    //     })
+    //     })   
     //     .catch((error) => {
     //         // Handle any errors
     //     });
@@ -84,17 +79,6 @@ const PropertyDetails = (props) => {
                     <div className="row justify-content-center">
                         <div className="col-md-12">
                             <div className="property-details">
-                                <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
-                                    <picture>
-                                        <img
-                                            id="myimg"
-                                            alt="a house"
-                                            // onLoad={handleImgLoad}
-                                            maxHeight={600}
-                                            width={1220}
-                                        />
-                                    </picture>
-                                </ControlledZoom>
                                 <div className="text text-center mt-4">
                                     <span className="subheading">{props.address}</span>
                                     <h2>{props.title}</h2>
@@ -118,7 +102,7 @@ const PropertyDetails = (props) => {
                                                 aria-expanded="true"
                                                 onClick={() => toggleTab(1)}
                                             >
-                                                Tiện ích
+                                                Người thuê
                                             </button>
                                         </li>
                                         <li className="nav-item">
@@ -132,7 +116,7 @@ const PropertyDetails = (props) => {
                                                 aria-expanded="true"
                                                 onClick={() => toggleTab(2)}
                                             >
-                                                Mô tả
+                                                Giá tiền
                                             </button>
                                         </li>
                                         <li className="nav-item">
@@ -230,31 +214,61 @@ const PropertyDetails = (props) => {
 
                                 <div className="tab-content" id="pills-tabContent">
                                     <div className={toggle === 1 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <ul className="features">
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Diện tích: 1250 SQ FT</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Phòng ngủ: 4</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Phòng tắm: 4</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Đồ đạc : giường, tủ, điều hòa, ...</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Chỗ để xe: 2</li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-4">
-                                                <ul className="features">
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Diện tích: 1,300 SQ FT</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Năm xây dựng: 2019</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Giá điện nước: tính theo số</li>
-
-                                                </ul>
-                                            </div>
-
-                                        </div>
+                                        <Table striped bordered hover>
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Họ tên</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>0983213123</td>
+                                                    <td><Button>Sửa</Button><Button>Xóa</Button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                    <td><Button>Sửa</Button><Button>Xóa</Button></td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
+                                        <Button>Thêm</Button>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                        <Table striped bordered hover>
+                                            <thead>
+                                                <tr>
+                                                    <th>Tháng</th>
+                                                    <th>Tiền phòng</th>
+                                                    <th>Tiền điện</th>
+                                                    <th>Tiền nước</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
                                     </div>
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
@@ -414,4 +428,4 @@ const PropertyDetails = (props) => {
     )
 }
 
-export default PropertyDetails
+export default ManagePropertyDetails
