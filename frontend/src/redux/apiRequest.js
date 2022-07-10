@@ -1,6 +1,6 @@
 
 import axios from '../api/axios';
-import { loginFailed, loginStart, loginSuccess, registerFailed, registerStart, registerSuccess } from './authSlice'
+import { loginFailed, loginStart, loginSuccess, logOutFailed, logOutStart, registerFailed, registerStart, registerSuccess } from './authSlice'
 
 export const loginUser = async (user, dispatch, navigate) => {
     console.log(user)
@@ -34,4 +34,17 @@ export const registerUser = async (user, dispatch, navigate) => {
         console.error(e.response.data)
         dispatch(registerFailed());
     }
+}
+
+export const logOut = async(dispatch,id,navigate,accessToken,axiosJWT) => {
+       dispatch(logOutStart());
+       try{
+         await axiosJWT.post("/v1/auth/logout",id,{
+            headers: {token: `Bearer ${accessToken}`}
+         });
+         dispatch(logOutSuccess());
+         navigate("/login");
+       }catch(err){
+        dispatch(logOutFailed())
+       }
 }

@@ -11,8 +11,9 @@ import ListProperty from './modules/Property/ListProperty';
 import AdvancedSearch from './components/SearchComponent/AdvancedSearch';
 import PropertyDetails from './modules/Property/PropertyDetails';
 import ChangeInformation from './modules/ChangeInformation/changeInformation';
-import RequestTour from './modules/RequestTour/RequestTour'
+import RequestTour from './modules/RequestTour/RequestTour';
 import TestProperties from './components/testProperties';
+import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDetail';
 function App() {
 
   // const [token, setToken] = useState(Cookies.get())
@@ -48,8 +49,8 @@ function App() {
         <Route path="/item"
           element={
             <PropertyDetails
-              title="Phòng Trọ 2 Người" 
-              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai" 
+              title="Phòng Trọ 2 Người"
+              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
               bg="https://images1.apartments.com/i2/J8Gdf_yX9fqD9XJTjj-TPBf1yoAzlijuAMqeaBWa2EQ/116/regents-park-chicago-il-1-br-1-ba---715-sf.jpg?p=1"
             />
           }
@@ -57,7 +58,12 @@ function App() {
         <Route path="/change-info" element={<ChangeInformation />} />
         <Route path="/request-tour" element={<RequestTour />} />
         <Route path="/test-properties" element={<TestProperties />} />
-        {/* <Route path="/map" element={<GoogleMap />} /> */}
+        <Route path="/manage-property"
+          element={
+            <ManagePropertyDetails
+              title="Phòng Trọ 2 Người"
+              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
+            />} />
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

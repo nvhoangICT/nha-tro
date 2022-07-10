@@ -28,8 +28,12 @@ let webRoutes = (app) => {
     router.post("api/logout", logoutController.logout);
 
     // API FORGET PASSWORD
-    router.get("api/forget-password/", authController.forgetPassword);
-    router.post("api/forget-password", authController.forgetPassword);
+    router.get("/password/reset", authController.showForgotForm);
+    router.post("/password/email", authController.sendResetLinkEmail);
+
+    // API RESET PASSWORD
+    router.get("/password/reset/:email", authController.showResetForm);
+    router.post("/password/reset", authController.reset);
 
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);
@@ -40,6 +44,8 @@ let webRoutes = (app) => {
     router.get("/api/get-property/:ID", propertyController.readProperty);
 
     router.get("/dashboard", dashboardController.getDashboard);
+
+    router.post("/logout",middlewareController.verifyToken,authController.userLogout);
 
     return app.use("/", router);
 }

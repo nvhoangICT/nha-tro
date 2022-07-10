@@ -24,7 +24,6 @@ let postProperty = async (req, res) => {
             status: req.body.status,
             description: req.body.description,
             districtId: req.body.districtId,
-            wardId: req.body.wardId
         });
         res.status(200).json("Property added successfully");
     } catch (err) {
