@@ -1,6 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { loginsucess } from "./redux/authSlice";
+import { loginSuccess } from "./redux/authSlice";
 const refreshToken = async () => {
     try {
         const res = await axios.post("/v1/auth/refresh",{

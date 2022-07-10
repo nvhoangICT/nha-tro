@@ -77,10 +77,29 @@ const Login = () => {
                             <i className="input-icon uil uil-lock-alt"></i>
                         </div>
                         <button type="submit" className="btn mt-4" onClick={(e) => { handleLogin(e) }}>submit</button>
-                        <p className="mb-0 mt-4 text-center">
-                            
+                        <p className="mb-0 mt-4 text-center">       
                             <a class="link" href='http://localhost:8081/password/reset' onClick={handleOpen} style={{border:0, background:"inherit"}}>Forgot your password?</a>
-                            
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                        Quên mật khẩu
+                                    </Typography>
+                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                        <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                    </Typography>
+                                    <Button
+                                        endIcon={<SendIcon />}
+                                        variant="contained"
+                                        sx={{ mt: 2 }}
+                                        href="#outlined-buttons"
+                                    >Gửi</Button>
+                                </Box>
+                            </Modal>
                         </p>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 
 import axios from '../api/axios';
-import { loginFailed, loginStart, loginSuccess, logOutFailed, logOutStart, registerFailed, registerStart, registerSuccess } from './authSlice'
+import { loginFailed, loginStart, loginSuccess, logOutFailed, logOutStart, logOutSuccess, registerFailed, registerStart, registerSuccess } from './authSlice'
 
 export const loginUser = async (user, dispatch, navigate) => {
     console.log(user)
