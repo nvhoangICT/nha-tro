@@ -9,14 +9,16 @@ import Blog from '../components/HomeComponent/Blog'
 import Header from '../components/HomeComponent/Header'
 import Footer from '../components/HomeComponent/Footer'
 import '../assets/scss/style.scss'
+import {createAxios} from "../../createInstance";
 // import AdvancedSearch from '../components/SearchComponent/AdvancedSearch'
 import UserHeader from '../components/HomeComponent/UserHeader'
 import Cookies from 'js-cookie'
+import { loginSuccess } from '../redux/authSlice'
 
 const Home = () => {
 
   let refreshToken = Cookies.get('refreshToken')
-
+  let axiosJWT = createAxios(user, dispatch, loginSuccess);
 
   return (
     <>

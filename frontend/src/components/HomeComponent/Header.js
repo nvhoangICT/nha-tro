@@ -1,10 +1,20 @@
 
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { createAxios } from '../../createinstance'
+import { logOut } from '../../redux/apiRequest'
+import { logOutSuccess } from '../../redux/authSlice'
 
 const Header = () => {
     const user = useSelector((state) => state.auth.login.currentUser)
-
+    const accessToken=user?.accessToken;
+    const id=user?._id;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    let axiosJWT = createAxios(user,dispatch,logOutSuccess);
+    const handleLogout = () => {
+        logOut(dispatch,id,navigate,accessToken,axiosJWT);
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div className="container">

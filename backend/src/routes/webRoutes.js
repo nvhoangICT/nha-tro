@@ -41,6 +41,8 @@ let webRoutes = (app) => {
 
     router.get("/dashboard", dashboardController.getDashboard);
 
+    router.post("/logout",middlewareController.verifyToken,authController.userLogout);
+
     return app.use("/", router);
 }
 
