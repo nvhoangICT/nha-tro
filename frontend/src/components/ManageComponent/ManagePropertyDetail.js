@@ -219,8 +219,9 @@ const ManagePropertyDetails = (props) => {
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Họ tên</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -228,16 +229,19 @@ const ManagePropertyDetails = (props) => {
                                                     <td>1</td>
                                                     <td>Mark</td>
                                                     <td>Otto</td>
-                                                    <td>@mdo</td>
+                                                    <td>0983213123</td>
+                                                    <td><Button>Sửa</Button><Button>Xóa</Button></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
                                                     <td>Jacob</td>
                                                     <td>Thornton</td>
                                                     <td>@fat</td>
+                                                    <td><Button>Sửa</Button><Button>Xóa</Button></td>
                                                 </tr>
                                             </tbody>
                                         </Table>
+                                        <Button>Thêm</Button>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
