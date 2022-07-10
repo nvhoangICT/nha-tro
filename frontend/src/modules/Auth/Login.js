@@ -21,6 +21,7 @@ const style = {
 }
 
 const Login = () => {
+    const [email, setEmail] = useState("");
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
@@ -46,6 +47,7 @@ const Login = () => {
         };
         loginUser(newUser, dispatch, navigate);
     }
+
 
     return (
         <>
@@ -77,8 +79,8 @@ const Login = () => {
                             <i className="input-icon uil uil-lock-alt"></i>
                         </div>
                         <button type="submit" className="btn mt-4" onClick={(e) => { handleLogin(e) }}>submit</button>
-                        <p className="mb-0 mt-4 text-center">       
-                            <a class="link" href='http://localhost:8081/password/reset' onClick={handleOpen} style={{border:0, background:"inherit"}}>Forgot your password?</a>
+                        <p className="mb-0 mt-4 text-center">
+                            <button class="link" onClick={handleOpen} style={{ border: 0, background: "inherit" }}>Forgot your password?</button>
                             <Modal
                                 open={open}
                                 onClose={handleClose}
@@ -97,7 +99,9 @@ const Login = () => {
                                         variant="contained"
                                         sx={{ mt: 2 }}
                                         href="#outlined-buttons"
-                                    >Gửi</Button>
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    > Gửi</Button>
                                 </Box>
                             </Modal>
                         </p>

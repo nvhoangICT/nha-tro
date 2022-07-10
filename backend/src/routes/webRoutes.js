@@ -11,6 +11,9 @@ const propertyController = require('../controllers/propertyController')
 const dashboardController = require('../controllers/dashboardController')
 
 const propertyService = require('../services/propertyService');
+const emailService = require('../services/emailService');
+const nodemailer = require("nodemailer");
+require('dotenv').config();
 
 let webRoutes = (app) => {
     // API USER 
@@ -28,12 +31,14 @@ let webRoutes = (app) => {
     router.post("api/logout", logoutController.logout);
 
     // API FORGET PASSWORD
-    router.get("/password/reset", authController.showForgotForm);
-    router.post("/password/email", authController.sendResetLinkEmail);
+    // router.get("/password/reset", authController.showForgotForm);
+    // router.post("/password/email", authController.sendResetLinkEmail);
 
     // API RESET PASSWORD
-    router.get("/password/reset/:email", authController.showResetForm);
-    router.post("/password/reset", authController.reset);
+    // router.get("/password/reset/:email", authController.showResetForm);
+    // router.post("/password/reset", authController.reset);
+
+    router.put("/forget-password", authController.forgetPassword);
 
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);
@@ -43,9 +48,12 @@ let webRoutes = (app) => {
     router.get("/api/delete-property", propertyController.deleteProperty);
     router.get("/api/get-property/:ID", propertyController.readProperty);
 
+    router.post("/api/send-email", propertyService.postRequestTour);
+    
+
     router.get("/dashboard", dashboardController.getDashboard);
 
-    // router.post("/logout",middlewareController.verifyToken,authController.userLogout);
+    router.post("/logout", logoutController.logout);
 
     return app.use("/", router);
 }

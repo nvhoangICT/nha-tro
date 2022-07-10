@@ -6,7 +6,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     console.log(user)
     dispatch(loginStart());
     try {
-        const res = await axios.post("/api/login", 
+        const res = await axios.post("/api/login",
             JSON.stringify(user),
             {
                 headers: { 'Content-Type': 'application/json' },
@@ -36,15 +36,15 @@ export const registerUser = async (user, dispatch, navigate) => {
     }
 }
 
-export const logOut = async(dispatch,id,navigate,accessToken,axiosJWT) => {
-       dispatch(logOutStart());
-       try{
-         await axiosJWT.post("/v1/auth/logout",id,{
-            headers: {token: `Bearer ${accessToken}`}
-         });
-         dispatch(logOutSuccess());
-         navigate("/login");
-       }catch(err){
+export const logOut = async (dispatch, id, navigate, accessToken, axiosJWT) => {
+    dispatch(logOutStart());
+    try {
+        await axiosJWT.post("/logout", id, {
+            headers: { token: `Bearer ${accessToken}` }
+        });
+        dispatch(logOutSuccess());
+        navigate("/");
+    } catch (err) {
         dispatch(logOutFailed())
-       }
+    }
 }

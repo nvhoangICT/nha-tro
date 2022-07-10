@@ -4,27 +4,32 @@ import axios from "axios";
 import Pagination from './Pagination';
 // import { Pagination } from '@mui/material';
 import React, { useState, useEffect } from "react";
+import Header from '../../components/HomeComponent/Header';
 
 const baseURL = "http://localhost:8081";
 
 const ListProperty = () => {
   const [post, setPost] = useState(null);
   const [listProps, setListProps] = useState([]);
-  const[loading,setLoading]=useState(false);
-  const [currentPage,setCurrentPage]=useState(1);
-  const [postsPerPage,setPostsPerPage]=useState(9);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  useEffect(async () => {
-    await axios.get(`${baseURL}/api/read-property`).then((response) => {
-      // setPost(response.data);
-      // console.log(post.data[0].address);
-      setPost(response.data.data);
-      setLoading(false);
-      console.log(response.data.data)
-      // console.log(response.data.data);
-      setListProps(listProps => listProps = response.data.data)
-    });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.get(`${baseURL}/api/read-property`).then((response) => {
+        // setPost(response.data);
+        // console.log(post.data[0].address);
+        setPost(response.data.data);
+        setLoading(false);
+        console.log(response.data.data)
+        // console.log(response.data.data);
+        setListProps(listProps => listProps = response.data.data)
+      });
+    }
+    fetchData();
   }, []);
   // console.log(listProps);
 
@@ -42,6 +47,7 @@ const ListProperty = () => {
   const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <div>
+      <Header />
       <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
         style={{ backgroundImage: `url('images/bg_3.jpg')` }} data-stellar-background-ratio="0.5">
         <div className="overlay"></div>
@@ -59,12 +65,12 @@ const ListProperty = () => {
 
       <section className="ftco-section">
         <div className="container">
-          <div className="row">  
+          <div className="row">
             <div className="row">
               {currentPosts.map((item, index) => {
-                return(
+                return (
                   <Item
-                    key = {index}
+                    key={index}
                     backgroundImage={item.backgroundImage}
                     price={item.price}
                     beds={item.bedroom}
@@ -75,19 +81,17 @@ const ListProperty = () => {
                   />
                 )
               })}
-              
+
             </div>
           </div>
           <div className="row mt-5">
-          <div className='container mt-5'>
-      
-      
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={listProps.length}
-        paginate={paginate}
-      />
-    </div>
+            <div className='container mt-5'>
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={listProps.length}
+                paginate={paginate}
+              />
+            </div>
           </div>
         </div>
       </section >

@@ -1,6 +1,7 @@
 
 
 const db = require('../models');
+const emailService = require('./emailService')
 
 let getAllProperty = () => {
     return new Promise(async (resolve, reject) => {
@@ -54,9 +55,28 @@ let deleteProperty = (id) => {
     });
 }
 
+
+let postRequestTour = (req, res) => {
+    const { email, phone, name } = req.body
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!email || !phone || !name) {
+                resolve({
+                    errMessage: 'Please enter all information',
+                })
+            } else {
+                await emailService.sendSimpleEmail(email, phone, name);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 module.exports = {
     getAllProperty,
     getPropertyById,
     updatePropertyData,
-    deleteProperty
+    deleteProperty,
+    postRequestTour
 };

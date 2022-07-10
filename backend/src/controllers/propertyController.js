@@ -59,13 +59,22 @@ let editProperty = async (req, res) => {
 let putProperty = async (req, res) => {
     let data = req.params.ID;
     let allProperties = await propertyService.updatePropertyData(data);
-    return res.status(200).json({data: allProperties});
+    return res.status(200).json({ data: allProperties });
 }
 
 let deleteProperty = async (req, res) => {
     let PropertyID = req.query.id;
-    let allPropertys = await propertyService.deleteProperty(PropertyID);
-    return res.render('display.ejs', { data: allProperts })
+    let allProperties = await propertyService.deleteProperty(PropertyID);
+    return res.render('display.ejs', { data: allProperties })
 }
 
-module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty}
+let postRequestTour = async (req, res) => {
+    let email = req.body.email
+
+    if (!email) {
+        return res.status(400).json("Email required")
+    }
+    await emailService.sendSimpleEmail(email)
+}
+
+module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour }

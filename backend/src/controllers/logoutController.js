@@ -1,8 +1,6 @@
 
 let logout = async (req, res) => {
-    res.clearCookie("refreshToken")
-    refreshToken = refreshToken.filter(token => token !== req.cookies.refreshToken)
-    res.redirect('/');
+    res.status(200).send("Logout successfully");
 }
 
-module.exports = {logout};
+module.exports = { logout };
