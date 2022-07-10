@@ -42,6 +42,13 @@ let readProperty = async (req, res) => {
     return res.status(200).json({ data: data })
 }
 
+let readPropertyByOwner = async (req, res) => {
+    console.log(req)
+    let data = await propertyService.getPropertyByOwner(req.params.ID);
+    return res.status(200).json({ data: data })
+}
+
+
 
 let editProperty = async (req, res) => {
     let PropertyID = req.query.id;
@@ -77,4 +84,4 @@ let postRequestTour = async (req, res) => {
     await emailService.sendSimpleEmail(email)
 }
 
-module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour }
+module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour, readPropertyByOwner }

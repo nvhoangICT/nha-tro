@@ -13,6 +13,7 @@ import PropertyDetails from './modules/Property/PropertyDetails';
 import ChangeInformation from './modules/ChangeInformation/changeInformation';
 import RequestTour from './modules/RequestTour/RequestTour';
 import TestProperties from './components/testProperties';
+import ManageProperty from './components/ManageComponent/ManageProperty';
 import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDetail';
 function App() {
 
@@ -58,12 +59,14 @@ function App() {
         <Route path="/change-info" element={<ChangeInformation />} />
         <Route path="/request-tour" element={<RequestTour />} />
         <Route path="/test-properties" element={<TestProperties />} />
-        <Route path="/manage-property"
+        <Route path="/manage-property/1"
           element={
             <ManagePropertyDetails
               title="Phòng Trọ 2 Người"
               address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
-            />} />
+            />}
+        />
+        <Route path="/manage-property" element={<ManageProperty />} />
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

@@ -15,6 +15,7 @@ const Header = () => {
     let axiosJWT = createAxios(user, dispatch, logOutSuccess);
     const handleLogout = () => {
         localStorage.clear();
+        dispatch(logOutSuccess());
     }
     return (
         <nav className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
