@@ -9,15 +9,18 @@ import './styles.css'
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
+import Select from 'react-select'
+import { textAlign } from '@mui/system';
+
 
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [name, setName] = useState("")
-    const [beds, setBeds] = useState(0)
-    const [baths, setBaths] = useState(0)
-    const [district, setDistrict] = useState(0)
+    const [beds, setBeds] = useState("")
+    const [baths, setBaths] = useState("")
+    const [district, setDistrict] = useState("")
     const [area, setArea] = useState("")
     const [yearBuilt, setYearBuilt] = useState("")
     const [waterPrice, setWaterPrice] = useState("")
@@ -40,6 +43,7 @@ const AddProperty = ({ onLogin }) => {
             description: description,
             districtId: district,
         };
+        console.log(property);
         const res = await axios.post(`http://localhost:8081/api/add-property`,
             JSON.stringify(property),
             {
@@ -50,28 +54,29 @@ const AddProperty = ({ onLogin }) => {
 
         if (!file) {
             alert("Please choose a file first!")
-        }
-        const storageRef = ref(storage, `/${res.data.data}/1`)
-        const uploadTask = uploadBytesResumable(storageRef, file);
+        } else {
+            const storageRef = ref(storage, `/${res.data.data}/1`)
+            const uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const percent = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const percent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
 
-                // update progress
-                setPercent(percent);
-            },
-            (err) => console.log(err),
-            () => {
-                // download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    console.log(url);
-                });
-            }
-        );
+                    // update progress
+                    setPercent(percent);
+                },
+                (err) => console.log(err),
+                () => {
+                    // download url
+                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                        console.log(url);
+                    });
+                }
+            )
+        };
     }
 
 
@@ -92,15 +97,15 @@ const AddProperty = ({ onLogin }) => {
                                                     <div className="row">
                                                         <div className="col-md-6">
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setName}>
+                                                                <select className="form-style" onChange={(e) => setName(e.target.value)}>
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
                                                                     <option value="Nhà nguyên căn">Nhà nguyên căn</option>
                                                                     <option value="Phòng trọ">Phòng trọ</option>
                                                                 </select>
-                                                                <i className="input-icon uil uil-home-alt"></i>
+                                                                <i className="input-icon uil uil-home-alt pb-5"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBeds}>
+                                                                <select className="form-style" onChange={(e) => setBeds(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng ngủ --</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -109,7 +114,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-bed"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBaths}>
+                                                                <select className="form-style" onChange={(e) => setBaths(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng tắm --</option>
                                                                     <option value="0.5">0.5</option>
                                                                     <option value="1">1</option>
@@ -132,7 +137,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-vector-square"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setDistrict}>
+                                                                <select className="form-style" onChange={(e) => setDistrict(e.target.value)}>
                                                                     <option className="form-style" value="">-- Quận --</option>
                                                                     <option value="1">Hoàng Mai</option>
                                                                     <option value="2">Cầu Giấy</option>
