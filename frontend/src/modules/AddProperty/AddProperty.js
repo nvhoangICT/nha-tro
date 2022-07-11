@@ -5,7 +5,6 @@ import './styles.css'
 // import { loginUser } from '../../redux/apiRequest'
 // import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
-const baseURL = "http://localhost:8081/api/add-property";
 
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
