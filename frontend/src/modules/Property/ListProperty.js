@@ -5,6 +5,7 @@ import Pagination from './Pagination';
 // import { Pagination } from '@mui/material';
 import React, { useState, useEffect } from "react";
 import Header from '../../components/HomeComponent/Header';
+import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
 
 const baseURL = "http://localhost:8081";
 
@@ -16,6 +17,7 @@ const ListProperty = () => {
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
   const paginate = pageNumber => setCurrentPage(pageNumber);
+  const [urls, setUrls] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,6 +47,33 @@ const ListProperty = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
+
+  // console.log(post[0]['id']);
+  // const storage = getStorage();
+  //   getDownloadURL(ref(storage, `/${post[0]['id']}`).listAll())
+  //       .then((url) => {
+  //           // `url` is the download URL for 'images/stars.jpg'
+
+  //           // This can be downloaded directly:
+  //           const xhr = new XMLHttpRequest();
+  //           xhr.responseType = 'blob';
+  //           xhr.onload = (event) => {
+  //               const blob = xhr.response;
+  //           };
+  //           xhr.open('GET', url);
+  //           xhr.send();
+
+  //           setUrls(url);
+  //           console.log(urls)
+  //       })
+  //       .catch((error) => {
+  //           // Handle any errors
+  //       });
+
+  // let url = `gs://nha-tro-b7165.appspot.com/0c96f0df-49d0-48f4-904c-b65da1040ed5/1`
+  // setUrls(...urls, url);
+
+
   return (
     <div>
       <Header />
@@ -68,10 +97,50 @@ const ListProperty = () => {
           <div className="row">
             <div className="row">
               {currentPosts.map((item, index) => {
+                let storage = getStorage();
+                let listRef = ref(storage, `/${item.id}`);
+                // var url;
+                console.log(listRef)
+                let name = listAll(listRef)
+                  .then((res) => {
+                    res.items.forEach((itemRef) => {
+                      return itemRef.name
+                      // All the items under listRef.
+                      // console.log(itemRef);
+
+                      // console.log(itemRef)
+                      // getDownloadURL(ref(storage, itemRef.fullPath))
+                      //   .then((url) => {
+                      //     // `url` is the download URL for 'images/stars.jpg'
+
+                      //     // This can be downloaded directly:
+                      //     const xhr = new XMLHttpRequest();
+                      //     xhr.responseType = 'blob';
+                      //     xhr.onload = (event) => {
+                      //       const blob = xhr.response;
+                      //     };
+                      //     xhr.open('GET', url);
+                      //     xhr.send();
+
+                      //     setUrls(...urls, url);
+                      //     console.log(urls)
+                      //   })
+                      //   .catch((error) => {
+                      //     // Handle any errors
+                      //   });
+                      // setUrls(`url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${itemRef.name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`)
+                      // url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${itemRef.name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                    });
+                  }).catch((error) => {
+                    // Uh-oh, an error occurred!
+                  });
+
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 return (
                   <Item
+                    id={item.id}
                     key={index}
-                    backgroundImage={item.backgroundImage}
+                    backgroundImage={url}
                     price={item.price}
                     beds={item.bedroom}
                     baths={item.bathroom}

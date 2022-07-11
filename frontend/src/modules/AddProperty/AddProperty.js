@@ -51,7 +51,7 @@ const AddProperty = ({ onLogin }) => {
         if (!file) {
             alert("Please choose a file first!")
         }
-        const storageRef = ref(storage, `/${res.data.data}/${file.name}`)
+        const storageRef = ref(storage, `/${res.data.data}/1`)
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on(
