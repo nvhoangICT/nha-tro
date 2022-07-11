@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import Header from '../../components/HomeComponent/Header'
 import './styles.css'
-// import axios from 'axios'
-// import { loginUser } from '../../redux/apiRequest'
-// import { useDispatch } from 'react-redux'
-// import { useNavigate } from 'react-router-dom';
-const baseURL = "http://localhost:8081/api/add-property";
 
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
-
+// import axios from 'axios'
+// import { loginUser } from '../../redux/apiRequest'
+// import { useDispatch } from 'react-redux'
+// import { useNavigate } from 'react-router-dom';
+// const baseURL = "http://localhost:8081/api/add-property";
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
