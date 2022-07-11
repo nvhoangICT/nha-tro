@@ -15,14 +15,14 @@ const EditProperty = ({ onLogin }) => {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [name, setName] = useState("")
-    const [beds, setBeds] = useState(0)
-    const [baths, setBaths] = useState(0)
-    const [district, setDistrict] = useState(0)
+    const [beds, setBeds] = useState("")
+    const [baths, setBaths] = useState("")
+    const [district, setDistrict] = useState("")
     const [area, setArea] = useState("")
     const [yearBuilt, setYearBuilt] = useState("")
     const [waterPrice, setWaterPrice] = useState("")
     const [electricPrice, setElectricPrice] = useState("")
-    const [file, setFile] = useState("");
+    const [status, setStatus] = useState(false);
     const [percent, setPercent] = useState(0);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -34,6 +34,10 @@ const EditProperty = ({ onLogin }) => {
             // setPost(response.data);
             // console.log(post.data[0].address);
             setPost(response.data.data);
+            setName(post.name);
+            setArea(post.area)
+            setAddress(post.address);
+            setBeds(post.bedroom)
             setLoading(false);
             // console.log(response.data.data)
             console.log(response.data.data);
@@ -42,6 +46,27 @@ const EditProperty = ({ onLogin }) => {
         }
         fetchData();
       }, []);
+
+      
+//   async function updatePost() {
+//     await axios.put(`${baseURL}/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`, {
+//         name: name,
+//         address: address,
+//         area: area,
+//         bedroom: beds,
+//         bathroom: baths,
+//         yearBuilt: yearBuilt,
+//         price: price,
+//         waterPrice: waterPrice,
+//         electricPrice: electricPrice,
+//         description: description,
+//         districtId: district,
+//         status :status
+//     })
+//       .then((response) => {
+//         setPost(response.data);
+//       });
+//   }
     const HandleEditProperty = async (e) => {
         e.preventDefault();
         const property = {
@@ -56,8 +81,9 @@ const EditProperty = ({ onLogin }) => {
             electricPrice: electricPrice,
             description: description,
             districtId: district,
+            status :status
         };
-        const res = await axios.post(`http://localhost:8081/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`,
+        await axios.post(`http://localhost:8081/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`,
             JSON.stringify(property),
             {
                 headers: { 'Content-Type': 'application/json' },
@@ -65,30 +91,7 @@ const EditProperty = ({ onLogin }) => {
             }
         );
 
-        if (!file) {
-            alert("Please choose a file first!")
-        }
-        const storageRef = ref(storage, `/${res.data.data}/1`)
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const percent = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-
-                // update progress
-                setPercent(percent);
-            },
-            (err) => console.log(err),
-            () => {
-                // download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    console.log(url);
-                });
-            }
-        );
+        
     }
 
 
@@ -105,20 +108,20 @@ const EditProperty = ({ onLogin }) => {
                                         <div className="card-front" style={{ height: '120%', marginTop: '-20%', marginLeft: '-50%', width: '200%' }}>
                                             <div className="center-wrap">
                                                 <div className="section text-center">
-                                                    <h4 className="mb-4 pb-3">Đăng phòng trọ</h4>
+                                                    <h4 className="mb-4 pb-3">Chỉnh sửa thông tin nhà trọ </h4>
                                                     <div className="row">
                                                         <div className="col-md-6">
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setName}>
+                                                                <select className="form-style" defaultValue={name} onChange={(e) => setName(e.target.value)}>
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
-                                                                    <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+                                                                    <option value="Nhà nguyên căn" selected>Nhà nguyên căn</option>
                                                                     <option value="Phòng trọ">Phòng trọ</option>
                                                                 </select>                                                                
                                                                 {/* <Select placeholder= "-- Kiểu phòng trọ --" options={nameOptions} /> */}
                                                                 <i className="input-icon uil uil-home-alt"></i>                                                             
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBeds}>
+                                                                <select className="form-style" defaultValue={beds}  onChange={(e) => setBeds(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng ngủ --</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -127,7 +130,7 @@ const EditProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-bed"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBaths}>
+                                                                <select className="form-style" onChange={(e) => setBaths(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng tắm --</option>
                                                                     <option value="0.5">0.5</option>
                                                                     <option value="1">1</option>
@@ -240,12 +243,11 @@ const EditProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <input
-                                                                    type="file"
-                                                                    name="pic"
-                                                                    className="form-style"
-                                                                    onChange={(e) => setFile(e.target.files[0])}
-                                                                />
+                                                            <select className="form-style" onChange={(e) => setStatus(e.target.value)}>
+                                                                    <option className="form-style" value="">-- Trạng thái --</option>
+                                                                    <option value="0">Chưa cho thuê</option>
+                                                                    <option value="1">Đã cho thuê</option>                                                       
+                                                                </select>
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>
                                                         </div>
