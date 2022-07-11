@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import Header from '../../components/HomeComponent/Header'
 import './styles.css'
-<<<<<<< HEAD
 // import axios from 'axios'
 // import { loginUser } from '../../redux/apiRequest'
 // import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
-=======
->>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
 
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -98,11 +95,7 @@ const AddProperty = ({ onLogin }) => {
                                                     <div className="row">
                                                         <div className="col-md-6">
                                                             <div className="form-group mt-2">
-<<<<<<< HEAD
                                                                 <select className="form-style" value={name} onChange={(e) => setName(e.target.value)}>
-=======
-                                                                <select className="form-style" onChange={(e) => setName(e.target.value)}>
->>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
                                                                     <option value="Nhà nguyên căn">Nhà nguyên căn</option>
                                                                     <option value="Phòng trọ">Phòng trọ</option>
@@ -110,11 +103,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-home-alt pb-5"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-<<<<<<< HEAD
                                                                 <select className="form-style" value={beds} onChange={(e) => setBeds(e.target.value)}>
-=======
-                                                                <select className="form-style" onChange={(e) => setBeds(e.target.value)}>
->>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
                                                                     <option className="form-style" value="">-- Số phòng ngủ --</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -146,11 +135,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-vector-square"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-<<<<<<< HEAD
                                                                 <select className="form-style" value={district} onChange={(e) => setDistrict(e.target.value)}>
-=======
-                                                                <select className="form-style" onChange={(e) => setDistrict(e.target.value)}>
->>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
                                                                     <option className="form-style" value="">-- Quận --</option>
                                                                     <option value="1">Hoàng Mai</option>
                                                                     <option value="2">Cầu Giấy</option>
