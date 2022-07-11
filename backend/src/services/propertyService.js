@@ -56,9 +56,19 @@ let updatePropertyData = (data) => {
                 id: data.id,
                 name: data.name,
                 address: data.address,
+                area: data.area,
+                bedroom: data.bedroom,
+                bathroom: data.bathroom,
+                yearBuilt: data.yearBuilt,
+                price: data.price,
+                waterPrice: data.waterPrice,
+                electricPrice: data.electricPrice,
+                status: false,
+                description: data.description,
+                districtId: data.districtId,
             });
-            let allPropertys = await db.Property.findAll();
-            resolve(allPropertys);
+            let allProperties = await db.Property.findAll();
+            resolve(allProperties);
         } catch (e) {
             reject(e);
         }
@@ -70,8 +80,8 @@ let deleteProperty = (id) => {
         try {
             let Property = await db.Property.findOne({ where: { id: id } });
             await Property.destroy();
-            let allPropertys = await db.Property.findAll();
-            resolve(allPropertys);
+            let allProperties = await db.Property.findAll();
+            resolve(allProperties);
         } catch (e) {
             reject(e);
         }

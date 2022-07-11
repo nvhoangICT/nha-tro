@@ -77,20 +77,6 @@ const ListProperty = () => {
   return (
     <div>
       <Header />
-      <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-        style={{ backgroundImage: `url('images/bg_3.jpg')` }} data-stellar-background-ratio="0.5">
-        <div className="overlay"></div>
-        <div className="container">
-          <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div className="col-md-9  pb-5 text-center">
-              <p className="breadcrumbs"><span className="mr-2"><Link to="index.html">Home <i
-                className="ion-ios-arrow-forward"></i></Link></span> <span>Properties <i
-                  className="ion-ios-arrow-forward"></i></span></p>
-              <h1 className="mb-3 bread">Choose <br />Your Desired Home</h1>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="ftco-section">
         <div className="container">
@@ -100,7 +86,7 @@ const ListProperty = () => {
                 let storage = getStorage();
                 let listRef = ref(storage, `/${item.id}`);
                 // var url;
-                console.log(listRef)
+                // console.log(listRef)
                 listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
@@ -135,7 +121,7 @@ const ListProperty = () => {
                   }).catch((error) => {
                     // Uh-oh, an error occurred!
                   });
-                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${urls}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 return (
                   <Item
                     id={item.id}
