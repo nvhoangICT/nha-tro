@@ -13,7 +13,8 @@ import axios from 'axios'
 
 
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-
+import { Table } from 'react-bootstrap'
+const baseURL = "http://localhost:8081";
 const style = {
     display: "flex",
     flexDirection: "column",
@@ -56,7 +57,20 @@ const PropertyDetails = (props) => {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
-
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await axios.get(`${baseURL}/api/read-property/${user.id}`).then((response) => {
+    //             // setPost(response.data);
+    //             // console.log(post.data[0].address);
+    //             setPost(response.data.data);
+    //             setLoading(false);
+    //             console.log(response.data.data)
+    //             // console.log(response.data.data);
+    //             setListProps(listProps => listProps = response.data.data)
+    //         });
+    //     }
+    //     fetchData();
+    // }, []);
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const contact = {
@@ -266,24 +280,30 @@ const PropertyDetails = (props) => {
                                 <div className="tab-content" id="pills-tabContent">
                                     <div className={toggle === 1 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
                                         <div className="row">
-                                            <div className="col-md-4">
-                                                <ul className="features">
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Diện tích: 1250 SQ FT</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Phòng ngủ: 4</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Phòng tắm: 4</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Đồ đạc : giường, tủ, điều hòa, ...</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Chỗ để xe: 2</li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-md-4">
-                                                <ul className="features">
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Diện tích: 1,300 SQ FT</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Năm xây dựng: 2019</li>
-                                                    <li className="check"><span className="ion-ios-checkmark"></span>Giá điện nước: tính theo số</li>
-
-                                                </ul>
-                                            </div>
-
+                                        <Table striped bordered hover>
+                                            <thead>
+                                                <tr>
+                                                    <th>Tháng</th>
+                                                    <th>Tiền phòng</th>
+                                                    <th>Tiền điện</th>
+                                                    <th>Tiền nước</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
                                         </div>
                                     </div>
 

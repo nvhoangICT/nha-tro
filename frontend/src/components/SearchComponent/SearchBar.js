@@ -33,8 +33,9 @@ function SearchBar({ data }) {
                   placeholder="Tìm địa điểm"
                   value={wordEntered}
                   onChange={handleFilter}
+                  style={{backgroundColor: "red"}}
                 />
-                <button><span className="ion-ios-search"></span></button>
+                {/* <button><span className="ion-ios-search"></span></button> */}
               </div>
             </div>
           </div>

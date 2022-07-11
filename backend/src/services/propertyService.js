@@ -48,6 +48,34 @@ let getPropertyByOwner = (id) => {
     });
 }
 
+let getPropertiesByDistrict = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Property.findAll({ where: { districtId: id }, raw: true });
+            resolve(data);
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+let getPropertiesByPrice = (price) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Property.findAll({
+                where: {
+                    price: {
+                        [Op.lt]: price
+                    }
+                }, raw: true
+            });
+            resolve(data);
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
 let updatePropertyData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -56,9 +84,19 @@ let updatePropertyData = (data) => {
                 id: data.id,
                 name: data.name,
                 address: data.address,
+                area: data.area,
+                bedroom: data.bedroom,
+                bathroom: data.bathroom,
+                yearBuilt: data.yearBuilt,
+                price: data.price,
+                waterPrice: data.waterPrice,
+                electricPrice: data.electricPrice,
+                status: false,
+                description: data.description,
+                districtId: data.districtId,
             });
-            let allPropertys = await db.Property.findAll();
-            resolve(allPropertys);
+            let allProperties = await db.Property.findAll();
+            resolve(allProperties);
         } catch (e) {
             reject(e);
         }
@@ -70,8 +108,8 @@ let deleteProperty = (id) => {
         try {
             let Property = await db.Property.findOne({ where: { id: id } });
             await Property.destroy();
-            let allPropertys = await db.Property.findAll();
-            resolve(allPropertys);
+            let allProperties = await db.Property.findAll();
+            resolve(allProperties);
         } catch (e) {
             reject(e);
         }
@@ -103,5 +141,7 @@ module.exports = {
     deleteProperty,
     postRequestTour,
     getPropertyByOwner,
-    getAllPropertiesById
+    getAllPropertiesById,
+    getPropertiesByDistrict,
+    getPropertiesByPrice
 };

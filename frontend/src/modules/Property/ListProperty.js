@@ -18,7 +18,7 @@ const ListProperty = () => {
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,20 +76,6 @@ const ListProperty = () => {
   return (
     <div>
       <Header />
-      <section className="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-        style={{ backgroundImage: `url('images/bg_3.jpg')` }} data-stellar-background-ratio="0.5">
-        <div className="overlay"></div>
-        <div className="container">
-          <div className="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div className="col-md-9  pb-5 text-center">
-              <p className="breadcrumbs"><span className="mr-2"><Link to="index.html">Home <i
-                className="ion-ios-arrow-forward"></i></Link></span> <span>Properties <i
-                  className="ion-ios-arrow-forward"></i></span></p>
-              <h1 className="mb-3 bread">Choose <br />Your Desired Home</h1>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="ftco-section">
         <div className="container">
@@ -100,11 +86,11 @@ const ListProperty = () => {
                 let listRef = ref(storage, `/${item.id}`);
                 // var url;
                 // console.log(listRef)
-                let name = listAll(listRef)
+                listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
-                      // console.log(itemRef)
-                      // console.log(itemRef.name)
+                      setUrls(null)
+                      setUrls(itemRef.name)
                       // All the items under listRef.
                       // console.log(itemRef);
 
@@ -134,12 +120,16 @@ const ListProperty = () => {
                   }).catch((error) => {
                     console.log(error);
                   });
+<<<<<<< HEAD
                 // console.log(name)
                 // let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
 
                 console.log(item.id + " " + name)
 
+=======
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+>>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
                 return (
                   <Item
                     id={item.id}

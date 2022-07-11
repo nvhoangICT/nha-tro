@@ -15,42 +15,37 @@ const Properties = () => {
                     </div>
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-4">
-                                <Item 
-                                    id="1"
-                                    backgroundImage="url(images/nha-tro-1.png)"
-                                    price="5,000,000"
-                                    beds="3"
-                                    baths="2"
-                                    area="50"
-                                    title="Nhà nguyên căn"
-                                    address="Hai Bà Trưng"
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <Item 
-                                    id="2"
-                                    backgroundImage="url(images/nha-tro-2.png)"
-                                    price="4,000,000"
-                                    beds="3"
-                                    baths="2"
-                                    area="50"
-                                    title="Nhà nguyên căn"
-                                    address="Hai Bà Trưng"
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <Item 
-                                    id="3"
-                                    backgroundImage="url(images/nha-tro-3.jpg)"
-                                    price="5,000,000"
-                                    beds="3"
-                                    baths="2"
-                                    area="50"
-                                    title="Nhà nguyên căn"
-                                    address="Hai Bà Trưng"
-                                />
-                            </div>
+                            <Item
+                                id="1"
+                                backgroundImage="url(images/nha-tro-1.png)"
+                                price="5,000,000"
+                                beds="3"
+                                baths="2"
+                                area="50"
+                                title="Nhà nguyên căn"
+                                address="Hai Bà Trưng"
+                            />
+                            <Item
+                                id="2"
+                                backgroundImage="url(images/nha-tro-2.png)"
+                                price="4,000,000"
+                                beds="3"
+                                baths="2"
+                                area="50"
+                                title="Nhà nguyên căn"
+                                address="Hai Bà Trưng"
+                            />
+                            <Item
+                                id="3"
+                                backgroundImage="url(images/nha-tro-3.jpg)"
+                                price="5,000,000"
+                                beds="3"
+                                baths="2"
+                                area="50"
+                                title="Nhà nguyên căn"
+                                address="Hai Bà Trưng"
+                            />
+
                         </div>
                     </div>
                 </div>
