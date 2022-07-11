@@ -9,7 +9,7 @@ import Header from '../../components/HomeComponent/Header'
 import { IoPhonePortraitOutline } from "react-icons/io5";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send'
-
+import axios from 'axios'
 
 
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -53,6 +53,26 @@ const PropertyDetails = (props) => {
         setOpen(false);
     }
 
+    const [name, setName] = useState()
+    const [email, setEmail] = useState()
+    const [phone, setPhone] = useState()
+
+    const HandleSubmit = async (e) => {
+        e.preventDefault();
+        const contact = {
+            name: name,
+            email: email,
+            phone: phone,
+        };
+        await axios.post(`http://localhost:8081/api/send-email`,
+            JSON.stringify(contact),
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        );
+    }
+
     // const storage = getStorage();
     // getDownloadURL(ref(storage, '/files/cap-anh-em-ngoc-son-ngoc-hai-me-hat-nhung-re-loi-khac-nhau-1.jpeg'))
     //     .then((url) => {
@@ -87,6 +107,7 @@ const PropertyDetails = (props) => {
                                 <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
                                     <picture>
                                         <img
+                                            // src={props.backgroundImage}
                                             id="myimg"
                                             alt="a house"
                                             // onLoad={handleImgLoad}
@@ -213,13 +234,27 @@ const PropertyDetails = (props) => {
                                                             Liên hệ
                                                         </Typography>
                                                         <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                            <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                                            <TextField
+                                                                value={name}
+                                                                onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" fullWidth />
+                                                        </Typography>
+                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                            <TextField value={email}
+                                                                onChange={(e) => setEmail(e.target.value)}
+                                                                id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                                        </Typography>
+                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                            <TextField 
+                                                            value={phone}
+                                                            onChange={(e) => setPhone(e.target.value)}
+                                                            id="outlined-basic" label="Số điện thoại" variant="outlined" fullWidth />
                                                         </Typography>
                                                         <Button
                                                             endIcon={<SendIcon />}
                                                             variant="contained"
                                                             sx={{ mt: 2 }}
                                                             href="#outlined-buttons"
+                                                            onClick={(e) => { HandleSubmit(e) }}
                                                         >Gửi</Button>
                                                     </Box>
                                                 </Modal>
