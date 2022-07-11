@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const db = require('../models/index')
 const propertyService = require('../services/propertyService')
 
+
 let getProperty = async (req, res) => {
     res.status(200).json({ properties })
 }
@@ -25,7 +26,11 @@ let postProperty = async (req, res) => {
             description: req.body.description,
             districtId: req.body.districtId,
         });
-        res.status(200).json("Property added successfully");
+        // await db.HouseOwner.create({
+        //     id: PropertyID,
+        //     ownerId: req.body.id,          
+        // });
+        res.status(200).json({ data: PropertyID });
     } catch (err) {
         res.status(400).send(err.message);
     }
@@ -41,6 +46,13 @@ let readProperty = async (req, res) => {
     let data = await propertyService.getPropertyById(req.params.ID);
     return res.status(200).json({ data: data })
 }
+
+let readPropertyByOwner = async (req, res) => {
+    console.log(req)
+    let data = await propertyService.getPropertyByOwner(req.params.ID);
+    return res.status(200).json({ data: data })
+}
+
 
 
 let editProperty = async (req, res) => {
@@ -77,4 +89,4 @@ let postRequestTour = async (req, res) => {
     await emailService.sendSimpleEmail(email)
 }
 
-module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour }
+module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour, readPropertyByOwner }

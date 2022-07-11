@@ -47,6 +47,7 @@ let webRoutes = (app) => {
     router.post("/api/put-property/:ID", propertyController.putProperty);
     router.get("/api/delete-property", propertyController.deleteProperty);
     router.get("/api/get-property/:ID", propertyController.readProperty);
+    router.get("/api/manage-property/:ID", propertyController.readPropertyByOwner);
 
     router.post("/api/send-email", propertyService.postRequestTour);
     
