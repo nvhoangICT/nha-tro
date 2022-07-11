@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 import React, { useState, useEffect } from "react";
 import Header from '../../components/HomeComponent/Header';
 import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
+import { convertLength } from '@mui/material/styles/cssUtils';
 
 const baseURL = "http://localhost:8081";
 
@@ -70,8 +71,6 @@ const ListProperty = () => {
   //           // Handle any errors
   //       });
 
-  // let url = `gs://nha-tro-b7165.appspot.com/0c96f0df-49d0-48f4-904c-b65da1040ed5/1`
-  // setUrls(...urls, url);
 
 
   return (
@@ -100,11 +99,12 @@ const ListProperty = () => {
                 let storage = getStorage();
                 let listRef = ref(storage, `/${item.id}`);
                 // var url;
-                console.log(listRef)
+                // console.log(listRef)
                 let name = listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
-                      return itemRef.name
+                      // console.log(itemRef)
+                      // console.log(itemRef.name)
                       // All the items under listRef.
                       // console.log(itemRef);
 
@@ -132,10 +132,14 @@ const ListProperty = () => {
                       // url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${itemRef.name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                     });
                   }).catch((error) => {
-                    // Uh-oh, an error occurred!
+                    console.log(error);
                   });
+                // console.log(name)
+                // let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
 
-                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                console.log(item.id + " " + name)
+
                 return (
                   <Item
                     id={item.id}

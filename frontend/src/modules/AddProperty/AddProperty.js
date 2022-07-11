@@ -5,11 +5,12 @@ import './styles.css'
 // import { loginUser } from '../../redux/apiRequest'
 // import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
-const baseURL = "http://localhost:8081/api/add-property";
 
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
+
+const baseURL = "http://localhost:8081/api/add-property";
 
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
@@ -44,8 +45,7 @@ const AddProperty = ({ onLogin }) => {
         const res = await axios.post(`http://localhost:8081/api/add-property`,
             JSON.stringify(property),
             {
-                headers: { 'Content-Type': 'application/json' },
-                withCredentials: true
+                headers: { 'Content-Type': 'application/json' }
             }
         );
 
@@ -93,7 +93,7 @@ const AddProperty = ({ onLogin }) => {
                                                     <div className="row">
                                                         <div className="col-md-6">
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setName}>
+                                                                <select className="form-style" value={name} onChange={(e) => setName(e.target.value)}>
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
                                                                     <option value="Nhà nguyên căn">Nhà nguyên căn</option>
                                                                     <option value="Phòng trọ">Phòng trọ</option>
@@ -101,7 +101,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-home-alt"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBeds}>
+                                                                <select className="form-style" value={beds} onChange={(e) => setBeds(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng ngủ --</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -110,7 +110,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-bed"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setBaths}>
+                                                                <select className="form-style" value={baths} onChange={(e) => setBaths(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng tắm --</option>
                                                                     <option value="0.5">0.5</option>
                                                                     <option value="1">1</option>
@@ -133,7 +133,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-vector-square"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setDistrict}>
+                                                                <select className="form-style" value={district} onChange={(e) => setDistrict(e.target.value)}>
                                                                     <option className="form-style" value="">-- Quận --</option>
                                                                     <option value="1">Hoàng Mai</option>
                                                                     <option value="2">Cầu Giấy</option>

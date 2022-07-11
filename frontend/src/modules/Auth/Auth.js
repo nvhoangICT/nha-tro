@@ -4,7 +4,7 @@ import Login from './Login'
 import Register from './Register'
 import Header from '../../components/HomeComponent/Header'
 
-const Auth = ({ onLogin }) => {
+const Auth = () => {
     return (
         <>
             <Header />
