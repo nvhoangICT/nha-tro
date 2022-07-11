@@ -17,7 +17,7 @@ const ListProperty = () => {
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,10 +101,11 @@ const ListProperty = () => {
                 let listRef = ref(storage, `/${item.id}`);
                 // var url;
                 console.log(listRef)
-                let name = listAll(listRef)
+                listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
-                      return itemRef.name
+                      setUrls(null)
+                      setUrls(itemRef.name)
                       // All the items under listRef.
                       // console.log(itemRef);
 
@@ -134,8 +135,7 @@ const ListProperty = () => {
                   }).catch((error) => {
                     // Uh-oh, an error occurred!
                   });
-
-                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${urls}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 return (
                   <Item
                     id={item.id}
