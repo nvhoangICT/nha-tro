@@ -48,6 +48,34 @@ let getPropertyByOwner = (id) => {
     });
 }
 
+let getPropertiesByDistrict = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Property.findAll({ where: { districtId: id }, raw: true });
+            resolve(data);
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
+let getPropertiesByPrice = (price) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Property.findAll({
+                where: {
+                    price: {
+                        [Op.lt]: price
+                    }
+                }, raw: true
+            });
+            resolve(data);
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
 let updatePropertyData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -113,5 +141,7 @@ module.exports = {
     deleteProperty,
     postRequestTour,
     getPropertyByOwner,
-    getAllPropertiesById
+    getAllPropertiesById,
+    getPropertiesByDistrict,
+    getPropertiesByPrice
 };

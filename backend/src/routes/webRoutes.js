@@ -51,6 +51,9 @@ let webRoutes = (app) => {
 
     router.post("/api/send-email", propertyService.postRequestTour);
     
+    // API SEARCH 
+    router.get("/api/explore/:id", propertyService.getPropertiesByDistrict);
+
 
     router.get("/dashboard", dashboardController.getDashboard);
 
