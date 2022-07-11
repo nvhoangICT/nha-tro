@@ -15,6 +15,7 @@ import RequestTour from './modules/RequestTour/RequestTour';
 import TestProperties from './components/testProperties';
 import ManageProperty from './components/ManageComponent/ManageProperty';
 import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDetail';
+import EditProperty from './modules/AddProperty/EditProperty';
 function App() {
 
   // const [token, setToken] = useState(Cookies.get())
@@ -45,6 +46,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/add-property" element={<AddProperty />} />
+        <Route path="/edit-property" element={<EditProperty />} />
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
         <Route path="/item"
