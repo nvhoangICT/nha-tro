@@ -25,7 +25,7 @@ const ListProperty = () => {
         setPost(response.data.data);
         setLoading(false);
         console.log(response.data.data)
-        // console.log(response.data.data);
+        console.log(response.data.data);
         setListProps(listProps => listProps = response.data.data)
       });
     }
