@@ -210,7 +210,7 @@ const PropertyDetails = (props) => {
                                                 >
                                                     <Box sx={style}>
                                                         <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                            Quên mật khẩu
+                                                            Liên hệ
                                                         </Typography>
                                                         <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                             <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />

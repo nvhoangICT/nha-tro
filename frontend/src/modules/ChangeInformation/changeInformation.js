@@ -6,6 +6,7 @@ import { loginUser } from '../../redux/apiRequest'
 import Header from '../../components/HomeComponent/Header';
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import axios from 'axios';
 
 const ChangeInformation = (props) => {
     const [name, setName] = useState("");
@@ -19,13 +20,14 @@ const ChangeInformation = (props) => {
     const [avatar, setAvatar] = useState("");
 
     const [file, setFile] = useState("");
- 
+
+
     // progress
     const [percent, setPercent] = useState(0);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleChangeInfo = (e) => {
+    const handleChangeInfo = async (e) => {
         e.preventDefault();
         const changeInformation = {
             name: name,
@@ -36,11 +38,14 @@ const ChangeInformation = (props) => {
             password: password
         };
         // changeInformation(newUser, dispatch, navigate);
-        let i = 1;
+
+        
+
+
         if (!file) {
             alert("Please choose a file first!")
         }
-        const storageRef = ref(storage, `/files/${i++}`)
+        const storageRef = ref(storage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         uploadTask.on(
@@ -62,7 +67,7 @@ const ChangeInformation = (props) => {
             }
         );
     }
-    
+
     function handleChange(event) {
         setFile(event.target.files[0]);
     }

@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const db = require('../models/index')
 const propertyService = require('../services/propertyService')
 
+
 let getProperty = async (req, res) => {
     res.status(200).json({ properties })
 }
@@ -25,7 +26,11 @@ let postProperty = async (req, res) => {
             description: req.body.description,
             districtId: req.body.districtId,
         });
-        res.status(200).json("Property added successfully");
+        // await db.HouseOwner.create({
+        //     id: PropertyID,
+        //     ownerId: req.body.id,          
+        // });
+        res.status(200).json({ data: PropertyID });
     } catch (err) {
         res.status(400).send(err.message);
     }

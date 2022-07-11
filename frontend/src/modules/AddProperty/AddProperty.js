@@ -6,6 +6,10 @@ import './styles.css'
 // import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
 
+import storage from "../../firebase/firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import axios from 'axios';
+
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
@@ -18,10 +22,58 @@ const AddProperty = ({ onLogin }) => {
     const [yearBuilt, setYearBuilt] = useState("")
     const [waterPrice, setWaterPrice] = useState("")
     const [electricPrice, setElectricPrice] = useState("")
+    const [file, setFile] = useState("");
+    const [percent, setPercent] = useState(0);
 
-    const HandleAddProperty = (e) => {
+    const HandleAddProperty = async (e) => {
         e.preventDefault();
+        const property = {
+            name: name,
+            address: address,
+            area: area,
+            bedroom: beds,
+            bathroom: baths,
+            yearBuilt: yearBuilt,
+            price: price,
+            waterPrice: waterPrice,
+            electricPrice: electricPrice,
+            description: description,
+            districtId: district,
+        };
+        const res = await axios.post(`http://localhost:8081/api/add-property`,
+            JSON.stringify(property),
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        );
+
+        if (!file) {
+            alert("Please choose a file first!")
+        }
+        const storageRef = ref(storage, `/${res.data.data}/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const percent = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+
+                // update progress
+                setPercent(percent);
+            },
+            (err) => console.log(err),
+            () => {
+                // download url
+                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                    console.log(url);
+                });
+            }
+        );
     }
+
 
     return (
         <>
@@ -166,6 +218,15 @@ const AddProperty = ({ onLogin }) => {
                                                                     autoComplete="off"
                                                                     value={electricPrice}
                                                                     onChange={(e) => setElectricPrice(e.target.value)}
+                                                                />
+                                                                <i className="input-icon uil uil-lightbulb-alt"></i>
+                                                            </div>
+                                                            <div className="form-group mt-2">
+                                                                <input
+                                                                    type="file"
+                                                                    name="pic"
+                                                                    className="form-style"
+                                                                    onChange={(e) => setFile(e.target.files[0])}
                                                                 />
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>
