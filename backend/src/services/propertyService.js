@@ -8,13 +8,13 @@ const { Op } = require("sequelize");
 let getAllProperty = (area, price, districtId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log(area, price, districtId);
+            // console.log(area, price, districtId);
             if (!area && !price && !districtId) {
                 let results = await db.Property.findAll({ raw: true });
                 resolve(results);
             }
 
-            console.log("done 1")
+            // console.log("done 1")
             // const results = await db.query(
             //     "SELECT * FROM Properties WHERE area < :area AND price < :price AND districtId = :districtId",
             //     {
@@ -58,7 +58,7 @@ let getAllProperty = (area, price, districtId) => {
                 resolve(results);
             }
 
-            console.log("done 2")
+            // console.log("done 2")
 
         } catch (e) {
             reject(e);
@@ -81,7 +81,7 @@ let getOwnerByPropertyId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             let temp = await db.OwnHouse.findOne({ where: { id: id }, raw: true });
-            console.log(temp);
+            // console.log(temp);
             let data = await db.UserDetail.findOne({ where: { id: temp.ownerId }, raw: true });
             resolve(data);
         } catch (e) {
@@ -144,8 +144,8 @@ let getPropertiesByPrice = (price) => {
 let updatePropertyData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log(data.id)
-            console.log(data.name)
+            // console.log(data.id)
+            // console.log(data.name)
             // const property = await db.Property.findOne({ where: { id: data.id }, raw: true });
             // console.log(property.name)
             await db.Property.update({

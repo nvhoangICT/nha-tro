@@ -67,7 +67,7 @@ let forgetPassword = async (req, res) => {
   }
   const newToken = await loginService.generateAccessToken(user);
   const url = `http://localhost:8081/api/reset-password/${user.id}/${newToken}`
-  console.log(url)
+  // console.log(url)
   const data = {
     from: 'noreply@gmail.com',
     to: email,

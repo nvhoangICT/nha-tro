@@ -11,7 +11,7 @@ let getProperty = async (req, res) => {
 let postProperty = async (req, res) => {
     try {
         let PropertyID = uuidv4();
-        console.log("post" + req.body)
+        // console.log("post" + req.body)
         await db.Property.create({
             id: PropertyID,
             name: req.body.name,
@@ -39,20 +39,20 @@ let postProperty = async (req, res) => {
 
 let readAllProperty = async (req, res) => {
     const { area, price, district } = req.body;
-    console.log(req.body);
-    console.log(area, price, district);
+    // console.log(req.body);
+    // console.log(area, price, district);
     let data = await propertyService.getAllProperty(area, price, district);
     return res.status(200).json({ data: data })
 }
 
 let readProperty = async (req, res) => {
-    console.log(req)
+    // console.log(req)
     let data = await propertyService.getPropertyById(req.params.ID);
     return res.status(200).json({ data: data })
 }
 
 let readPropertyByOwner = async (req, res) => {
-    console.log(req)
+    // console.log(req)
     let data = await propertyService.getPropertyByOwner(req.params.ID);
     return res.status(200).json({ data: data })
 }
@@ -74,14 +74,14 @@ let editProperty = async (req, res) => {
 
 let putProperty = async (req, res) => {
     let data = req.body;
-    console.log(data)
+    // console.log(data)
     let allProperties = await propertyService.updatePropertyData(data);
     return res.status(200).json({ data: allProperties });
 }
 
 let deleteProperty = async (req, res) => {
     let PropertyID = req.params.id;
-    console.log(PropertyID)   
+    // console.log(PropertyID)   
     let allProperties = await propertyService.deleteProperty(PropertyID);
     return res.status(200).json({ data: allProperties })
 }

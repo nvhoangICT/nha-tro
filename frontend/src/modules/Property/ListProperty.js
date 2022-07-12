@@ -133,17 +133,17 @@ const ListProperty = () => {
 
   function handleSelectArea(data) {
     setArea(data);
-    console.log(data.value)
+    // console.log(data.value)
   }
 
   function handleSelectPrice(data) {
     setPrice(data);
-    console.log(data.value)
+    // console.log(data.value)
   }
 
   function handleSelectDistrict(data) {
     setDistrict(data);
-    console.log(data.value)
+    // console.log(data.value)
   }
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const ListProperty = () => {
         price: price.value,
         district: district.value,
       }
-      console.log(filter)
+      // console.log(filter)
       await axios.post(`${baseURL}/api/read-property`,
         JSON.stringify(filter),
         {

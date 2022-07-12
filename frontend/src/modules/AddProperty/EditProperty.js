@@ -33,7 +33,7 @@ const EditProperty = () => {
     const [submit, setSubmit] = useState(false);
 
     let { propertyId } = useParams();
-    console.log(propertyId);
+    // console.log(propertyId);
     const [listProps, setListProps] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -56,7 +56,7 @@ const EditProperty = () => {
                 setName(post.name)
                 setId(post.id)
                 // console.log(response.data.data)
-                console.log(response.data.data);
+                // console.log(response.data.data);
             });
         }
         fetchData();

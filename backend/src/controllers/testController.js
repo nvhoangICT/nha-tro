@@ -13,7 +13,7 @@ let postCRUD = async (req, res) => {
 
 let readAllCRUD = async (req, res) => {
     let data = await registerService.getAllUser();
-    console.log(data)
+    // console.log(data)
     return res.render('display.ejs', { data: data })
 }
 

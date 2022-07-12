@@ -5,18 +5,17 @@ const loginController = require('../controllers/loginController')
 const registerController = require('../controllers/registerController')
 const testController = require('../controllers/testController')
 const logoutController = require('../controllers/logoutController')
-const passport = require('passport');
+// const passport = require('passport');
 const authController = require('../controllers/authController')
 const propertyController = require('../controllers/propertyController')
-const dashboardController = require('../controllers/dashboardController')
 
 const propertyService = require('../services/propertyService');
-const emailService = require('../services/emailService');
-const nodemailer = require("nodemailer");
+// const emailService = require('../services/emailService');
+// const nodemailer = require("nodemailer");
 require('dotenv').config();
 
 let webRoutes = (app) => {
-    // API USER 
+    // API TEST 
     router.get("/get-crud", testController.getCRUD);
     router.post("/post-crud", testController.postCRUD);
     router.get("/read-crud", testController.readAllCRUD);
@@ -56,7 +55,7 @@ let webRoutes = (app) => {
     router.get("/api/get-owner/:id", propertyController.getOwnerByProperty);
 
 
-    router.get("/dashboard", dashboardController.getDashboard);
+    // router.get("/dashboard", dashboardController.getDashboard);
 
     router.post("/logout", logoutController.logout);
 

@@ -8,7 +8,7 @@ const salt = bcrypt.genSaltSync(10);
 
 let createUser = async (req, res) => {
     try {
-        console.log(req.body.password)
+        // console.log(req.body.password)
         const hashedPassword = bcrypt.hashSync(req.body.password, salt);
         let userID = uuidv4();
         await db.User.create({
