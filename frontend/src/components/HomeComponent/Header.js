@@ -27,7 +27,6 @@ const Header = () => {
 
                 <div className="collapse navbar-collapse" id="ftco-nav">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item"><Link to="/manage-property" className="nav-link">Quản lý</Link></li>
                         {/* <li className="nav-item"><Link to="about.html" className="nav-link">Câu chuyện</Link></li>
                         <li className="nav-item"><Link to="services.html" className="nav-link">Dịch vụ</Link></li> */}
                         <li className="nav-item"><Link to="/explore" className="nav-link">Tìm phòng</Link></li>
@@ -37,6 +36,7 @@ const Header = () => {
                             ? <li className="nav-item"><Link to="/auth" className="nav-link" style={{ color: '#e86ed0' }}>Đăng nhập</Link></li>
                             :
                             <>
+                                <li className="nav-item"><Link to="/manage-property" className="nav-link">Quản lý</Link></li>
                                 <li className="nav-item"><Link to="/add-property" className="nav-link">Đăng phòng</Link></li>
                                 <li className="nav-item">
                                     <Link to="/change-info" className="nav-link" style={{ color: '#e86ed0' }}>{user.name}</Link>

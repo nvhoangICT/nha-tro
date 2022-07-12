@@ -66,7 +66,7 @@ const Login = () => {
             <div className="card-front" style={{ height: '80%', marginTop: '40px' }}>
                 <div className="center-wrap">
                     <div className="section text-center">
-                        <h4 className="mb-4 pb-3">Log In</h4>
+                        <h4 className="mb-4 pb-3">Đăng nhập</h4>
                         <div className="form-group">
                             <input
                                 type="email"
@@ -92,7 +92,7 @@ const Login = () => {
                         </div>
                         <button type="submit" className="btn mt-4" onClick={(e) => { handleLogin(e) }}>submit</button>
                         <p className="mb-0 mt-4 text-center">
-                            <button class="link" onClick={handleOpen} style={{ border: 0, background: "inherit" }}>Forgot your password?</button>
+                            {/* <button class="link" onClick={handleOpen} style={{ border: 0, background: "inherit" }}>Quên mật khẩu</button> */}
                             <Modal
                                 open={open}
                                 onClose={handleClose}
