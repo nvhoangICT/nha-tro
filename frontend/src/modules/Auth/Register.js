@@ -12,12 +12,24 @@ const Register = () => {
     const navigate = useNavigate();
     const handleSignup = (e) => {
         e.preventDefault();
+
+        var reGexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+        var regemail = email;
+        if (regemail === '' || regemail === null) {
+            alert("Email không được để trống!");
+        }else if(!reGexEmail.test(regemail)){
+            alert("Email không hợp lệ!");
+            regemail = '';
+        }else{
+            setEmail(regemail);
+
         const newUser = {
             name: fullname,
             email: email,
             password: password
         };
         registerUser(newUser, dispatch, navigate);
+    }
     }
 
     return (

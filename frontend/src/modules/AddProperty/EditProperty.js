@@ -63,6 +63,32 @@ const EditProperty = () => {
 
     const HandleEditProperty = async (e) => {
         e.preventDefault();
+
+        if(isNaN(area)){
+            alert("\"" + area + "\" không phải số, hãy nhập lại Diện tích");
+            setArea("");
+        }
+
+        if(isNaN(price)){
+            alert("\"" + price + "\" không phải số, hãy nhập lại Giá tiền");
+            setPrice("");
+        }
+
+        if(isNaN(yearBuilt)){
+            alert("\"" + yearBuilt + "\" không phải số, hãy nhập lại Năm xây dựng");
+            setYearBuilt("");
+        }
+
+        if(isNaN(waterPrice)){
+            alert("\"" + waterPrice + "\" không phải số, hãy nhập lại Giá tiền 1 số nước");
+            setWaterPrice("");
+        }
+
+        if(isNaN(electricPrice)){
+            alert("\"" + electricPrice + "\" không phải số, hãy nhập lại Giá tiền 1 số điện");
+            setElectricPrice("");
+        }
+
         const property = {
             id: id,
             name: name,
