@@ -120,16 +120,7 @@ const ListProperty = () => {
                   }).catch((error) => {
                     console.log(error);
                   });
-<<<<<<< HEAD
-                // console.log(name)
-                // let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
-                let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
-
-                console.log(item.id + " " + name)
-
-=======
                 let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
->>>>>>> 4cc8b689d458d2e48ad0ce7b9bca07776524b2cb
                 return (
                   <Item
                     id={item.id}
