@@ -17,16 +17,14 @@ import ManageProperty from './components/ManageComponent/ManageProperty';
 import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDetail';
 import EditProperty from './modules/AddProperty/EditProperty';
 function App() {
-
   
-
   return (
     <React.Fragment>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/add-property" element={<AddProperty />} />
-        <Route path="/edit-property" element={<EditProperty />} />
+        <Route path="/edit-property/:propertyId" element={<EditProperty />} />
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
         <Route path="/item"

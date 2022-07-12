@@ -1,16 +1,17 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../../components/HomeComponent/Header'
 import './styles.css'
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
+import { Link, Navigate, useParams } from 'react-router-dom';
 // import axios from 'axios'
 // import { loginUser } from '../../redux/apiRequest'
 // import { useDispatch } from 'react-redux'
 // import { useNavigate } from 'react-router-dom';
 // const baseURL = "http://localhost:8081/api/add-property";
 const baseURL = "http://localhost:8081";
-const EditProperty = ({ onLogin }) => {
+const EditProperty = () => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
@@ -28,54 +29,58 @@ const EditProperty = ({ onLogin }) => {
     const [loading, setLoading] = useState(false);
     const [post, setPost] = useState(null);
     const [id, setId] = useState("");
+    const [submit, setSubmit] = useState(false);
+
+    let { propertyId } = useParams();
+    console.log(propertyId);
     const [listProps, setListProps] = useState([]);
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-          await axios.get(`${baseURL}/api/get-property/b6523fd1-e7c3-440d-8056-272b28824e64`).then((response) => {
-            // setPost(response.data);
-            // console.log(post.data[0].address);
-            setPost(response.data.data);
-            setLoading(true);
-            setArea(post.area)
-            setAddress(post.address);
-            setBeds(post.bedroom)
-            setBaths(post.bathroom)
-            setDistrict(post.districtId)
-            setYearBuilt(post.yearBuilt)
-            setWaterPrice(post.waterPrice)
-            setElectricPrice(post.electricPrice)
-            setStatus(post.status)
-            setDescription(post.description)
-            setPrice(post.price)
-            setName(post.name)
-            setId(post.id)
-            // console.log(response.data.data)
-            console.log(response.data.data);
-          });
+            await axios.get(`${baseURL}/api/get-property/${propertyId}`).then((response) => {
+                // setPost(response.data);
+                // console.log(post.data[0].address);
+                setPost(response.data.data);
+                setLoading(true);
+                setArea(post.area)
+                setAddress(post.address);
+                setBeds(post.bedroom)
+                setBaths(post.bathroom)
+                setDistrict(post.districtId)
+                setYearBuilt(post.yearBuilt)
+                setWaterPrice(post.waterPrice)
+                setElectricPrice(post.electricPrice)
+                setStatus(post.status)
+                setDescription(post.description)
+                setPrice(post.price)
+                setName(post.name)
+                setId(post.id)
+                // console.log(response.data.data)
+                console.log(response.data.data);
+            });
         }
         fetchData();
-      }, [loading]);
+    }, [loading]);
 
-      
-//   async function updatePost() {
-//     await axios.put(`${baseURL}/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`, {
-//         name: name,
-//         address: address,
-//         area: area,
-//         bedroom: beds,
-//         bathroom: baths,
-//         yearBuilt: yearBuilt,
-//         price: price,
-//         waterPrice: waterPrice,
-//         electricPrice: electricPrice,
-//         description: description,
-//         districtId: district,
-//         status :status
-//     })
-//       .then((response) => {
-//         setPost(response.data);
-//       });
-//   }
+
+    //   async function updatePost() {
+    //     await axios.put(`${baseURL}/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`, {
+    //         name: name,
+    //         address: address,
+    //         area: area,
+    //         bedroom: beds,
+    //         bathroom: baths,
+    //         yearBuilt: yearBuilt,
+    //         price: price,
+    //         waterPrice: waterPrice,
+    //         electricPrice: electricPrice,
+    //         description: description,
+    //         districtId: district,
+    //         status :status
+    //     })
+    //       .then((response) => {
+    //         setPost(response.data);
+    //       });
+    //   }
     const HandleEditProperty = async (e) => {
         e.preventDefault();
         const property = {
@@ -91,7 +96,7 @@ const EditProperty = ({ onLogin }) => {
             electricPrice: electricPrice,
             description: description,
             districtId: district,
-            status :status
+            status: status
         };
         await axios.put(`http://localhost:8081/api/put-property`,
             JSON.stringify(property),
@@ -100,16 +105,15 @@ const EditProperty = ({ onLogin }) => {
                 withCredentials: true
             }
         );
-
-        
+        setSubmit(true);
     }
 
 
     return (
         <>
             <Header />
-            <div className="section" style={{ backgroundImage: `url(images/bg_3.jpg)` }}>
-                <div className="container">
+            <div className="section">
+                <div className="container" style={{ backgroundImage: `url(images/bg_3.jpg)`}}>
                     <div className="row full-height justify-content-center">
                         <div className="col-12 text-center align-self-center py-5">
                             <div className="section pb-5 pt-5 pt-sm-2 text-center">
@@ -128,9 +132,9 @@ const EditProperty = ({ onLogin }) => {
                                                                     <option value="Phòng trọ">Phòng trọ</option> */}
                                                                     {name === "Nhà nguyên căn" ? <option selected value="Nhà nguyên căn">Nhà nguyên căn</option> : <option value="Nhà nguyên căn">Nhà nguyên căn</option>}
                                                                     {name === "Phòng trọ" ? <option selected value="Phòng trọ">Phòng trọ</option> : <option value="Phòng trọ">Phòng trọ</option>}
-                                                                </select>                                                                
+                                                                </select>
                                                                 {/* <Select placeholder= "-- Kiểu phòng trọ --" options={nameOptions} /> */}
-                                                                <i className="input-icon uil uil-home-alt"></i>                                                             
+                                                                <i className="input-icon uil uil-home-alt"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
                                                                 <select className="form-style" onChange={(e) => setBeds(e.target.value)}>
@@ -263,16 +267,19 @@ const EditProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                            <select className="form-style" onChange={(e) => setStatus(e.target.value)}>
+                                                                <select className="form-style" onChange={(e) => setStatus(e.target.value)}>
                                                                     <option className="form-style" value="">-- Trạng thái --</option>
-                                                                    {status == "0" ? <option selected value="1">Chưa cho thuê</option> : <option value="1">Hoàng Mai</option>}
-                                                                    {status == "1" ? <option selected value="2">Đã cho thuê</option> : <option value="2">Đã cho thuê</option>}                                                   
+                                                                    {status == "0" ? <option selected value="0">Chưa cho thuê</option> : <option value="0">Chưa cho thuê</option>}
+                                                                    {status == "1" ? <option selected value="1">Đã cho thuê</option> : <option value="1">Đã cho thuê</option>}
                                                                 </select>
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" className="btn mt-4" onClick={(e) => { HandleEditProperty(e) }}>submit</button>
+                                                    <button className="btn mt-4" onClick={(e) => { HandleEditProperty(e) }}>submit</button>
+                                                    {submit && (
+                                                        <Navigate to="/manage-property" replace={true} />
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>

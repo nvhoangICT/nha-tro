@@ -65,6 +65,10 @@ const ManageProperty = (props) => {
         fetchData();
     }, []);
 
+    const handleDeleteProperty = () => {
+
+    }
+
     return (
         <>
             <Header />
@@ -100,7 +104,10 @@ const ManageProperty = (props) => {
                                                     <td>{item.id}</td>
                                                     <td>{item.address}</td>
                                                     <td>{item.status ? "Đang cho thuê" : "Còn trống"}</td>
-                                                    <td><Button>Sửa</Button><Button>Xóa</Button></td>
+                                                    <td>
+                                                        <Link to={`/edit-property/${item.id}`}><Button>Sửa</Button></Link>
+                                                        <Button onClick={handleDeleteProperty}>Xóa</Button>
+                                                    </td>
                                                 </tr>))}
                                             </tbody>
                                         </Table>

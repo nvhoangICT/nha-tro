@@ -2,61 +2,61 @@
   {
     "name": "Đống Đa",
     "altname": "Dong Da",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Ba Đình",
     "altname": "Ba Dinh",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Bắc Từ Liêm",
     "altname": "Bac Tu Liem",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Cầu Giấy",
     "altname": "Cau Giay",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Hà Đông",
     "altname": "Ha Dong",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Hai Bà Trưng",
     "altname": "Hai Ba Trung",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Hoàn Kiếm",
     "altname": "Hoan Kiem",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Hoàng Mai",
     "altname": "Hoang Mai",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Long Biên",
     "altname": "Long Bien",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Nam Từ Liêm",
     "altname": "Nam Tu Liem",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Tây Hồ",
     "altname": "Tay Ho",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   },
   {
     "name": "Thanh Xuân",
     "altname": "Thanh Xuan",
-    "link": "http://localhost:3000/explore" 
+    "link": "/explore" 
   }
 ]
