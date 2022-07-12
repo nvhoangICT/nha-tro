@@ -41,13 +41,25 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const newUser = {
-            email: loginEmail,
-            password: loginPassword
-        };
-        loginUser(newUser, dispatch, navigate);
-    }
 
+        var reGexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+        var email = loginEmail;
+        if (email === '' || email === null) {
+            alert("Email không được để trống!");
+        }else if(!reGexEmail.test(email)){
+            alert("Email không hợp lệ!");
+            email = '';
+        }else{
+            setLoginEmail(email);
+
+            const newUser = {
+                email: loginEmail,
+                password: loginPassword
+            };
+            loginUser(newUser, dispatch, navigate);
+        }
+        
+    }
 
     return (
         <>
