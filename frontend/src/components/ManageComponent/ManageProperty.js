@@ -56,17 +56,32 @@ const ManageProperty = (props) => {
                 // setPost(response.data);
                 // console.log(post.data[0].address);
                 setPost(response.data.data);
-                setLoading(false);
+                setLoading(true);
                 console.log(response.data.data)
                 // console.log(response.data.data);
                 setListProps(listProps => listProps = response.data.data)
+                setLoading(false);
             });
         }
         fetchData();
-    }, []);
+    }, [loading]);
 
-    const handleDeleteProperty = () => {
-
+    const handleDeleteProperty = async (e, id) => {
+        e.preventDefault();
+        // const data = {
+        //     id: id
+        // }
+        // console.log(data);
+        await axios.delete(`${baseURL}/api/delete-property/${id}`,
+            {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        ).then(res => {
+            console.log(res);
+            console.log(res.data);
+        });
+        setLoading(true);
     }
 
     return (
@@ -105,13 +120,13 @@ const ManageProperty = (props) => {
                                                     <td>{item.address}</td>
                                                     <td>{item.status ? "Đang cho thuê" : "Còn trống"}</td>
                                                     <td>
+                                                        <input type="hidden" name="itemId" value="{item.id}" />
                                                         <Link to={`/edit-property/${item.id}`}><Button>Sửa</Button></Link>
-                                                        <Button onClick={handleDeleteProperty}>Xóa</Button>
+                                                        <Button onClick={e => handleDeleteProperty(e, item.id)}>Xóa</Button>
                                                     </td>
                                                 </tr>))}
                                             </tbody>
                                         </Table>
-                                        <Button>Thêm</Button>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">

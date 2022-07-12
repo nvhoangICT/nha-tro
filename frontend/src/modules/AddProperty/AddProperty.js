@@ -9,6 +9,8 @@ import './styles.css'
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
@@ -24,6 +26,10 @@ const AddProperty = ({ onLogin }) => {
     const [electricPrice, setElectricPrice] = useState("")
     const [file, setFile] = useState("");
     const [percent, setPercent] = useState(0);
+
+    const [submit, setSubmit] = useState(false);
+
+    const user = useSelector((state) => state.auth.login.currentUser)
 
     const HandleAddProperty = async (e) => {
         e.preventDefault();
@@ -54,6 +60,7 @@ const AddProperty = ({ onLogin }) => {
         }
 
         const property = {
+            id: user?.id,
             name: name,
             address: address,
             area: area,
@@ -74,31 +81,29 @@ const AddProperty = ({ onLogin }) => {
             }
         );
 
-        if (!file) {
-            alert("Please choose a file first!")
-        } else {
-            const storageRef = ref(storage, `/${res.data.data}/1`)
-            const uploadTask = uploadBytesResumable(storageRef, file);
 
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const percent = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
+        const storageRef = ref(storage, `/${res.data.data}/1`)
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
-                    // update progress
-                    setPercent(percent);
-                },
-                (err) => console.log(err),
-                () => {
-                    // download url
-                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                        console.log(url);
-                    });
-                }
-            )
-        };
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const percent = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+
+                // update progress
+                setPercent(percent);
+            },
+            (err) => console.log(err),
+            () => {
+                // download url
+                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                    console.log(url);
+                });
+            }
+        )
+        setSubmit(true)
     }
 
 
@@ -259,7 +264,10 @@ const AddProperty = ({ onLogin }) => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" className="btn mt-4" onClick={(e) => { HandleAddProperty(e) }}>submit</button>
+                                                    <button className="btn mt-4" onClick={(e) => { HandleAddProperty(e) }}>submit</button>
+                                                    {submit === true && (
+                                                        <Navigate to="/manage-property" replace={true} />
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
