@@ -21,10 +21,10 @@ const style = {
     justifyContent: "center",
     alignItems: "center",
     position: 'absolute',
-    top: '30%',
-    left: '42%',
+    top: '25%',
+    left: '40%',
     transfrom: 'translate(-50%, -50%)',
-    width: 300,
+    width: 400,
     bgcolor: '#f5f5f5',
     border: '1px solid #000',
     p: 4
@@ -248,28 +248,28 @@ const PropertyDetails = (props) => {
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField
                                                             value={name}
-                                                            onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" fullWidth />
+                                                            onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" style={{width:"300px"}} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField value={time}
                                                             onChange={(e) => setTime(e.target.value)}
-                                                            id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" fullWidth />
+                                                            id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" style={{width:"300px"}} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField value={email}
                                                             onChange={(e) => setEmail(e.target.value)}
-                                                            id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                                            id="outlined-basic" label="Email" variant="outlined" style={{width:"300px"}} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField
                                                             value={phone}
                                                             onChange={(e) => setPhone(e.target.value)}
-                                                            id="outlined-basic" label="Số điện thoại" variant="outlined" fullWidth />
+                                                            id="outlined-basic" label="Số điện thoại" variant="outlined" style={{width:"300px"}} />
                                                     </Typography>
                                                     <Button
                                                         endIcon={<SendIcon />}
                                                         variant="contained"
-                                                        sx={{ mt: 2 }}
+                                                        sx={{ mt: 3 }}
                                                         href="#outlined-buttons"
                                                         onClick={(e) => { HandleSubmit(e) }}
                                                     >Gửi</Button>

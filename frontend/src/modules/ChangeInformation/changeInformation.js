@@ -82,7 +82,7 @@ const ChangeInformation = (props) => {
                             <div className="section pb-5 pt-5 pt-sm-2 text-center">
                                 <div className="card-3d-wrap mx-auto">
                                     <div className="card-3d-wrapper">
-                                        <div className="card-front" style={{ height: '120%', marginTop: '-20%', width: '120%' }}>
+                                        <div className="card-front" style={{ height: '130%', marginTop: '-20%', width: '120%' }}>
                                             <div className="image">
                                                 <div className="center-wrap " >
                                                     <div className="section text-center" >

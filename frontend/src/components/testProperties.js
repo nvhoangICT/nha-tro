@@ -7,7 +7,7 @@ export default function TestProperties() {
   const [post, setPost] = useState(null);
 
   useEffect(async () => {
-    await axios.get(`${baseURL}/api/read-property`).then((response) => {
+    await axios.post(`${baseURL}/api/read-property`).then((response) => {
       setPost(response.data);
       console.log(response.data);
     });
