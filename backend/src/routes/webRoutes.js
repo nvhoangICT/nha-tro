@@ -42,7 +42,7 @@ let webRoutes = (app) => {
 
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);
-    router.get("/api/read-property", propertyController.readAllProperty);
+    router.post("/api/read-property", propertyController.readAllProperty);
     router.put("/api/put-property", propertyController.putProperty);
     router.delete("/api/delete-property/:id", propertyController.deleteProperty);
     router.get("/api/get-property/:ID", propertyController.readProperty);

@@ -11,6 +11,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 // const baseURL = "http://localhost:8081/api/add-property";
 const baseURL = "http://localhost:8081";
+
 const EditProperty = () => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")

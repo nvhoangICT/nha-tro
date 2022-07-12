@@ -2,12 +2,64 @@
 
 const db = require('../models');
 const emailService = require('./emailService')
+const sequelize = require('sequelize');
+const { Op } = require("sequelize");
 
-let getAllProperty = () => {
+let getAllProperty = (area, price, districtId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Property.findAll({ raw: true });
-            resolve(data);
+            console.log(area, price, districtId);
+            if (!area && !price && !districtId) {
+                let results = await db.Property.findAll({ raw: true });
+                resolve(results);
+            }
+
+            console.log("done 1")
+            // const results = await db.query(
+            //     "SELECT * FROM Properties WHERE area < :area AND price < :price AND districtId = :districtId",
+            //     {
+            //         replacements: { area: area, price: price, districtId: districtId},
+            //         type: QueryTypes.SELECT
+            //     }
+            // );
+
+            if (!districtId) {
+                let queryPrice = !price ? 100000000 : price;
+                let queryArea = !area ? 100 : area;
+                let results = await db.Property.findAll({
+                    where: {
+                        [Op.and]: {
+                            price: {
+                                [Op.lt]: queryPrice
+                            },
+                            area: {
+                                [Op.lt]: queryArea
+                            }
+                        }
+                    }, raw: true
+                });
+                resolve(results);
+            } else {
+                let queryPrice = !price ? 100000000 : price;
+                let queryArea = !area ? 100 : area;
+                let results = await db.Property.findAll({
+                    where: {
+                        [Op.and]: {
+                            price: {
+                                [Op.lt]: queryPrice
+                            },
+                            area: {
+                                [Op.lt]: queryArea
+                            },
+                            districtId: districtId
+                        }
+                    }, raw: true
+                });
+                resolve(results);
+            }
+
+            console.log("done 2")
+
         } catch (e) {
             reject(e);
         }
@@ -31,7 +83,7 @@ let getOwnerByPropertyId = (id) => {
             let temp = await db.OwnHouse.findOne({ where: { id: id }, raw: true });
             console.log(temp);
             let data = await db.UserDetail.findOne({ where: { id: temp.ownerId }, raw: true });
-            resolve(data);      
+            resolve(data);
         } catch (e) {
             reject(e);
         }

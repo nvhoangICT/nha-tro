@@ -2,61 +2,61 @@
   {
     "name": "Đống Đa",
     "altname": "Dong Da",
-    "link": "/explore" 
+    "link": "/explore/3" 
   },
   {
     "name": "Ba Đình",
     "altname": "Ba Dinh",
-    "link": "/explore" 
+    "link": "/explore/9" 
   },
   {
     "name": "Bắc Từ Liêm",
     "altname": "Bac Tu Liem",
-    "link": "/explore" 
+    "link": "/explore/6" 
   },
   {
     "name": "Cầu Giấy",
     "altname": "Cau Giay",
-    "link": "/explore" 
+    "link": "/explore/2" 
   },
   {
     "name": "Hà Đông",
     "altname": "Ha Dong",
-    "link": "/explore" 
+    "link": "/explore/10" 
   },
   {
     "name": "Hai Bà Trưng",
-    "altname": "Hai Ba Trung",
+    "altname": "Hai Ba Trung/4",
     "link": "/explore" 
   },
   {
     "name": "Hoàn Kiếm",
     "altname": "Hoan Kiem",
-    "link": "/explore" 
+    "link": "/explore/7" 
   },
   {
     "name": "Hoàng Mai",
     "altname": "Hoang Mai",
-    "link": "/explore" 
+    "link": "/explore/1" 
   },
   {
     "name": "Long Biên",
     "altname": "Long Bien",
-    "link": "/explore" 
+    "link": "/explore/11" 
   },
   {
     "name": "Nam Từ Liêm",
     "altname": "Nam Tu Liem",
-    "link": "/explore" 
+    "link": "/explore/5" 
   },
   {
     "name": "Tây Hồ",
     "altname": "Tay Ho",
-    "link": "/explore" 
+    "link": "/explore/12" 
   },
   {
     "name": "Thanh Xuân",
     "altname": "Thanh Xuan",
-    "link": "/explore" 
+    "link": "/explore/8" 
   }
 ]

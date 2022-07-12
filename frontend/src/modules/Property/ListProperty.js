@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import Header from '../../components/HomeComponent/Header';
 import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
 import { convertLength } from '@mui/material/styles/cssUtils';
-
+import Select from 'react-select'
 const baseURL = "http://localhost:8081";
 
 const ListProperty = () => {
@@ -20,20 +20,156 @@ const ListProperty = () => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
   const [urls, setUrls] = useState(null);
 
+  const [price, setPrice] = useState("")
+  const [district, setDistrict] = useState("")
+  const [area, setArea] = useState("")
+
+  const customStyles = {
+    control: styles => ({
+      ...styles,
+      width: '40vh',
+      height: '44px',
+      marginRight: '0',
+      backgroundColor: '#fff'
+    }),
+    option: (styles, isSelected) => ({
+      ...styles,
+      width: '40vh',
+      height: '44px',
+      marginRight: '0',
+      backgroundColor: '#fff',
+      color: 'black',
+    }),
+    menu: styles => ({
+      ...styles,
+      width: '40vh',
+      height: '44px',
+      marginRight: '0',
+      backgroundColor: '#fff'
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    }
+  };
+
+  const districtOptions = [
+    {
+      value: 1,
+      label: "Hoàng Mai",
+    },
+    {
+      value: 2,
+      label: "Cầu Giấy",
+    },
+    {
+      value: 3,
+      label: "Đống Đa",
+    },
+    {
+      value: 4,
+      label: "Hai Bà Trưng",
+    },
+    {
+      value: 5,
+      label: "Nam Từ Liêm",
+    },
+    {
+      value: 6,
+      label: "Bắc Từ Liêm",
+    },
+    {
+      value: 7,
+      label: "Hoàn Kiếm",
+    },
+    {
+      value: 8,
+      label: "Thanh Xuân",
+    },
+    {
+      value: 9,
+      label: "Ba Đình",
+    }
+  ]
+
+  const priceOptions = [
+    {
+      value: 2000000,
+      label: "Dưới 2 triệu",
+    },
+    {
+      value: 3000000,
+      label: "Dưới 3 triệu",
+    },
+    {
+      value: 4000000,
+      label: "Dưới 4 triệu",
+    },
+    {
+      value: 5000000,
+      label: "Dưới 5 triệu",
+    },
+  ]
+
+  const areaOptions = [
+    {
+      value: 20,
+      label: "Dưới 20 m2",
+    },
+    {
+      value: 30,
+      label: "Dưới 30 m2",
+    },
+    {
+      value: 40,
+      label: "Dưới 40 m2",
+    },
+    {
+      value: 50,
+      label: "Dưới 50 m2",
+    },
+  ]
+
+  function handleSelectArea(data) {
+    setArea(data);
+    console.log(data.value)
+  }
+
+  function handleSelectPrice(data) {
+    setPrice(data);
+    console.log(data.value)
+  }
+
+  function handleSelectDistrict(data) {
+    setDistrict(data);
+    console.log(data.value)
+  }
+
   useEffect(() => {
     const fetchData = async () => {
-      await axios.get(`${baseURL}/api/read-property`).then((response) => {
+      const filter = {
+        area: area.value,
+        price: price.value,
+        district: district.value,
+      }
+      console.log(filter)
+      await axios.post(`${baseURL}/api/read-property`,
+        JSON.stringify(filter),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then((response) => {
         // setPost(response.data);
         // console.log(post.data[0].address);
         setPost(response.data.data);
         setLoading(false);
         console.log(response.data.data)
-        console.log(response.data.data);
         setListProps(listProps => listProps = response.data.data)
       });
     }
     fetchData();
-  }, []);
+  }, [area, price, district]);
   // console.log(listProps);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -62,8 +198,6 @@ const ListProperty = () => {
   //           // Handle any errors
   //       });
 
-
-
   return (
     <div>
       <Header />
@@ -75,7 +209,35 @@ const ListProperty = () => {
               <div className="property-details">
                 <div className="text text-center mt-4">
                   <h2>DANH SÁCH PHÒNG TRỌ</h2>
-                  <span></span>
+                </div>
+                <div className="row mt-4">
+                  <div className="col-md-6 col-lg-4">
+                    <Select
+                      styles={customStyles}
+                      options={districtOptions}
+                      placeholder="Chọn khu vực"
+                      value={district}
+                      onChange={handleSelectDistrict}
+                    />
+                  </div>
+                  <div className="col-md-6 col-lg-4">
+                    <Select
+                      styles={customStyles}
+                      options={priceOptions}
+                      placeholder="Chọn khoảng giá"
+                      value={price}
+                      onChange={handleSelectPrice}
+                    />
+                  </div>
+                  <div className="col-md-6 col-lg-4">
+                    <Select
+                      styles={customStyles}
+                      options={areaOptions}
+                      placeholder="Chọn diện tích"
+                      value={area}
+                      onChange={handleSelectArea}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

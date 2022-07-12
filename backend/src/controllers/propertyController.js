@@ -38,7 +38,10 @@ let postProperty = async (req, res) => {
 }
 
 let readAllProperty = async (req, res) => {
-    let data = await propertyService.getAllProperty();
+    const { area, price, district } = req.body;
+    console.log(req.body);
+    console.log(area, price, district);
+    let data = await propertyService.getAllProperty(area, price, district);
     return res.status(200).json({ data: data })
 }
 

@@ -310,7 +310,7 @@ const PropertyDetails = (props) => {
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
-                                        <p>{description}</p>
+                                        <h5>{description}</h5>
                                     </div>
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
