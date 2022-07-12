@@ -36,15 +36,6 @@ const ListProperty = () => {
   }, []);
   // console.log(listProps);
 
-  async function updatePost() {
-    await axios.put(`${baseURL}/api/put-property`, {
-      name: "Hello World!",
-      address: "This is an updated post."
-    })
-      .then((response) => {
-        setPost(response.data);
-      });
-  }
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
@@ -79,6 +70,17 @@ const ListProperty = () => {
 
       <section className="ftco-section">
         <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-12">
+              <div className="property-details">
+                <div className="text text-center mt-4">
+                  <h2>DANH SÁCH PHÒNG TRỌ</h2>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
           <div className="row">
             <div className="row">
               {currentPosts.map((item, index) => {
@@ -89,8 +91,8 @@ const ListProperty = () => {
                 listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
-                      setUrls(null)
-                      setUrls(itemRef.name)
+                      // setUrls(null)
+                      // setUrls(itemRef.name)
                       // All the items under listRef.
                       // console.log(itemRef);
 
@@ -121,7 +123,7 @@ const ListProperty = () => {
                     console.log(error);
                   });
                 // console.log(name)
-                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 // let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
 
 

@@ -1,5 +1,5 @@
 // import { Marker } from '@react-google-maps/api'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
@@ -53,24 +53,25 @@ const PropertyDetails = (props) => {
     const handleClose = () => {
         setOpen(false);
     }
-
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         await axios.get(`${baseURL}/api/read-property/${user.id}`).then((response) => {
-    //             // setPost(response.data);
-    //             // console.log(post.data[0].address);
-    //             setPost(response.data.data);
-    //             setLoading(false);
-    //             console.log(response.data.data)
-    //             // console.log(response.data.data);
-    //             setListProps(listProps => listProps = response.data.data)
-    //         });
-    //     }
-    //     fetchData();
-    // }, []);
+    const [post, setPost] = useState()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get(`${baseURL}/api/read-property/${props.id}`).then((response) => {
+                // setPost(response.data);
+                // console.log(post.data[0].address);
+                setPost(response.data.data);
+                setLoading(false);
+                console.log(response.data.data)
+                // console.log(response.data.data);
+            });
+        }
+        fetchData();
+    }, []);
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const contact = {
@@ -86,28 +87,6 @@ const PropertyDetails = (props) => {
             }
         );
     }
-
-    // const storage = getStorage();
-    // getDownloadURL(ref(storage, '/files/cap-anh-em-ngoc-son-ngoc-hai-me-hat-nhung-re-loi-khac-nhau-1.jpeg'))
-    //     .then((url) => {
-    //         // `url` is the download URL for 'images/stars.jpg'
-
-    //         // This can be downloaded directly:
-    //         const xhr = new XMLHttpRequest();
-    //         xhr.responseType = 'blob';
-    //         xhr.onload = (event) => {
-    //             const blob = xhr.response;
-    //         };
-    //         xhr.open('GET', url);
-    //         xhr.send();
-
-    //         // Or inserted into an <img> element
-    //         const img = document.getElementById('myimg');
-    //         img.setAttribute('src', url);
-    //     })
-    //     .catch((error) => {
-    //         // Handle any errors
-    //     });
 
 
     return (

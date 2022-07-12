@@ -25,7 +25,7 @@ const Register = () => {
             <div className="card-back" style={{height:'80%', marginTop:'40px'}}>
                 <div className="center-wrap">
                     <div className="section text-center">
-                        <h4 className="pb-3">Sign Up</h4>
+                        <h4 className="pb-3">Đăng ký</h4>
                         <div className="form-group">
                             <input
                                 type="text"

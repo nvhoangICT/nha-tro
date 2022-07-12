@@ -34,18 +34,25 @@ const EditProperty = ({ onLogin }) => {
             // setPost(response.data);
             // console.log(post.data[0].address);
             setPost(response.data.data);
-            setName(post.name);
+            setLoading(true);
             setArea(post.area)
             setAddress(post.address);
             setBeds(post.bedroom)
-            setLoading(false);
+            setBaths(post.bathroom)
+            setDistrict(post.districtId)
+            setYearBuilt(post.yearBuilt)
+            setWaterPrice(post.waterPrice)
+            setElectricPrice(post.electricPrice)
+            setStatus(post.status)
+            setDescription(post.description)
+            setPrice(post.price)
+            setName(post.name)
             // console.log(response.data.data)
             console.log(response.data.data);
-           
           });
         }
         fetchData();
-      }, []);
+      }, [loading]);
 
       
 //   async function updatePost() {
@@ -114,28 +121,30 @@ const EditProperty = ({ onLogin }) => {
                                                             <div className="form-group mt-2">
                                                                 <select className="form-style" defaultValue={name} onChange={(e) => setName(e.target.value)}>
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
-                                                                    <option value="Nhà nguyên căn" selected>Nhà nguyên căn</option>
-                                                                    <option value="Phòng trọ">Phòng trọ</option>
+                                                                    {/* <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+                                                                    <option value="Phòng trọ">Phòng trọ</option> */}
+                                                                    {name === "Nhà nguyên căn" ? <option selected value="Nhà nguyên căn">Nhà nguyên căn</option> : <option value="Nhà nguyên căn">Nhà nguyên căn</option>}
+                                                                    {name === "Phòng trọ" ? <option selected value="Phòng trọ">Phòng trọ</option> : <option value="Phòng trọ">Phòng trọ</option>}
                                                                 </select>                                                                
                                                                 {/* <Select placeholder= "-- Kiểu phòng trọ --" options={nameOptions} /> */}
                                                                 <i className="input-icon uil uil-home-alt"></i>                                                             
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" defaultValue={beds}  onChange={(e) => setBeds(e.target.value)}>
+                                                                <select className="form-style" onChange={(e) => setBeds(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng ngủ --</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
+                                                                    {beds == "1" ? <option selected value="1">1</option> : <option value="1">1</option>}
+                                                                    {beds == "2" ? <option selected value="2">2</option> : <option value="2">2</option>}
+                                                                    {beds == "3" ? <option selected value="3">3</option> : <option value="3">3</option>}
                                                                 </select>
                                                                 <i className="input-icon uil uil-bed"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
                                                                 <select className="form-style" onChange={(e) => setBaths(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng tắm --</option>
-                                                                    <option value="0.5">0.5</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
+                                                                    {baths == "0" ? <option selected value="0">Chung</option> : <option value="0">Chung</option>}
+                                                                    {baths == "1" ? <option selected value="1">1</option> : <option value="1">1</option>}
+                                                                    {baths == "2" ? <option selected value="2">2</option> : <option value="2">2</option>}
+                                                                    {baths == "3" ? <option selected value="3">3</option> : <option value="3">3</option>}
                                                                 </select>
                                                                 <i className="input-icon uil uil-bath"></i>
                                                             </div>
@@ -153,9 +162,9 @@ const EditProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-vector-square"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={setDistrict}>
+                                                                <select className="form-style" onChange={(e) => setDistrict(e.target.value)}>
                                                                     <option className="form-style" value="">-- Quận --</option>
-                                                                    <option value="1">Hoàng Mai</option>
+                                                                    {/* <option value="1">Hoàng Mai</option>
                                                                     <option value="2">Cầu Giấy</option>
                                                                     <option value="3">Đống Đa</option>
                                                                     <option value="4">Hai Bà Trưng</option>
@@ -163,8 +172,16 @@ const EditProperty = ({ onLogin }) => {
                                                                     <option value="6">Bắc Từ Liêm</option>
                                                                     <option value="7">Hoàn Kiếm</option>
                                                                     <option value="8">Thanh Xuân</option>
-                                                                    <option value="9">Ba Đình</option>
-
+                                                                    <option value="9">Ba Đình</option> */}
+                                                                    {district == "1" ? <option selected value="1">Hoàng Mai</option> : <option value="1">Hoàng Mai</option>}
+                                                                    {district == "2" ? <option selected value="2">Cầu Giấy</option> : <option value="2">Cầu Giấy</option>}
+                                                                    {district == "3" ? <option selected value="3">Đống Đa</option> : <option value="3">Đống Đa</option>}
+                                                                    {district == "4" ? <option selected value="4">Hai Bà Trưng</option> : <option value="4">Hai Bà Trưng</option>}
+                                                                    {district == "5" ? <option selected value="5">Nam Từ Liêm</option> : <option value="5">Nam Từ Liêm</option>}
+                                                                    {district == "6" ? <option selected value="6">Bắc Từ Liêm</option> : <option value="6">Bắc Từ Liêm</option>}
+                                                                    {district == "7" ? <option selected value="7">Hoàn Kiếm</option> : <option value="7">Hoàn Kiếm</option>}
+                                                                    {district == "8" ? <option selected value="8">Thanh Xuân</option> : <option value="8">Thanh Xuân</option>}
+                                                                    {district == "9" ? <option selected value="9">Ba Đình</option> : <option value="9">Ba Đình</option>}
                                                                 </select>
                                                                 <i className="input-icon uil uil-building"></i>
                                                             </div>
@@ -245,8 +262,8 @@ const EditProperty = ({ onLogin }) => {
                                                             <div className="form-group mt-2">
                                                             <select className="form-style" onChange={(e) => setStatus(e.target.value)}>
                                                                     <option className="form-style" value="">-- Trạng thái --</option>
-                                                                    <option value="0">Chưa cho thuê</option>
-                                                                    <option value="1">Đã cho thuê</option>                                                       
+                                                                    {status == "0" ? <option selected value="1">Chưa cho thuê</option> : <option value="1">Hoàng Mai</option>}
+                                                                    {status == "1" ? <option selected value="2">Đã cho thuê</option> : <option value="2">Đã cho thuê</option>}                                                   
                                                                 </select>
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>

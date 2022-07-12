@@ -18,27 +18,7 @@ import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDe
 import EditProperty from './modules/AddProperty/EditProperty';
 function App() {
 
-  // const [token, setToken] = useState(Cookies.get())
-
-  // function onLogin(req, res) {
-  //   res.redirect('/')
-  // }
-
-  // function handleLogout() {
-  //   fetch('/logout', {
-  //     method: "DELETE"
-  //   }).then(setUser(null))
-  // }
-
-  // useEffect(() => {
-  //   fetch('/me').then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((data) => {
-  //         setUser(data)
-  //       })
-  //     }
-  //   })
-  // }, [])
+  
 
   return (
     <React.Fragment>
@@ -69,6 +49,7 @@ function App() {
             />}
         />
         <Route path="/manage-property" element={<ManageProperty />} />
+        <Route path="/manage-property/:id" component={<ManagePropertyDetails />} />
       </Routes>
       {/* user ?
           <AuthorizedApp user={user} handleLogout={handleLogout} />

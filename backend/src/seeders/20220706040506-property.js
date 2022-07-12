@@ -295,7 +295,7 @@ module.exports = {
       {
         "ID": "18b928d3-23a5-41cd-bcb2-7523ae1c87d7",
         "name": "Phòng trọ",
-        "address": "112 Ngõ 273 Phố Bạch Mai, Cầu Dền",
+        "address": "112/273 Phố Bạch Mai, Cầu Dền",
         "districtId": "4",
         "description": "Giường tủ , điều hòa , nóng lạnh ,bàn bếp",
         "price": 4500000,
@@ -975,7 +975,7 @@ module.exports = {
       {
         "ID": "15017dce-0b3b-43a7-846b-9871a173e4ea",
         "name": "Nhà nguyên căn",
-        "address": "số nhà 37, 83 Đường Nguyễn Khang",
+        "address": "37/83 Đường Nguyễn Khang",
         "districtId": "2",
         "description": "Phòng đẹp có giường, nóng lạnh, điều hoà, máy giặt, có wifi đầy đủ",
         "price": 13000000,
