@@ -27,6 +27,7 @@ const EditProperty = ({ onLogin }) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [post, setPost] = useState(null);
+    const [id, setId] = useState("");
     const [listProps, setListProps] = useState([]);
       useEffect(() => {
         const fetchData = async () => {
@@ -47,6 +48,7 @@ const EditProperty = ({ onLogin }) => {
             setDescription(post.description)
             setPrice(post.price)
             setName(post.name)
+            setId(post.id)
             // console.log(response.data.data)
             console.log(response.data.data);
           });
@@ -77,6 +79,7 @@ const EditProperty = ({ onLogin }) => {
     const HandleEditProperty = async (e) => {
         e.preventDefault();
         const property = {
+            id: id,
             name: name,
             address: address,
             area: area,
@@ -90,7 +93,7 @@ const EditProperty = ({ onLogin }) => {
             districtId: district,
             status :status
         };
-        await axios.post(`http://localhost:8081/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`,
+        await axios.put(`http://localhost:8081/api/put-property`,
             JSON.stringify(property),
             {
                 headers: { 'Content-Type': 'application/json' },
