@@ -108,8 +108,9 @@ let updatePropertyData = (data) => {
 let deleteProperty = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let Property = await db.Property.findOne({ where: { id: id } });
-            await Property.destroy();
+            // console.log(id)
+            await db.Property.destroy({ where: { id: id } });
+            await db.OwnHouse.destroy({ where: { id: id } });
             let allProperties = await db.Property.findAll();
             resolve(allProperties);
         } catch (e) {

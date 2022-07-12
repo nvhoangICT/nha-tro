@@ -61,26 +61,6 @@ const EditProperty = () => {
         fetchData();
     }, [loading]);
 
-
-    //   async function updatePost() {
-    //     await axios.put(`${baseURL}/api/put-property/b6523fd1-e7c3-440d-8056-272b28824e64`, {
-    //         name: name,
-    //         address: address,
-    //         area: area,
-    //         bedroom: beds,
-    //         bathroom: baths,
-    //         yearBuilt: yearBuilt,
-    //         price: price,
-    //         waterPrice: waterPrice,
-    //         electricPrice: electricPrice,
-    //         description: description,
-    //         districtId: district,
-    //         status :status
-    //     })
-    //       .then((response) => {
-    //         setPost(response.data);
-    //       });
-    //   }
     const HandleEditProperty = async (e) => {
         e.preventDefault();
         const property = {

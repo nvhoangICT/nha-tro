@@ -27,7 +27,7 @@ function App() {
         <Route path="/edit-property/:propertyId" element={<EditProperty />} />
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
-        <Route path="/item"
+        <Route path="/item/:propertyId"
           element={
             <PropertyDetails
               title="Phòng Trọ 2 Người"

@@ -1,6 +1,6 @@
 // import { Marker } from '@react-google-maps/api'
 import React, { useState, useCallback, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import GoogleMap from '../GoogleMap/GoogleMap'
 import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -59,9 +59,11 @@ const PropertyDetails = (props) => {
     const [phone, setPhone] = useState()
     const [post, setPost] = useState()
 
+    const { propertyId } = useParams()
+
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`${baseURL}/api/read-property/${props.id}`).then((response) => {
+            const res = await axios.get(`${baseURL}/api/read-property/${propertyId}`).then((response) => {
                 // setPost(response.data);
                 // console.log(post.data[0].address);
                 setPost(response.data.data);
@@ -72,6 +74,7 @@ const PropertyDetails = (props) => {
         }
         fetchData();
     }, []);
+
     const HandleSubmit = async (e) => {
         e.preventDefault();
         const contact = {
@@ -87,7 +90,6 @@ const PropertyDetails = (props) => {
             }
         );
     }
-
 
     return (
         <>
@@ -122,7 +124,7 @@ const PropertyDetails = (props) => {
                                 <div className="d-flex" style={{ justifyContent: 'space-between' }}>
                                     <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={toggle === 1 ? "nav-link active" : "nav-link"}
                                                 id="pills-description-tab"
                                                 data-toggle="pill"
@@ -131,12 +133,13 @@ const PropertyDetails = (props) => {
                                                 aria-controls="pills-description"
                                                 aria-expanded="true"
                                                 onClick={() => toggleTab(1)}
+                                                style={{border: '0px'}}
                                             >
                                                 Tiện ích
-                                            </button>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={toggle === 2 ? "nav-link active" : "nav-link"}
                                                 id="pills-manufacturer-tab"
                                                 data-toggle="pill"
@@ -147,10 +150,10 @@ const PropertyDetails = (props) => {
                                                 onClick={() => toggleTab(2)}
                                             >
                                                 Mô tả
-                                            </button>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={toggle === 3 ? "nav-link active" : "nav-link"}
                                                 id="pills-map-tab"
                                                 data-toggle="pill"
@@ -161,11 +164,11 @@ const PropertyDetails = (props) => {
                                                 onClick={() => toggleTab(3)}
                                             >
                                                 Bản đồ
-                                            </button>
+                                            </Link>
                                         </li>
 
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={toggle === 4 ? "nav-link active" : "nav-link"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
@@ -176,10 +179,10 @@ const PropertyDetails = (props) => {
                                                 onClick={() => toggleTab(4)}
                                             >
                                                 Phản hồi
-                                            </button>
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <button
+                                            <Link
                                                 className={toggle === 5 ? "nav-link active" : "nav-link"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
@@ -190,7 +193,7 @@ const PropertyDetails = (props) => {
                                                 onClick={() => toggleTab(5)}
                                             >
                                                 Tham quan
-                                            </button>
+                                            </Link>
                                         </li>
                                     </ul>
 
@@ -213,7 +216,7 @@ const PropertyDetails = (props) => {
                                             >
                                                 <button
                                                     className={"nav-link active"}
-                                                    style={{ backgroundColor: "#7ac70c" }}
+                                                    style={{ backgroundColor: "#7ac70c", border: '0px' }}
                                                     onClick={handleOpen}
                                                 >Liên hệ</button>
                                                 <Modal

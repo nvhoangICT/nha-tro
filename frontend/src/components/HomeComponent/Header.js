@@ -8,7 +8,7 @@ import { logOutSuccess } from '../../redux/authSlice'
 const Header = () => {
     const user = useSelector((state) => state.auth.login.currentUser)
     const accessToken = user?.accessToken;
-    const refreshToken = localStorage.getItem('refreshToken')
+    const isLogin = localStorage.getItem('refreshToken')
     const id = user?.id;
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -33,11 +33,11 @@ const Header = () => {
                         <li className="nav-item"><Link to="/explore" className="nav-link">Tìm phòng</Link></li>
                         {/* <li className="nav-item"><Link to="blog.html" className="nav-link">Bài viết</Link></li>
                         <li className="nav-item"><Link to="contact.html" className="nav-link">Liên hệ</Link></li> */}
-                        <li className="nav-item"><Link to="/add-property" className="nav-link">Đăng phòng</Link></li>
-                        {!refreshToken
+                        {!isLogin
                             ? <li className="nav-item"><Link to="/auth" className="nav-link" style={{ color: '#e86ed0' }}>Đăng nhập</Link></li>
                             :
                             <>
+                                <li className="nav-item"><Link to="/add-property" className="nav-link">Đăng phòng</Link></li>
                                 <li className="nav-item">
                                     <Link to="/change-info" className="nav-link" style={{ color: '#e86ed0' }}>{user.name}</Link>
                                 </li>

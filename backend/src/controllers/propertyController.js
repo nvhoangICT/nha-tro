@@ -11,6 +11,7 @@ let getProperty = async (req, res) => {
 let postProperty = async (req, res) => {
     try {
         let PropertyID = uuidv4();
+        console.log("post" + req.body)
         await db.Property.create({
             id: PropertyID,
             name: req.body.name,
@@ -26,10 +27,10 @@ let postProperty = async (req, res) => {
             description: req.body.description,
             districtId: req.body.districtId,
         });
-        // await db.HouseOwner.create({
-        //     id: PropertyID,
-        //     ownerId: req.body.id,          
-        // });
+        await db.OwnHouse.create({
+            id: PropertyID,
+            ownerId: req.body.id,          
+        });
         res.status(200).json({ data: PropertyID });
     } catch (err) {
         res.status(400).send(err.message);
@@ -76,9 +77,10 @@ let putProperty = async (req, res) => {
 }
 
 let deleteProperty = async (req, res) => {
-    let PropertyID = req.query.id;
+    let PropertyID = req.params.id;
+    console.log(PropertyID)   
     let allProperties = await propertyService.deleteProperty(PropertyID);
-    return res.render('display.ejs', { data: allProperties })
+    return res.status(200).json({ data: allProperties })
 }
 
 let postRequestTour = async (req, res) => {
