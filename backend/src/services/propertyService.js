@@ -79,9 +79,11 @@ let getPropertiesByPrice = (price) => {
 let updatePropertyData = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let Property = await db.Property.findOne({ where: { id: data.id } });
-            await Property.update({
-                id: data.id,
+            console.log(data.id)
+            console.log(data.name)
+            // const property = await db.Property.findOne({ where: { id: data.id }, raw: true });
+            // console.log(property.name)
+            await db.Property.update({
                 name: data.name,
                 address: data.address,
                 area: data.area,
@@ -91,10 +93,10 @@ let updatePropertyData = (data) => {
                 price: data.price,
                 waterPrice: data.waterPrice,
                 electricPrice: data.electricPrice,
-                status: false,
+                status: data.status,
                 description: data.description,
                 districtId: data.districtId,
-            });
+            }, { where: { id: data.id }, raw: true });
             let allProperties = await db.Property.findAll();
             resolve(allProperties);
         } catch (e) {
