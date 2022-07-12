@@ -57,23 +57,56 @@ const PropertyDetails = (props) => {
     const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
+    const [time, setTime] = useState()
+    const [tel, setTel] = useState()
     const [post, setPost] = useState()
+    const [address, setAddress] = useState()
+    const [property, setProperty] = useState()
+
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
+    const [beds, setBeds] = useState("")
+    const [baths, setBaths] = useState("")
+    const [district, setDistrict] = useState("")
+    const [area, setArea] = useState("")
+    const [yearBuilt, setYearBuilt] = useState("")
+    const [waterPrice, setWaterPrice] = useState("")
+    const [electricPrice, setElectricPrice] = useState("")
 
     const { propertyId } = useParams()
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`${baseURL}/api/read-property/${propertyId}`).then((response) => {
+            await axios.get(`${baseURL}/api/get-property/${propertyId}`).then((response) => {
                 // setPost(response.data);
                 // console.log(post.data[0].address);
                 setPost(response.data.data);
-                setLoading(false);
+                setLoading(true);
+                setAddress(post.address)
+                setProperty(post.name)
+                setArea(post.area)
+                setAddress(post.address);
+                setBeds(post.bedroom)
+                setBaths(post.bathroom)
+                setDistrict(post.districtId)
+                setYearBuilt(post.yearBuilt)
+                setWaterPrice(post.waterPrice)
+                setElectricPrice(post.electricPrice)
+                setDescription(post.description)
+                setPrice(post.price)
+                console.log(response.data.data)
+                // console.log(response.data.data);
+            });
+            await axios.get(`${baseURL}/api/get-owner/${propertyId}`).then((response) => {
+                // setPost(response.data);
+                // console.log(post.data[0].address);
+                setTel(response.data.data.phone);
                 console.log(response.data.data)
                 // console.log(response.data.data);
             });
         }
         fetchData();
-    }, []);
+    }, [loading]);
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
@@ -81,7 +114,10 @@ const PropertyDetails = (props) => {
             name: name,
             email: email,
             phone: phone,
+            address: post.address,
+            time: time,
         };
+        console.log(contact)
         await axios.post(`http://localhost:8081/api/send-email`,
             JSON.stringify(contact),
             {
@@ -99,21 +135,9 @@ const PropertyDetails = (props) => {
                     <div className="row justify-content-center">
                         <div className="col-md-12">
                             <div className="property-details">
-                                <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
-                                    <picture>
-                                        <img
-                                            // src={props.backgroundImage}
-                                            id="myimg"
-                                            alt="a house"
-                                            // onLoad={handleImgLoad}
-                                            maxHeight={600}
-                                            width={1220}
-                                        />
-                                    </picture>
-                                </ControlledZoom>
                                 <div className="text text-center mt-4">
-                                    <span className="subheading">{props.address}</span>
-                                    <h2>{props.title}</h2>
+                                    <span className="subheading">{address}</span>
+                                    <h2>{property}</h2>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +157,7 @@ const PropertyDetails = (props) => {
                                                 aria-controls="pills-description"
                                                 aria-expanded="true"
                                                 onClick={() => toggleTab(1)}
-                                                style={{border: '0px'}}
+                                                style={{ border: '0px' }}
                                             >
                                                 Tiện ích
                                             </Link>
@@ -178,7 +202,7 @@ const PropertyDetails = (props) => {
                                                 aria-expanded="true"
                                                 onClick={() => toggleTab(4)}
                                             >
-                                                Phản hồi
+                                                Hình ảnh
                                             </Link>
                                         </li>
                                         <li className="nav-item">
@@ -197,64 +221,60 @@ const PropertyDetails = (props) => {
                                         </li>
                                     </ul>
 
-                                    <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <ul className="nav nav-pills" id="pills-tab" role="tablist">
                                         <li className="nav-item">
-                                            <a href="tel:+1-224-203-2815" className="propertyPhoneNumber">
+                                            <a href={`tel:+84${tel}`} className="propertyPhoneNumber">
                                                 <IoPhonePortraitOutline style={{ marginBottom: '3px' }} />
-                                                <span className="phone-text">&ensp;096-203-2815&ensp;</span>
+                                                <span className="phone-text">&ensp;{tel}&ensp;</span>
                                             </a>
                                         </li>
                                         <li className="nav-item">
-                                            <a
+
+                                            <button
                                                 className={"nav-link active"}
-                                                id="pills-review-tab"
-                                                data-toggle="pill"
-                                                href="/request-tour"
-                                                role="tab"
-                                                aria-controls="pills-review"
-                                                aria-expanded="true"
+                                                style={{ backgroundColor: "#7ac70c", border: '0px' }}
+                                                onClick={handleOpen}
+                                            >Liên hệ</button>
+                                            <Modal
+                                                open={open}
+                                                onClose={handleClose}
+                                                aria-labelledby="modal-modal-title"
+                                                aria-describedby="modal-modal-description"
                                             >
-                                                <button
-                                                    className={"nav-link active"}
-                                                    style={{ backgroundColor: "#7ac70c", border: '0px' }}
-                                                    onClick={handleOpen}
-                                                >Liên hệ</button>
-                                                <Modal
-                                                    open={open}
-                                                    onClose={handleClose}
-                                                    aria-labelledby="modal-modal-title"
-                                                    aria-describedby="modal-modal-description"
-                                                >
-                                                    <Box sx={style}>
-                                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                            Liên hệ
-                                                        </Typography>
-                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                            <TextField
-                                                                value={name}
-                                                                onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" fullWidth />
-                                                        </Typography>
-                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                            <TextField value={email}
-                                                                onChange={(e) => setEmail(e.target.value)}
-                                                                id="outlined-basic" label="Email" variant="outlined" fullWidth />
-                                                        </Typography>
-                                                        <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                            <TextField 
+                                                <Box sx={style}>
+                                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                        Liên hệ
+                                                    </Typography>
+                                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                        <TextField
+                                                            value={name}
+                                                            onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" fullWidth />
+                                                    </Typography>
+                                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                        <TextField value={time}
+                                                            onChange={(e) => setTime(e.target.value)}
+                                                            id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" fullWidth />
+                                                    </Typography>
+                                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                        <TextField value={email}
+                                                            onChange={(e) => setEmail(e.target.value)}
+                                                            id="outlined-basic" label="Email" variant="outlined" fullWidth />
+                                                    </Typography>
+                                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                        <TextField
                                                             value={phone}
                                                             onChange={(e) => setPhone(e.target.value)}
                                                             id="outlined-basic" label="Số điện thoại" variant="outlined" fullWidth />
-                                                        </Typography>
-                                                        <Button
-                                                            endIcon={<SendIcon />}
-                                                            variant="contained"
-                                                            sx={{ mt: 2 }}
-                                                            href="#outlined-buttons"
-                                                            onClick={(e) => { HandleSubmit(e) }}
-                                                        >Gửi</Button>
-                                                    </Box>
-                                                </Modal>
-                                            </a>
+                                                    </Typography>
+                                                    <Button
+                                                        endIcon={<SendIcon />}
+                                                        variant="contained"
+                                                        sx={{ mt: 2 }}
+                                                        href="#outlined-buttons"
+                                                        onClick={(e) => { HandleSubmit(e) }}
+                                                    >Gửi</Button>
+                                                </Box>
+                                            </Modal>
                                         </li>
                                     </ul>
                                 </div>
@@ -262,36 +282,35 @@ const PropertyDetails = (props) => {
                                 <div className="tab-content" id="pills-tabContent">
                                     <div className={toggle === 1 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
                                         <div className="row">
-                                        <Table striped bordered hover>
-                                            <thead>
-                                                <tr>
-                                                    <th>Tháng</th>
-                                                    <th>Tiền phòng</th>
-                                                    <th>Tiền điện</th>
-                                                    <th>Tiền nước</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                            </tbody>
-                                        </Table>
+                                            <Table striped bordered hover>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Diện tích</th>
+                                                        <th>Số phòng ngủ</th>
+                                                        <th>Số phòng tắm</th>
+                                                        <th>Năm xây dựng</th>
+                                                        <th>Giá thuê</th>
+                                                        <th>Giá điện</th>
+                                                        <th>Giá nước</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{area} m2</td>
+                                                        <td>{beds}</td>
+                                                        <td>{baths}</td>
+                                                        <td>{yearBuilt}</td>
+                                                        <td>{price} đ/tháng</td>
+                                                        <td>{electricPrice} đ/số</td>
+                                                        <td>{waterPrice} đ/số</td>
+                                                    </tr>
+                                                </tbody>
+                                            </Table>
                                         </div>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
-                                        <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-                                        <p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+                                        <p>{description}</p>
                                     </div>
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
@@ -305,7 +324,19 @@ const PropertyDetails = (props) => {
                                     </div>
 
                                     <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                                        <div className="row">
+                                        <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
+                                            <picture>
+                                                <img
+                                                    src={`https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${propertyId}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`}
+                                                    id="myimg"
+                                                    alt="a house"
+                                                    // onLoad={handleImgLoad}
+                                                    height={600}
+                                                // width="auto"
+                                                />
+                                            </picture>
+                                        </ControlledZoom>
+                                        {/* <div className="row">
                                             <div className="col-md-7">
                                                 <h3 className="head">23 lượt phản hồi</h3>
                                                 <div className="review d-flex">
@@ -433,7 +464,7 @@ const PropertyDetails = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
 
                                     <div className={toggle === 5 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">

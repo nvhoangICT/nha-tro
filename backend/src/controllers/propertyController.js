@@ -92,4 +92,10 @@ let postRequestTour = async (req, res) => {
     await emailService.sendSimpleEmail(email)
 }
 
-module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour, readPropertyByOwner }
+let getOwnerByProperty = async (req, res) => {
+    let id = req.params.id;
+    let owner = await propertyService.getOwnerByPropertyId(id)
+    return res.status(200).json({ data: owner })
+}
+
+module.exports = { getProperty, postProperty, readAllProperty, editProperty, putProperty, deleteProperty, readProperty, postRequestTour, readPropertyByOwner, getOwnerByProperty }

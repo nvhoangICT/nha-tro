@@ -2,7 +2,7 @@
 require('dotenv').config();
 const nodemailer = require("nodemailer");
 
-let sendSimpleEmail = async (email, phone, name) => {
+let sendSimpleEmail = async (email, phone, name, address, time) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -17,7 +17,7 @@ let sendSimpleEmail = async (email, phone, name) => {
         from: '"Uptown" <hoangnvdk1@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Liên hệ xem nhà", // Subject line
-        html: `<p>${name} muốn liên hệ xem nhà. Số điện thoại liên hệ ${phone}</p>`, // html body
+        html: `<p>${name} muốn liên hệ xem nhà tại địa chỉ ${address}.<br />Ngày hẹn:${time}<br />Số điện thoại liên hệ: ${phone}</p>`, // html body
     });
 }
 

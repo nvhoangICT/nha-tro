@@ -48,10 +48,12 @@ let webRoutes = (app) => {
     router.get("/api/get-property/:ID", propertyController.readProperty);
     router.get("/api/manage-property/:ID", propertyController.readPropertyByOwner);
 
+    // API EMAIL_SERVICE
     router.post("/api/send-email", propertyService.postRequestTour);
     
     // API SEARCH 
     router.get("/api/explore/:id", propertyService.getPropertiesByDistrict);
+    router.get("/api/get-owner/:id", propertyController.getOwnerByProperty);
 
 
     router.get("/dashboard", dashboardController.getDashboard);

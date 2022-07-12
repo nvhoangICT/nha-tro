@@ -29,11 +29,7 @@ function App() {
         <Route path="/advanced-search" element={<AdvancedSearch />} />
         <Route path="/item/:propertyId"
           element={
-            <PropertyDetails
-              title="Phòng Trọ 2 Người"
-              address="796 Trương Định, Giáp Nhị, Thịnh Liệt, Hoàng Mai"
-              bg="https://images1.apartments.com/i2/J8Gdf_yX9fqD9XJTjj-TPBf1yoAzlijuAMqeaBWa2EQ/116/regents-park-chicago-il-1-br-1-ba---715-sf.jpg?p=1"
-            />
+            <PropertyDetails />
           }
         />
         <Route path="/change-info" element={<ChangeInformation />} />

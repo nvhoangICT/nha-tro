@@ -59,7 +59,7 @@ const EditProperty = () => {
             });
         }
         fetchData();
-    }, [loading]);
+    }, []);
 
     const HandleEditProperty = async (e) => {
         e.preventDefault();

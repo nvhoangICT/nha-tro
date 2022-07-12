@@ -25,6 +25,19 @@ let getPropertyById = (id) => {
     });
 }
 
+let getOwnerByPropertyId = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let temp = await db.OwnHouse.findOne({ where: { id: id }, raw: true });
+            console.log(temp);
+            let data = await db.UserDetail.findOne({ where: { id: temp.ownerId }, raw: true });
+            resolve(data);      
+        } catch (e) {
+            reject(e);
+        }
+    });
+}
+
 let getAllPropertiesById = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -121,15 +134,15 @@ let deleteProperty = (id) => {
 
 
 let postRequestTour = (req, res) => {
-    const { email, phone, name } = req.body
+    const { email, phone, name, address, time } = req.body
     return new Promise(async (resolve, reject) => {
         try {
-            if (!email || !phone || !name) {
+            if (!email || !phone || !name || !address || !time) {
                 resolve({
                     errMessage: 'Please enter all information',
                 })
             } else {
-                await emailService.sendSimpleEmail(email, phone, name);
+                await emailService.sendSimpleEmail(email, phone, name, address, time);
             }
         } catch (error) {
             reject(error);
@@ -146,5 +159,6 @@ module.exports = {
     getPropertyByOwner,
     getAllPropertiesById,
     getPropertiesByDistrict,
-    getPropertiesByPrice
+    getPropertiesByPrice,
+    getOwnerByPropertyId
 };
