@@ -56,6 +56,10 @@ const ListProperty = () => {
 
   const districtOptions = [
     {
+      value: null,
+      label: "Chọn khu vực",
+    },
+    {
       value: 1,
       label: "Hoàng Mai",
     },
@@ -95,24 +99,36 @@ const ListProperty = () => {
 
   const priceOptions = [
     {
-      value: 2000000,
-      label: "Dưới 2 triệu",
+      value: null,
+      label: "Chọn khoảng giá",
     },
     {
-      value: 3000000,
-      label: "Dưới 3 triệu",
+      value: 7000000,
+      label: "Dưới 7 triệu",
+    },
+    {
+      value: 6000000,
+      label: "Dưới 6 triệu",
+    },
+    {
+      value: 5000000,
+      label: "Dưới 5 triệu",
     },
     {
       value: 4000000,
       label: "Dưới 4 triệu",
     },
     {
-      value: 5000000,
-      label: "Dưới 5 triệu",
+      value: 3000000,
+      label: "Dưới 3 triệu",
     },
   ]
 
   const areaOptions = [
+    {
+      value: null,
+      label: "Chọn diện tích",
+    },
     {
       value: 20,
       label: "Dưới 20 m2",

@@ -123,6 +123,7 @@ const ManageProperty = (props) => {
                                                         <input type="hidden" name="itemId" value="{item.id}" />
                                                         <Link to={`/edit-property/${item.id}`}><Button>Sửa</Button></Link>
                                                         <Button onClick={e => handleDeleteProperty(e, item.id)}>Xóa</Button>
+                                                        <Button onClick={e => handleDeleteProperty(e, item.id)}>Thêm ảnh</Button>
                                                     </td>
                                                 </tr>))}
                                             </tbody>
