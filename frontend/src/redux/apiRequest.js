@@ -27,6 +27,7 @@ export const registerUser = async (user, dispatch, navigate) => {
     try {
         const res = await axios.post("/api/register", user, { headers: { "Content-Type": "application/json" } });
         dispatch(registerSuccess());
+        alert("Đăng ký thành công. Xin mời đăng nhập")
         console.log(res.response.data);
         navigate("/");
     } catch (e) {

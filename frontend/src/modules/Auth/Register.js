@@ -13,7 +13,7 @@ const Register = () => {
     const handleSignup = (e) => {
         e.preventDefault();
 
-        var reGexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+        var reGexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         var regemail = email;
         if (regemail === '' || regemail === null) {
             alert("Email không được để trống!");
