@@ -9,7 +9,7 @@ import './styles.css'
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AddProperty = ({ onLogin }) => {
@@ -24,7 +24,7 @@ const AddProperty = ({ onLogin }) => {
     const [yearBuilt, setYearBuilt] = useState("")
     const [waterPrice, setWaterPrice] = useState("")
     const [electricPrice, setElectricPrice] = useState("")
-    const [file, setFile] = useState("");
+    const [file, setFile] = useState();
     const [percent, setPercent] = useState(0);
 
     const [submit, setSubmit] = useState(false);
@@ -34,27 +34,27 @@ const AddProperty = ({ onLogin }) => {
     const HandleAddProperty = async (e) => {
         e.preventDefault();
 
-        if(isNaN(area)){
+        if (isNaN(area)) {
             alert("\"" + area + "\" không phải số, hãy nhập lại Diện tích");
             setArea("");
         }
 
-        if(isNaN(price)){
+        if (isNaN(price)) {
             alert("\"" + price + "\" không phải số, hãy nhập lại Giá tiền");
             setPrice("");
         }
 
-        if(isNaN(yearBuilt)){
+        if (isNaN(yearBuilt)) {
             alert("\"" + yearBuilt + "\" không phải số, hãy nhập lại Năm xây dựng");
             setYearBuilt("");
         }
 
-        if(isNaN(waterPrice)){
+        if (isNaN(waterPrice)) {
             alert("\"" + waterPrice + "\" không phải số, hãy nhập lại Giá tiền 1 số nước");
             setWaterPrice("");
         }
 
-        if(isNaN(electricPrice)){
+        if (isNaN(electricPrice)) {
             alert("\"" + electricPrice + "\" không phải số, hãy nhập lại Giá tiền 1 số điện");
             setElectricPrice("");
         }
@@ -81,28 +81,32 @@ const AddProperty = ({ onLogin }) => {
             }
         );
 
+        console.log(file)
+        console.log(file[1].name)
+        console.log(file[0])
+        for (let i = 0; i <= file.length; i++) {
+            const storageRef = ref(storage, `/${res.data.data}/${file[i].name}`)
+            const uploadTask = uploadBytesResumable(storageRef, file[i])
 
-        const storageRef = ref(storage, `/${res.data.data}/1`)
-        const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const percent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
 
-        uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-                const percent = Math.round(
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                );
-
-                // update progress
-                setPercent(percent);
-            },
-            (err) => console.log(err),
-            () => {
-                // download url
-                getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                    console.log(url);
-                });
-            }
-        )
+                    // update progress
+                    setPercent(percent);
+                },
+                (err) => console.log(err),
+                () => {
+                    // download url
+                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                        console.log(url);
+                    });
+                }
+            )
+        }
         setSubmit(true)
     }
 
@@ -258,7 +262,8 @@ const AddProperty = ({ onLogin }) => {
                                                                     type="file"
                                                                     name="pic"
                                                                     className="form-style"
-                                                                    onChange={(e) => setFile(e.target.files[0])}
+                                                                    onChange={(e) => setFile(e.target.files)}
+                                                                    multiple
                                                                 />
                                                                 <i className="input-icon uil uil-lightbulb-alt"></i>
                                                             </div>

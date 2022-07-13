@@ -10,6 +10,9 @@ import SendIcon from '@mui/icons-material/Send'
 import { Table } from 'react-bootstrap'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import storage from '../../firebase/firebaseConfig'
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
 
 const style = {
     display: "flex",
@@ -18,9 +21,9 @@ const style = {
     alignItems: "center",
     position: 'absolute',
     top: '30%',
-    left: '42%',
+    left: '40%',
     transfrom: 'translate(-50%, -50%)',
-    width: 300,
+    width: 400,
     bgcolor: '#f5f5f5',
     border: '1px solid #000',
     p: 4
@@ -31,14 +34,22 @@ const baseURL = "http://localhost:8081";
 const ManageProperty = (props) => {
     const user = useSelector((state) => state.auth.login.currentUser)
     const [toggle, setToggle] = useState(1)
+    const [images, setImages] = useState([]);
+    const [propertyId, setPropertyId] = useState("");
+    const [urls, setUrls] = useState([]);
+    const [progress, setProgress] = useState(0);
+    const [percent, setPercent] = useState(0);
+
     const toggleTab = (index) => {
         setToggle(index);
     }
 
     const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
+    const handleOpen = (e, id) => {
         setOpen(true);
+        // console.log(id);
+        setPropertyId(id);
     }
 
     const handleClose = () => {
@@ -57,7 +68,7 @@ const ManageProperty = (props) => {
                 // console.log(post.data[0].address);
                 setPost(response.data.data);
                 setLoading(true);
-                console.log(response.data.data)
+                // console.log(response.data.data)
                 // console.log(response.data.data);
                 setListProps(listProps => listProps = response.data.data)
                 setLoading(false);
@@ -82,6 +93,39 @@ const ManageProperty = (props) => {
             console.log(res.data);
         });
         setLoading(true);
+    }
+
+    const handleChange = (e) => {
+        for (let i = 0; i < e.target.files.length; i++) {
+            const newImage = e.target.files[i];
+            newImage["id"] = Math.random();
+            setImages((prevState) => [...prevState, newImage]);
+        }
+    };
+
+    const handleUpload = () => {
+        console.log(propertyId)
+        images.map((image) => {
+            const uploadTask = storage.ref(`${propertyId}/${image.name}`).put(image);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const percent = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+
+                    // update progress
+                    setPercent(percent);
+                },
+                (err) => console.log(err),
+                () => {
+                    // download url
+                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                        console.log(url);
+                    });
+                }
+            )
+        });
     }
 
     return (
@@ -123,11 +167,39 @@ const ManageProperty = (props) => {
                                                         <input type="hidden" name="itemId" value="{item.id}" />
                                                         <Link to={`/edit-property/${item.id}`}><Button>Sửa</Button></Link>
                                                         <Button onClick={e => handleDeleteProperty(e, item.id)}>Xóa</Button>
-                                                        <Button onClick={e => handleDeleteProperty(e, item.id)}>Thêm ảnh</Button>
+                                                        <Button onClick={e => handleOpen(e, item.id)}>Thêm ảnh</Button>
                                                     </td>
                                                 </tr>))}
                                             </tbody>
                                         </Table>
+                                        <Modal
+                                            open={open}
+                                            onClose={handleClose}
+                                            aria-labelledby="modal-modal-title"
+                                            aria-describedby="modal-modal-description"
+                                        >
+                                            <Box sx={style}>
+                                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                    Thêm ảnh
+                                                </Typography>
+                                                <Typography id="modal-modal-description" sx={{ mt: 3 }}>
+                                                    <TextField id="outlined-basic" variant="outlined" fullWidth type="file"
+                                                        inputProps={{
+                                                            multiple: true
+                                                        }}
+                                                        onChange={(e) => handleChange(e, propertyId)}
+                                                    />
+                                                </Typography>
+                                                <Button
+                                                    endIcon={<SendIcon />}
+                                                    variant="contained"
+                                                    sx={{ mt: 2 }}
+                                                    href="#outlined-buttons"
+                                                    value={images}
+                                                    onClick={handleUpload}
+                                                > Gửi</Button>
+                                            </Box>
+                                        </Modal>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
@@ -313,5 +385,6 @@ const ManageProperty = (props) => {
         </>
     )
 }
+
 
 export default ManageProperty
