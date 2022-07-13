@@ -4,7 +4,6 @@ const homeController = require('../controllers/homeController')
 const loginController = require('../controllers/loginController')
 const registerController = require('../controllers/registerController')
 const testController = require('../controllers/testController')
-const logoutController = require('../controllers/logoutController')
 // const passport = require('passport');
 const authController = require('../controllers/authController')
 const propertyController = require('../controllers/propertyController')
@@ -27,7 +26,7 @@ let webRoutes = (app) => {
     router.post("/api/register", registerController.createUser);
     router.post("/api/login", loginController.handleLogin);
     // router.post("/api/refresh", loginController.refreshToken);
-    router.post("api/logout", logoutController.logout);
+    // router.post("api/logout", logoutController.logout);
 
     // API FORGET PASSWORD
     // router.get("/password/reset", authController.showForgotForm);
@@ -37,7 +36,7 @@ let webRoutes = (app) => {
     // router.get("/password/reset/:email", authController.showResetForm);
     // router.post("/password/reset", authController.reset);
 
-    router.put("/forget-password", authController.forgetPassword);
+    // router.put("/forget-password", authController.forgetPassword);
 
     // API CRUD ROOM
     router.post("/api/add-property", propertyController.postProperty);
@@ -57,7 +56,7 @@ let webRoutes = (app) => {
 
     // router.get("/dashboard", dashboardController.getDashboard);
 
-    router.post("/logout", logoutController.logout);
+    // router.post("/logout", logoutController.logout);
 
     return app.use("/", router);
 }

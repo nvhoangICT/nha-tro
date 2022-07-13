@@ -16,6 +16,7 @@ import TestProperties from './components/testProperties';
 import ManageProperty from './components/ManageComponent/ManageProperty';
 import ManagePropertyDetails from './components/ManageComponent/ManagePropertyDetail';
 import EditProperty from './modules/AddProperty/EditProperty';
+import ListPropertyDistrict from './modules/Property/ListPropertyDistrict';
 function App() {
   
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/add-property" element={<AddProperty />} />
         <Route path="/edit-property/:propertyId" element={<EditProperty />} />
         <Route path="/explore" element={<ListProperty />} />
+        <Route path="/explore/:id" element={<ListPropertyDistrict />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
         <Route path="/item/:propertyId"
           element={

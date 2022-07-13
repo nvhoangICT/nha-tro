@@ -113,7 +113,8 @@ let getPropertyByOwner = (id) => {
     });
 }
 
-let getPropertiesByDistrict = (id) => {
+let getPropertiesByDistrict = (req, res) => {
+    let id = req.params.id;
     return new Promise(async (resolve, reject) => {
         try {
             let data = await db.Property.findAll({ where: { districtId: id }, raw: true });
