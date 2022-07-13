@@ -49,3 +49,4 @@ export const logOut = async (dispatch, id, navigate, accessToken, axiosJWT) => {
         dispatch(logOutFailed())
     }
 }
+

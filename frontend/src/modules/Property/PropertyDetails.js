@@ -75,6 +75,7 @@ const PropertyDetails = (props) => {
 
     const { propertyId } = useParams()
 
+
     useEffect(() => {
         const fetchData = async () => {
             await axios.get(`${baseURL}/api/get-property/${propertyId}`).then((response) => {
@@ -99,7 +100,8 @@ const PropertyDetails = (props) => {
             });
             await axios.get(`${baseURL}/api/get-owner/${propertyId}`).then((response) => {
                 // setPost(response.data);
-                // console.log(post.data[0].address);
+                // console.log(post.data[0].address)
+                setEmail(response.data.data.email);
                 setTel(response.data.data.phone);
                 console.log(response.data.data)
                 // console.log(response.data.data);
@@ -254,11 +256,6 @@ const PropertyDetails = (props) => {
                                                         <TextField value={time}
                                                             onChange={(e) => setTime(e.target.value)}
                                                             id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" style={{width:"300px"}} />
-                                                    </Typography>
-                                                    <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                        <TextField value={email}
-                                                            onChange={(e) => setEmail(e.target.value)}
-                                                            id="outlined-basic" label="Email" variant="outlined" style={{width:"300px"}} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField

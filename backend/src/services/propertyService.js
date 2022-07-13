@@ -8,20 +8,10 @@ const { Op } = require("sequelize");
 let getAllProperty = (area, price, districtId) => {
     return new Promise(async (resolve, reject) => {
         try {
-            // console.log(area, price, districtId);
             if (!area && !price && !districtId) {
                 let results = await db.Property.findAll({ raw: true });
                 resolve(results);
             }
-
-            // console.log("done 1")
-            // const results = await db.query(
-            //     "SELECT * FROM Properties WHERE area < :area AND price < :price AND districtId = :districtId",
-            //     {
-            //         replacements: { area: area, price: price, districtId: districtId},
-            //         type: QueryTypes.SELECT
-            //     }
-            // );
 
             if (!districtId) {
                 let queryPrice = !price ? 100000000 : price;
@@ -57,8 +47,6 @@ let getAllProperty = (area, price, districtId) => {
                 });
                 resolve(results);
             }
-
-            // console.log("done 2")
 
         } catch (e) {
             reject(e);
