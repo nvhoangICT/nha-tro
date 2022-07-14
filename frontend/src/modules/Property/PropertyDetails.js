@@ -79,7 +79,7 @@ const PropertyDetails = (props) => {
     const { propertyId } = useParams()
 
     const file = [];
-
+    
     useEffect(() => {
         const fetchData = async () => {
             await axios.get(`${baseURL}/api/get-property/${propertyId}`).then((response) => {
@@ -137,6 +137,8 @@ const PropertyDetails = (props) => {
         fetchData();
     }, [loading]);
 
+    let addressMap = address.replace(/ /g,"+");
+    console.log(addressMap)
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
@@ -339,13 +341,21 @@ const PropertyDetails = (props) => {
                                     </div>
 
                                     <div className={toggle === 3 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-                                        <GoogleMap
+                                        {/* <GoogleMap
                                             // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=&v=3.exp&libraries=geometry,drawing,places`}
                                             googleMapURL={`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyA0Dx_boXQiwvdz8sJHoYeZNVTdoWONYkU`}
                                             loadingElement={<div style={{ height: `100%` }} />}
                                             containerElement={<div style={{ height: `90vh`, margin: `auto`, border: '2px solid black' }} />}
                                             mapElement={<div style={{ height: `100%` }} />}
-                                        />
+                                        /> */}
+                                        <iframe
+                                            width={1200}
+                                            height={600}
+                                            style={{border:0}}
+                                            loading={'lazy'}
+                                            allowfullscreen
+                                            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA0Dx_boXQiwvdz8sJHoYeZNVTdoWONYkU&q=${addressMap}`}>
+                                        </iframe>
                                     </div>
 
                                     <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
