@@ -12,7 +12,9 @@ import SendIcon from '@mui/icons-material/Send'
 import axios from 'axios'
 
 
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import storage from "../../firebase/firebaseConfig";
+import { ref, listAll, getDownloadURL } from "firebase/storage";
+
 import { Table } from 'react-bootstrap'
 const baseURL = "http://localhost:8081";
 const style = {
@@ -32,7 +34,7 @@ const style = {
 
 const PropertyDetails = (props) => {
     const [toggle, setToggle] = useState(1)
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState([])
     const toggleTab = (index) => {
         setToggle(index);
     }
@@ -75,6 +77,7 @@ const PropertyDetails = (props) => {
 
     const { propertyId } = useParams()
 
+    const file = [];
 
     useEffect(() => {
         const fetchData = async () => {
@@ -106,9 +109,32 @@ const PropertyDetails = (props) => {
                 console.log(response.data.data)
                 // console.log(response.data.data);
             });
+
+
+
+            const storageRef = ref(storage, `/${propertyId}`)
+            listAll(storageRef)
+                .then((res) => {
+                    res.prefixes.forEach((folderRef) => {
+                        // All the prefixes under listRef.
+                        // You may call listAll() recursively on them.
+                    });
+                    res.items.forEach((itemRef) => {
+                        // All the items under listRef.
+                        console.log(itemRef.name);
+                        getDownloadURL(itemRef).then((url) => {
+                            console.log(url);
+                            file.push(url);
+                            console.log(file)
+                        });
+                    });
+                }).catch((error) => {
+                    // Uh-oh, an error occurred!
+                });
         }
         fetchData();
     }, [loading]);
+
 
     const HandleSubmit = async (e) => {
         e.preventDefault();
@@ -250,18 +276,18 @@ const PropertyDetails = (props) => {
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField
                                                             value={name}
-                                                            onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" style={{width:"300px"}} />
+                                                            onChange={(e) => setName(e.target.value)} id="outlined-basic" label="Tên" variant="outlined" style={{ width: "300px" }} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField value={time}
                                                             onChange={(e) => setTime(e.target.value)}
-                                                            id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" style={{width:"300px"}} />
+                                                            id="outlined-basic" label="Ngày giờ hẹn" variant="outlined" style={{ width: "300px" }} />
                                                     </Typography>
                                                     <Typography id="modal-modal-description" sx={{ mt: 3 }}>
                                                         <TextField
                                                             value={phone}
                                                             onChange={(e) => setPhone(e.target.value)}
-                                                            id="outlined-basic" label="Số điện thoại" variant="outlined" style={{width:"300px"}} />
+                                                            id="outlined-basic" label="Số điện thoại" variant="outlined" style={{ width: "300px" }} />
                                                     </Typography>
                                                     <Button
                                                         endIcon={<SendIcon />}
@@ -323,14 +349,16 @@ const PropertyDetails = (props) => {
                                     <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                                         <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
                                             <picture>
-                                                <img
-                                                    src={`https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${propertyId}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`}
-                                                    id="myimg"
-                                                    alt="a house"
-                                                    // onLoad={handleImgLoad}
-                                                    height={600}
-                                                // width="auto"
-                                                />
+                                                {file.forEach((item) => (
+                                                    <img
+                                                        src={item}
+                                                        id="myimg"
+                                                        alt="a house"
+                                                        // onLoad={handleImgLoad}
+                                                        height={600}
+                                                    // width="auto"
+                                                    />
+                                                ))}
                                             </picture>
                                         </ControlledZoom>
                                         {/* <div className="row">

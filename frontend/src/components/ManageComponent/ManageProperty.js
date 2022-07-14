@@ -103,30 +103,30 @@ const ManageProperty = (props) => {
         }
     };
 
-    const handleUpload = () => {
-        console.log(propertyId)
-        images.map((image) => {
-            const uploadTask = storage.ref(`${propertyId}/${image.name}`).put(image);
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const percent = Math.round(
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                    );
+    // const handleUpload = () => {
+    //     console.log(propertyId)
+    //     images.map((image) => {
+    //         const uploadTask = storage.ref(`${propertyId}/${image.name}`).put(image);
+    //         uploadTask.on(
+    //             "state_changed",
+    //             (snapshot) => {
+    //                 const percent = Math.round(
+    //                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+    //                 );
 
-                    // update progress
-                    setPercent(percent);
-                },
-                (err) => console.log(err),
-                () => {
-                    // download url
-                    getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                        console.log(url);
-                    });
-                }
-            )
-        });
-    }
+    //                 // update progress
+    //                 setPercent(percent);
+    //             },
+    //             (err) => console.log(err),
+    //             () => {
+    //                 // download url
+    //                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+    //                     console.log(url);
+    //                 });
+    //             }
+    //         )
+    //     });
+    // }
 
     return (
         <>
@@ -167,39 +167,10 @@ const ManageProperty = (props) => {
                                                         <input type="hidden" name="itemId" value="{item.id}" />
                                                         <Link to={`/edit-property/${item.id}`}><Button>Sửa</Button></Link>
                                                         <Button onClick={e => handleDeleteProperty(e, item.id)}>Xóa</Button>
-                                                        <Button onClick={e => handleOpen(e, item.id)}>Thêm ảnh</Button>
                                                     </td>
                                                 </tr>))}
                                             </tbody>
                                         </Table>
-                                        <Modal
-                                            open={open}
-                                            onClose={handleClose}
-                                            aria-labelledby="modal-modal-title"
-                                            aria-describedby="modal-modal-description"
-                                        >
-                                            <Box sx={style}>
-                                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                    Thêm ảnh
-                                                </Typography>
-                                                <Typography id="modal-modal-description" sx={{ mt: 3 }}>
-                                                    <TextField id="outlined-basic" variant="outlined" fullWidth type="file"
-                                                        inputProps={{
-                                                            multiple: true
-                                                        }}
-                                                        onChange={(e) => handleChange(e, propertyId)}
-                                                    />
-                                                </Typography>
-                                                <Button
-                                                    endIcon={<SendIcon />}
-                                                    variant="contained"
-                                                    sx={{ mt: 2 }}
-                                                    href="#outlined-buttons"
-                                                    value={images}
-                                                    onClick={handleUpload}
-                                                > Gửi</Button>
-                                            </Box>
-                                        </Modal>
                                     </div>
 
                                     <div className={toggle === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-map-tab">
