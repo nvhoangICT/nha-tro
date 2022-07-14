@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GoogleMap from '../GoogleMap/GoogleMap'
-import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
+// import { Controlled as ControlledZoom } from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import RequestTour from '../RequestTour/RequestTour'
 import Header from '../../components/HomeComponent/Header'
@@ -10,7 +10,8 @@ import { IoPhonePortraitOutline } from "react-icons/io5";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send'
 import axios from 'axios'
-
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
 import storage from "../../firebase/firebaseConfig";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
@@ -131,6 +132,7 @@ const PropertyDetails = (props) => {
                 }).catch((error) => {
                     // Uh-oh, an error occurred!
                 });
+            setImage(file);
         }
         fetchData();
     }, [loading]);
@@ -180,7 +182,7 @@ const PropertyDetails = (props) => {
                                                 className={toggle === 1 ? "nav-link active" : "nav-link"}
                                                 id="pills-description-tab"
                                                 data-toggle="pill"
-                                                to="#pills-description"
+                                                to="#"
                                                 role="tab"
                                                 aria-controls="pills-description"
                                                 aria-expanded="true"
@@ -195,7 +197,7 @@ const PropertyDetails = (props) => {
                                                 className={toggle === 2 ? "nav-link active" : "nav-link"}
                                                 id="pills-manufacturer-tab"
                                                 data-toggle="pill"
-                                                to="#pills-manufacturer"
+                                                to="#"
                                                 role="tab"
                                                 aria-controls="pills-manufacturer"
                                                 aria-expanded="true"
@@ -209,7 +211,7 @@ const PropertyDetails = (props) => {
                                                 className={toggle === 3 ? "nav-link active" : "nav-link"}
                                                 id="pills-map-tab"
                                                 data-toggle="pill"
-                                                to="#pills-review"
+                                                to="#"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
@@ -224,7 +226,7 @@ const PropertyDetails = (props) => {
                                                 className={toggle === 4 ? "nav-link active" : "nav-link"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
-                                                to="#pills-review"
+                                                to="#"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
@@ -238,7 +240,7 @@ const PropertyDetails = (props) => {
                                                 className={toggle === 5 ? "nav-link active" : "nav-link"}
                                                 id="pills-review-tab"
                                                 data-toggle="pill"
-                                                to="#pills-review"
+                                                to="#"
                                                 role="tab"
                                                 aria-controls="pills-review"
                                                 aria-expanded="true"
@@ -347,21 +349,24 @@ const PropertyDetails = (props) => {
                                     </div>
 
                                     <div className={toggle === 4 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                                        <ControlledZoom isZoomed={isZoomed} onZoomChange={handleZoomChange}>
-                                            <picture>
-                                                {file.forEach((item) => (
-                                                    <img
-                                                        src={item}
-                                                        id="myimg"
-                                                        alt="a house"
-                                                        // onLoad={handleImgLoad}
-                                                        height={600}
-                                                    // width="auto"
-                                                    />
+                                        <div className="slide-container">
+                                            <Slide>
+                                                {image.map((item, index) => (
+                                                    <div className="each-slide" key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                        <img
+                                                            src={image[index]}
+                                                            id="myimg"
+                                                            alt="a house"
+                                                            // onLoad={handleImgLoad}
+                                                            height="auto"
+                                                            width={800}
+                                                        />
+                                                    </div>
                                                 ))}
-                                            </picture>
-                                        </ControlledZoom>
-                                        {/* <div className="row">
+                                            </Slide>
+                                        </div>
+                                    </div>
+                                    {/* <div className="row">
                                             <div className="col-md-7">
                                                 <h3 className="head">23 lượt phản hồi</h3>
                                                 <div className="review d-flex">
@@ -490,7 +495,7 @@ const PropertyDetails = (props) => {
                                                 </div>
                                             </div>
                                         </div> */}
-                                    </div>
+
 
                                     <div className={toggle === 5 ? "tab-pane fade show active" : "tab-pane fade"} id="pills-map" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
                                         <div className="itemWrapper playerActive">
