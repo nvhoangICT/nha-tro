@@ -57,7 +57,7 @@ const PropertyDetails = (props) => {
         setOpen(false);
     }
     const [loading, setLoading] = useState(false);
-    const [name, setName] = useState()
+    const [name, setName] = useState("")
     const [email, setEmail] = useState()
     const [phone, setPhone] = useState()
     const [time, setTime] = useState()
@@ -112,8 +112,6 @@ const PropertyDetails = (props) => {
                 // console.log(response.data.data);
             });
 
-
-
             const storageRef = ref(storage, `/${propertyId}`)
             listAll(storageRef)
                 .then((res) => {
@@ -136,7 +134,7 @@ const PropertyDetails = (props) => {
             setImage(file);
         }
         fetchData();
-    }, [loading]);
+    }, []);
 
     let addressMap = address.replace(/ /g,"+");
     console.log(addressMap)

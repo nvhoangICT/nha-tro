@@ -9,14 +9,14 @@ import './styles.css'
 import storage from "../../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AddProperty = ({ onLogin }) => {
     const [address, setAddress] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
-    const [name, setName] = useState("")
+    const [type, setType] = useState("")
     const [beds, setBeds] = useState("")
     const [baths, setBaths] = useState("")
     const [district, setDistrict] = useState("")
@@ -61,7 +61,7 @@ const AddProperty = ({ onLogin }) => {
 
         const property = {
             id: user?.id,
-            name: name,
+            name: type,
             address: address,
             area: area,
             bedroom: beds,
@@ -81,11 +81,15 @@ const AddProperty = ({ onLogin }) => {
             }
         );
 
-        console.log(file)
-        console.log(file[1].name)
-        console.log(file[0])
-        for (let i = 0; i <= file.length; i++) {
-            const storageRef = ref(storage, `/${res.data.data}/${file[i].name}`)
+
+        for (let i = 0; i < file.length; i++) {
+            console.log(file)
+            let filename = file[i].name;
+            console.log(filename)
+            let filetype = filename.split(".")[1]
+            console.log(filetype)
+            let temp = i+1
+            const storageRef = ref(storage, `/${res.data.data}/${temp}.${filetype}`);
             const uploadTask = uploadBytesResumable(storageRef, file[i])
 
             uploadTask.on(
@@ -107,6 +111,8 @@ const AddProperty = ({ onLogin }) => {
                 }
             )
         }
+        console.log(`Uploaded`);
+        alert("Đăng phòng thành công")
         setSubmit(true)
     }
 
@@ -128,7 +134,7 @@ const AddProperty = ({ onLogin }) => {
                                                     <div className="row">
                                                         <div className="col-md-6">
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" value={name} onChange={(e) => setName(e.target.value)}>
+                                                                <select className="form-style" value={type} onChange={(e) => setType(e.target.value)}>
                                                                     <option className="form-style" value="">-- Kiểu phòng trọ --</option>
                                                                     <option value="Nhà nguyên căn">Nhà nguyên căn</option>
                                                                     <option value="Phòng trọ">Phòng trọ</option>
@@ -145,7 +151,7 @@ const AddProperty = ({ onLogin }) => {
                                                                 <i className="input-icon uil uil-bed"></i>
                                                             </div>
                                                             <div className="form-group mt-2">
-                                                                <select className="form-style" onChange={(e) => setBaths(e.target.value)}>
+                                                                <select className="form-style" value={baths} onChange={(e) => setBaths(e.target.value)}>
                                                                     <option className="form-style" value="">-- Số phòng tắm --</option>
                                                                     <option value="0.5">0.5</option>
                                                                     <option value="1">1</option>
@@ -270,7 +276,7 @@ const AddProperty = ({ onLogin }) => {
                                                         </div>
                                                     </div>
                                                     <button className="btn mt-4" onClick={(e) => { HandleAddProperty(e) }}>submit</button>
-                                                    {submit === true && (
+                                                    {submit == true && (
                                                         <Navigate to="/manage-property" replace={true} />
                                                     )}
                                                 </div>

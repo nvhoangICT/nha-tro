@@ -18,11 +18,13 @@ const ListProperty = () => {
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  const [urls, setUrls] = useState(null);
+  const [image, setImage] = useState("");
 
   const [price, setPrice] = useState("")
   const [district, setDistrict] = useState("")
   const [area, setArea] = useState("")
+
+  let file;
 
   const customStyles = {
     control: styles => ({
@@ -269,41 +271,19 @@ const ListProperty = () => {
                 listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef) => {
-                      // setUrls(null)
-                      // setUrls(itemRef.name)
-                      // All the items under listRef.
-                      // console.log(itemRef);
-
-                      // console.log(itemRef)
-                      // getDownloadURL(ref(storage, itemRef.fullPath))
-                      //   .then((url) => {
-                      //     // `url` is the download URL for 'images/stars.jpg'
-
-                      //     // This can be downloaded directly:
-                      //     const xhr = new XMLHttpRequest();
-                      //     xhr.responseType = 'blob';
-                      //     xhr.onload = (event) => {
-                      //       const blob = xhr.response;
-                      //     };
-                      //     xhr.open('GET', url);
-                      //     xhr.send();
-
-                      //     setUrls(...urls, url);
-                      //     console.log(urls)
-                      //   })
-                      //   .catch((error) => {
-                      //     // Handle any errors
-                      //   });
-                      // setUrls(`url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${itemRef.name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`)
-                      // url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F${itemRef.name}?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                      console.log(itemRef.name);
+                      getDownloadURL(itemRef).then((url) => {
+                        // files.push(url);
+                        // console.log(files[0])
+                      });
+                      // setImage(itemRef.name);
                     });
                   }).catch((error) => {
                     console.log(error);
                   });
-                // console.log(name)
+                // console.log(image)
                 let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 // let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
-
 
                 return (
                   <Item
