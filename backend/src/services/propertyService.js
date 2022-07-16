@@ -69,8 +69,9 @@ let getOwnerByPropertyId = (id) => {
     return new Promise(async (resolve, reject) => {
         try {
             let temp = await db.OwnHouse.findOne({ where: { id: id }, raw: true });
-            // console.log(temp);
+            console.log(temp);
             let data = await db.UserDetail.findOne({ where: { id: temp.ownerId }, raw: true });
+            console.log(data);
             resolve(data);
         } catch (e) {
             reject(e);

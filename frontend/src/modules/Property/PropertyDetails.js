@@ -63,7 +63,7 @@ const PropertyDetails = (props) => {
     const [time, setTime] = useState()
     const [tel, setTel] = useState()
     const [post, setPost] = useState()
-    const [address, setAddress] = useState()
+    const [address, setAddress] = useState("")
     const [property, setProperty] = useState()
 
     const [description, setDescription] = useState("")
@@ -77,6 +77,7 @@ const PropertyDetails = (props) => {
     const [electricPrice, setElectricPrice] = useState("")
 
     const { propertyId } = useParams()
+    console.log(propertyId)
 
     const file = [];
     

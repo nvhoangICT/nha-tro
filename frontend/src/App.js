@@ -29,7 +29,7 @@ function App() {
         <Route path="/explore" element={<ListProperty />} />
         <Route path="/explore/:id" element={<ListPropertyDistrict />} />
         <Route path="/advanced-search" element={<AdvancedSearch />} />
-        <Route path="/item/"
+        <Route path="/item/:propertyId"
           element={
             <PropertyDetails />
           }
