@@ -208,7 +208,7 @@ let getOwnerByPropertyId = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       let temp = await db.OwnHouse.findOne({where: {id: id}, raw: true});
-      console.log(temp);
+      console.log("data" + temp);
       let data = await db.UserDetail.findOne({
         where: {id: temp.ownerId},
         raw: true,
@@ -323,11 +323,19 @@ let deleteProperty = (id) => {
   });
 };
 
-let postRequestTour = (req, res) => {
-  const {email, phone, name, address, time} = req.body;
+let postRequestTour = async (req, res) => {
+  const {id, phone, name, address, time} = req.body;
+  let temp = await db.OwnHouse.findOne({where: {id: id}});
+  // console.log("329 " + temp.ownerId);
+  let data = await db.User.findOne({
+    where: {id: temp.ownerId},
+    raw: true,
+  });
+  // console.log("333 " + data.email);
+  let email = data.email;
   return new Promise(async (resolve, reject) => {
     try {
-      if (!email || !phone || !name || !address || !time) {
+      if (!phone || !name || !address || !time) {
         resolve({
           errMessage: "Please enter all information",
         });
