@@ -8,8 +8,8 @@ let sendSimpleEmail = async (email, phone, name, address, time) => {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "hoangnvdk1@gmail.com", // generated ethereal user
-      pass: "wacqkherddewfxme", // generated ethereal password
+      user: "oranje.hust@gmail.com", // generated ethereal user
+      pass: "mexpsblydxjyamyp", // generated ethereal password
     },
   });
 
