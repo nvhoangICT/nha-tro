@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import Item from '../../components/ItemComponent/Item';
+import {Link} from "react-router-dom";
+import Item from "../../components/ItemComponent/Item";
 import axios from "axios";
-import Pagination from './Pagination';
+import Pagination from "./Pagination";
 // import { Pagination } from '@mui/material';
-import React, { useState, useEffect } from "react";
-import Header from '../../components/HomeComponent/Header';
-import { getStorage, ref, getDownloadURL, listAll } from "firebase/storage";
-import { convertLength } from '@mui/material/styles/cssUtils';
-import Select from 'react-select'
+import React, {useState, useEffect} from "react";
+import Header from "../../components/HomeComponent/Header";
+import {getStorage, ref, getDownloadURL, listAll} from "firebase/storage";
+import {convertLength} from "@mui/material/styles/cssUtils";
+import Select from "react-select";
 const baseURL = "http://localhost:8081";
 
 let files = [];
@@ -20,41 +20,41 @@ const ListProperty = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(9);
   const [posts, setPosts] = useState([]);
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const [image, setImage] = useState("");
 
-  const [price, setPrice] = useState("")
-  const [district, setDistrict] = useState("")
-  const [area, setArea] = useState("")
+  const [price, setPrice] = useState("");
+  const [district, setDistrict] = useState("");
+  const [area, setArea] = useState("");
 
   const customStyles = {
-    control: styles => ({
+    control: (styles) => ({
       ...styles,
-      width: '40vh',
-      height: '44px',
-      marginRight: '0',
-      backgroundColor: '#fff'
+      width: "40vh",
+      height: "44px",
+      marginRight: "0",
+      backgroundColor: "#fff",
     }),
     option: (styles, isSelected) => ({
       ...styles,
-      width: '40vh',
-      height: '44px',
-      marginRight: '0',
-      backgroundColor: '#fff',
-      color: 'black',
+      width: "40vh",
+      height: "44px",
+      marginRight: "0",
+      backgroundColor: "#fff",
+      color: "black",
     }),
-    menu: styles => ({
+    menu: (styles) => ({
       ...styles,
-      width: '40vh',
-      height: '44px',
-      marginRight: '0',
-      backgroundColor: '#fff'
+      width: "40vh",
+      height: "44px",
+      marginRight: "0",
+      backgroundColor: "#fff",
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
-      return { ...provided, opacity, transition };
-    }
+      const transition = "opacity 300ms";
+      return {...provided, opacity, transition};
+    },
   };
 
   const districtOptions = [
@@ -97,8 +97,8 @@ const ListProperty = () => {
     {
       value: 9,
       label: "Ba Đình",
-    }
-  ]
+    },
+  ];
 
   const priceOptions = [
     {
@@ -107,25 +107,21 @@ const ListProperty = () => {
     },
     {
       value: 7000000,
-      label: "Dưới 7 triệu",
+      label: "Trên 6 triệu",
     },
     {
       value: 6000000,
-      label: "Dưới 6 triệu",
+      label: "Từ 5 triệu đến 6 triệu",
     },
     {
       value: 5000000,
-      label: "Dưới 5 triệu",
+      label: "Từ 4 triệu đến 5 triệu",
     },
     {
       value: 4000000,
-      label: "Dưới 4 triệu",
+      label: "Từ 3 triệu đến 4 triệu",
     },
-    {
-      value: 3000000,
-      label: "Dưới 3 triệu",
-    },
-  ]
+  ];
 
   const areaOptions = [
     {
@@ -134,21 +130,21 @@ const ListProperty = () => {
     },
     {
       value: 20,
-      label: "Dưới 20 m2",
+      label: "Từ 10 đến 20 m2",
     },
     {
       value: 30,
-      label: "Dưới 30 m2",
+      label: "Từ 20 đến 30 m2",
     },
     {
       value: 40,
-      label: "Dưới 40 m2",
+      label: "Từ 30 đến 40 m2",
     },
     {
       value: 50,
-      label: "Dưới 50 m2",
+      label: "Trên 40m2",
     },
-  ]
+  ];
 
   function handleSelectArea(data) {
     setArea(data);
@@ -171,22 +167,21 @@ const ListProperty = () => {
         area: area.value,
         price: price.value,
         district: district.value,
-      }
+      };
       // console.log(filter)
-      await axios.post(`${baseURL}/api/read-property`,
-        JSON.stringify(filter),
-        {
-          headers: { 'Content-Type': 'application/json' }
-        }
-      ).then((response) => {
-        // setPost(response.data);
-        // console.log(post.data[0].address);
-        setPost(response.data.data);
-        setLoading(false);
-        console.log(response.data.data)
-        setListProps(listProps => listProps = response.data.data)
-      });
-    }
+      await axios
+        .post(`${baseURL}/api/read-property`, JSON.stringify(filter), {
+          headers: {"Content-Type": "application/json"},
+        })
+        .then((response) => {
+          // setPost(response.data);
+          // console.log(post.data[0].address);
+          setPost(response.data.data);
+          setLoading(false);
+          console.log(response.data.data);
+          setListProps((listProps) => (listProps = response.data.data));
+        });
+    };
     fetchData();
   }, [area, price, district]);
   // console.log(listProps);
@@ -194,7 +189,6 @@ const ListProperty = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
-
 
   return (
     <div>
@@ -251,17 +245,15 @@ const ListProperty = () => {
                 listAll(listRef)
                   .then((res) => {
                     res.items.forEach((itemRef, index) => {
-                      getDownloadURL(itemRef).then((url) => {
-                        
-                      });
+                      getDownloadURL(itemRef).then((url) => {});
                       // setImage(itemRef.name);
                       // console.log(itemRef.name);
-                      
                     });
-                  }).catch((error) => {
+                  })
+                  .catch((error) => {
                     console.log(error);
                   });
-                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
+                let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`;
                 // let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
                 return (
                   <Item
@@ -275,13 +267,12 @@ const ListProperty = () => {
                     title={item.name}
                     address={item.address}
                   />
-                )                
+                );
               })}
-
             </div>
           </div>
           <div className="row mt-5">
-            <div className='container mt-5'>
+            <div className="container mt-5">
               <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={listProps.length}
@@ -290,9 +281,9 @@ const ListProperty = () => {
             </div>
           </div>
         </div>
-      </section >
-    </div >
-  )
-}
+      </section>
+    </div>
+  );
+};
 
 export default ListProperty;

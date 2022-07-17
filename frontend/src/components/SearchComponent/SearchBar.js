@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import "./style.css";
 
-function SearchBar({ data }) {
+function SearchBar({data}) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
@@ -10,7 +10,10 @@ function SearchBar({ data }) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
-      return value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.altname.toLowerCase().includes(searchWord.toLowerCase());
+      return (
+        value.address.toLowerCase().includes(searchWord.toLowerCase()) ||
+        value.vie_address.toLowerCase().includes(searchWord.toLowerCase())
+      );
     });
 
     if (searchWord === "") {
@@ -43,10 +46,12 @@ function SearchBar({ data }) {
       </form>
       {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData.slice(0, 1).map((value, key) => {
+          {filteredData.slice(0, 2).map((value, key) => {
             return (
               <Link className="dataItem" to={value.link} target="_blank">
-                <p style={{marginTop:"0px", fontSize: "16px"}}>{value.name}</p>
+                <p style={{marginTop: "0px", fontSize: "16px"}}>
+                  {value.vie_address}
+                </p>
               </Link>
             );
           })}
