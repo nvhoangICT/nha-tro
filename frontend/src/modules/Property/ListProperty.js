@@ -10,6 +10,9 @@ import { convertLength } from '@mui/material/styles/cssUtils';
 import Select from 'react-select'
 const baseURL = "http://localhost:8081";
 
+let files = [];
+let file = [];
+
 const ListProperty = () => {
   const [post, setPost] = useState(null);
   const [listProps, setListProps] = useState([]);
@@ -23,8 +26,6 @@ const ListProperty = () => {
   const [price, setPrice] = useState("")
   const [district, setDistrict] = useState("")
   const [area, setArea] = useState("")
-
-  let file;
 
   const customStyles = {
     control: styles => ({
@@ -194,27 +195,6 @@ const ListProperty = () => {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = listProps.slice(indexOfFirstPost, indexOfLastPost);
 
-  // console.log(post[0]['id']);
-  // const storage = getStorage();
-  //   getDownloadURL(ref(storage, `/${post[0]['id']}`).listAll())
-  //       .then((url) => {
-  //           // `url` is the download URL for 'images/stars.jpg'
-
-  //           // This can be downloaded directly:
-  //           const xhr = new XMLHttpRequest();
-  //           xhr.responseType = 'blob';
-  //           xhr.onload = (event) => {
-  //               const blob = xhr.response;
-  //           };
-  //           xhr.open('GET', url);
-  //           xhr.send();
-
-  //           setUrls(url);
-  //           console.log(urls)
-  //       })
-  //       .catch((error) => {
-  //           // Handle any errors
-  //       });
 
   return (
     <div>
@@ -270,21 +250,19 @@ const ListProperty = () => {
                 // console.log(listRef)
                 listAll(listRef)
                   .then((res) => {
-                    res.items.forEach((itemRef) => {
-                      console.log(itemRef.name);
+                    res.items.forEach((itemRef, index) => {
                       getDownloadURL(itemRef).then((url) => {
-                        // files.push(url);
-                        // console.log(files[0])
+                        
                       });
                       // setImage(itemRef.name);
+                      // console.log(itemRef.name);
+                      
                     });
                   }).catch((error) => {
                     console.log(error);
                   });
-                // console.log(image)
                 let url = `url(https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666)`
                 // let url = `https://firebasestorage.googleapis.com/v0/b/nha-tro-b7165.appspot.com/o/${item.id}%2F1.jpg?alt=media&token=744d876c-ef00-4e98-a5a5-866148a06666`
-
                 return (
                   <Item
                     id={item.id}
@@ -297,7 +275,7 @@ const ListProperty = () => {
                     title={item.name}
                     address={item.address}
                   />
-                )
+                )                
               })}
 
             </div>
