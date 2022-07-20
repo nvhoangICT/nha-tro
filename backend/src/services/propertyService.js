@@ -15,7 +15,7 @@ let getAllProperty = (area, price, districtId) => {
         if (price === 7000000 && area === 50) {
           let higherPrice = 100000000;
           let higherArea = 100;
-          let lowerPrice = 7000000;
+          let lowerPrice = 6000000;
           let lowerArea = 50;
           let results = await db.Property.findAll({
             where: {
@@ -36,7 +36,7 @@ let getAllProperty = (area, price, districtId) => {
         } else if (price === 7000000) {
           let higherPrice = 100000000;
           let higherArea = !area ? 100 : area;
-          let lowerPrice = 7000000;
+          let lowerPrice = 6000000;
           let lowerArea = !area ? 0 : area - 10;
           let results = await db.Property.findAll({
             where: {
@@ -101,7 +101,7 @@ let getAllProperty = (area, price, districtId) => {
         if (price == 7000000 && area == 50) {
           let higherPrice = 100000000;
           let higherArea = 100;
-          let lowerPrice = 7000000;
+          let lowerPrice = 6000000;
           let lowerArea = 50;
           let results = await db.Property.findAll({
             where: {
@@ -123,7 +123,7 @@ let getAllProperty = (area, price, districtId) => {
         } else if (price == 7000000) {
           let higherPrice = 100000000;
           let higherArea = !area ? 100 : area;
-          let lowerPrice = 7000000;
+          let lowerPrice = 6000000;
           let lowerArea = !area ? 0 : area - 10;
           let results = await db.Property.findAll({
             where: {
@@ -136,6 +136,7 @@ let getAllProperty = (area, price, districtId) => {
                   [Op.lte]: higherArea,
                   [Op.gte]: lowerArea,
                 },
+                districtId: districtId,
               },
             },
             raw: true,

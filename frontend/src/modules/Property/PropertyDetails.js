@@ -105,16 +105,16 @@ const PropertyDetails = (props) => {
           console.log(response.data.data);
           // console.log(response.data.data);
         });
-      // await axios
-      //   .get(`${baseURL}/api/get-owner/${propertyId}`)
-      //   .then((response) => {
-      //     // setPost(response.data);
-      //     // console.log(post.data[0].address)
-      //     setEmail(response.data.data.email);
-      //     setTel(response.data.data.phone);
-      //     console.log(response.data.data);
-      //     // console.log(response.data.data);
-      //   });
+      await axios
+        .get(`${baseURL}/api/get-owner/${propertyId}`)
+        .then((response) => {
+          // setPost(response.data);
+          // console.log(post.data[0].address)
+          setEmail(response.data.data.email);
+          setTel(response.data.data.phone);
+          console.log(response.data.data);
+          // console.log(response.data.data);
+        });
 
       const storageRef = ref(storage, `/${propertyId}`);
       listAll(storageRef)

@@ -1,73 +1,372 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('OwnHouses', [
+    return queryInterface.bulkInsert("OwnHouses", [
       {
-        "id": "0c96f0df-49d0-48f4-904c-b65da1040ed5",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "d31f1bed-1e8c-4718-bc27-506cf09301fb",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "1116ba52-0d7c-49a3-827a-cd2f4aa0d5ed",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "5539a3d2-bc40-47af-bb4a-d9ea01f6879b",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "15017dce-0b3b-43a7-846b-9871a173e4ea",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "e3b32f62-67e0-4bad-a60b-cf5453e40ca6",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "177f7052-89fd-4beb-8f38-52631aec3fe1",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "b15f336d-a962-44e8-97ac-de9c393f9a81",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "17c1bfba-5bff-4fac-ae34-b2fd2051f4f9",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "e68f4f01-065e-4b17-a1d5-d56dea4f6fd5",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "18b928d3-23a5-41cd-bcb2-7523ae1c87d7",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "177f7052-89fd-4beb-8f38-52631aec3fe1",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "23f611d4-20e7-4e63-a376-b02d7ae5ce7d",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "c4ab7453-b26d-458d-9130-03dd792a034a",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "2e6c4451-d5a8-4243-88ae-f503d0235743",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "eef27d26-0202-4151-b5e8-e27f2acc492f",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "2fd346c8-983f-4bf8-adbe-c54f44f27626",
-        "ownerId": "4b1f7063-53c6-4438-9420-d46acd1df34e",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
+        id: "9ee7a0a2-0be4-405d-9b5e-1278e36fc1b6",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
       },
       {
-        "id": "301ab3dc-d377-4d5f-ac17-ee0b5165e0df",
-        "ownerId": "7221c6f8-dab3-4cd6-be65-014a5d0063cf",
-        "createdAt": "2022-06-28 07:42:41",
-        "updatedAt": "2022-06-28 07:42:41"
-      }
-    ]
-    );
+        id: "97f19f3b-0a2d-4d27-85e3-eba8f825814b",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "9e32afcb-9df9-4537-9787-0363e760224b",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "e8e6480b-97f0-4708-8411-bb2126feaf93",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "cfdaedb9-919d-4247-a4d3-54c271bb928d",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b3db4685-03d1-4f92-bc2c-e8da3c9b845c",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "23f611d4-20e7-4e63-a376-b02d7ae5ce7d",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "cca68d3e-5a53-4133-9e2d-4d5f995cae03",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b38284b9-930d-4eb1-bbc8-a516b8ab4afd",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "18b928d3-23a5-41cd-bcb2-7523ae1c87d7",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "4b01e208-be8a-4784-a4ee-76ee4a90994f",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b67e83a4-12cb-45c0-9e67-c6f42253c41c",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "301ab3dc-d377-4d5f-ac17-ee0b5165e0df",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "7cd127ca-c1b2-4578-9971-6bc32f3b355e",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "9a6382fd-8c44-4bdc-8b73-44bfed462cb6",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "fbe4cc4a-7be2-4f19-ba08-d99bc741db5e",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "e859d0e7-2b5e-4206-ac09-b1e4a6482f4c",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "17c1bfba-5bff-4fac-ae34-b2fd2051f4f9",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "96f973d0-374e-4d78-ae78-80bdde582c23",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "e4105222-57c2-4e9e-9bfe-6e158f0d4906",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "479578da-a745-45b3-9290-bf46c7556e91",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "d1682a25-65db-40c8-ad05-ecea8f78521a",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "4e24f2a1-b0e0-4e1b-ac74-0bbe7d8644f0",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "0c96f0df-49d0-48f4-904c-b65da1040ed5",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b607d3a3-af89-4225-8642-3557177a002d",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "f16844b7-ca4a-4d24-bb85-1d39c7d28bad",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b725ad5e-795c-4453-93a0-376d1c221096",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "989eef5e-0025-40eb-b275-bbd4ade3ea85",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "5305e6e8-b9c9-4b90-9ee7-cbf15be47648",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "e57afa14-5d03-4e43-8294-9efd9be04232",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "92cc45cc-5a07-4969-888e-245667321d1c",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "56be8a15-fd83-4529-b5e6-683fe9ece0a6",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "5915acff-8020-4d38-9dd5-73c96aaa4246",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "43cf8204-bf0d-4dac-944c-9d0565462312",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "6ca7e53f-f59d-4353-bdb9-e4e0bfae64a3",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "2fd346c8-983f-4bf8-adbe-c54f44f27626",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "95e27278-e558-48ec-b058-ea3edc82edf3",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "c3ddb7d4-147d-45bf-8913-5d38ca382d74",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "d9bdf12f-e1be-49b7-b518-5f1268316e91",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "dcbaf385-e977-4247-a9c3-1c41e6dc76f9",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "99edf176-516b-422f-b593-dcfc651e49b3",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "ad1b9da0-40da-4d06-87ca-ee71468f6534",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "d27f61c8-1184-4837-b6fb-0df0a3156253",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "1116ba52-0d7c-49a3-827a-cd2f4aa0d5ed",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "bb410f9b-282b-49bc-823e-ef8631ec191e",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "9299d996-b55a-48e4-a5d6-62639e28a59e",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "99e81019-5d79-48c0-8919-61266b30be2e",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "2e6c4451-d5a8-4243-88ae-f503d0235743",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "9fa6c21c-8e8f-46e4-bbdf-d066fab12630",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "15017dce-0b3b-43a7-846b-9871a173e4ea",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "77dc339c-6027-402f-acd0-c20f42fe72fa",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+      {
+        id: "b6523fd1-e7c3-440d-8056-272b28824e64",
+        ownerId: "4b1f7063-53c6-4438-9420-d46acd1df34e",
+        createdAt: "2022-06-28 07:42:41",
+        updatedAt: "2022-06-28 07:42:41",
+      },
+    ]);
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('OwnHouses');
-  }
+    return queryInterface.dropTable("OwnHouses");
+  },
 };

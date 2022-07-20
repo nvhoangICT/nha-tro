@@ -1,11 +1,9 @@
 import {useState} from "react";
 import "../ChangeInformation/style.css";
 import {Link, Navigate, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginUser} from "../../redux/apiRequest";
 import Header from "../../components/HomeComponent/Header";
-import storage from "../../firebase/firebaseConfig";
-import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import axios from "axios";
 
 const ChangeInformation = (props) => {
@@ -13,32 +11,35 @@ const ChangeInformation = (props) => {
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
   const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [gender, setGender] = useState(0);
+  const [gender, setGender] = useState(false);
   const [phone, setPhone] = useState("");
   const [citizenId, setCitizenId] = useState("");
-  const [avatar, setAvatar] = useState("");
 
-  const [file, setFile] = useState("");
-
-  // progress
-  const [percent, setPercent] = useState(0);
   const [submit, setSubmit] = useState(false);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.login.currentUser);
+  const id = user?.id;
+
   const handleChangeInfo = async (e) => {
     e.preventDefault();
     const user = {
-      name: name,
+      id: id,
       dob: dob,
       address: address,
-      email: email,
       phone: phone,
-      password: password,
+      gender: gender,
+      citizenId: citizenId,
     };
-    // changeInformation(user, dispatch, navigate);
-    alert("Thay đổi thông tin người dùng thành công!");
+    console.log(user);
+    try {
+      const res = await axios.put("/api/change-info", user, {
+        headers: {"Content-Type": "application/json"},
+      });
+      console.log(res.response.data);
+    } catch (e) {
+      
+    }
+    alert("Thêm thông tin người dùng thành công!");
     setSubmit(true);
   };
 
@@ -57,38 +58,17 @@ const ChangeInformation = (props) => {
                   <div className="card-3d-wrapper">
                     <div
                       className="card-front"
-                      style={{height: "130%", marginTop: "-20%", width: "120%"}}
+                      style={{
+                        height: "100%",
+                        marginTop: "-10%",
+                        marginLeft: "-10%",
+                        width: "120%",
+                      }}
                     >
                       <div className="image">
                         <div className="center-wrap ">
                           <div className="section text-center">
-                            <h4 className="pb-3">
-                              Thay đổi thông tin người dùng
-                            </h4>
-                            <div className="form-group">
-                              <input
-                                type="input"
-                                name="name"
-                                className="form-style"
-                                placeholder="Họ tên"
-                                autoComplete="off"
-                                value={props.name}
-                                onChange={(e) => setName(e.target.value)}
-                              />
-                              <i className="input-icon uil uil-user"></i>
-                            </div>
-                            <div className="form-group mt-2">
-                              <input
-                                type="input"
-                                name="email"
-                                className="form-style"
-                                placeholder="example@email.com"
-                                autoComplete="off"
-                                value={props.email}
-                                onChange={(e) => setEmail(e.target.value)}
-                              />
-                              <i className="input-icon uil uil-at"></i>
-                            </div>
+                            <h4 className="pb-3">Thêm thông tin người dùng</h4>
                             <div className="form-group mt-2">
                               <input
                                 type="date"
@@ -97,8 +77,8 @@ const ChangeInformation = (props) => {
                                 placeholder="Ngày sinh : DD/MM/YYYY"
                                 autoComplete="off"
                                 value={dob}
-                                min="1997-01-01"
-                                max="2030-12-31"
+                                min="1930-01-01"
+                                max="2022-12-31"
                                 onChange={(e) => setDob(e.target.value)}
                               />
                               <i className="input-icon uil uil-calendar-alt"></i>
@@ -123,10 +103,10 @@ const ChangeInformation = (props) => {
                                 <option className="form-style" value="">
                                   -- Giới tính --
                                 </option>
-                                <option value="0">Nam</option>
-                                <option value="1">Nữ</option>
+                                <option value={true}>Nữ</option>
+                                <option value={false}>Nam</option>
                               </select>
-                              <i className="input-icon uil uil-users-alt"></i>
+                              <i className="input-icon uil uil-bed"></i>
                             </div>
                             <div className="form-group mt-2">
                               <input

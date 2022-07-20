@@ -4,10 +4,10 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        "id" : "0b2c5138-7e91-44e5-a4da-0317061cda5b",
-        "name" : "Hoang",
-        "email" : "h1@g.e",
-        "password" : "$2a$10$oksJevCSQ7GbZstd2EI6W.HGWPK/LLfbK9Y0NkqytZ3tmqVRHN6Z6",
+        "id" : "fcadd1cf-e612-472a-90bf-c7ecfc2236cd",
+        "name" : "Vũ Hoàng Tùng",
+        "email" : "tung@gmail.com",
+        "password" : "$2a$10$37Yyal/wbac/MR2N5L.M0eCK6CCqcI.yOzhFUkU58CEFEZfabBQ4C",
         "role" : 0,
         "createdAt" : "2022-06-28 07:42:41",
         "updatedAt" : "2022-06-28 07:42:41"
@@ -15,8 +15,8 @@ module.exports = {
       {
         "id" : "138ae741-a29c-4610-b512-68d857f67d32",
         "name" : "Nguyễn Việt Hoàng",
-        "email" : "h@gmail.com",
-        "password" : "$2a$10$Gr2m.SVs.IB6RLmLwlw8tOmjOqZcC1Hy6qcDIny3MeLrReDJ05cTG",
+        "email" : "hoang@gmail.com",
+        "password" : "$2a$10$miUzebVOzi/NxdKu5V5aUOu9YGf160CzlzwRTMdHxnpP7RAxAeh0.",
         "role" : 0,
         "createdAt" : "2022-06-29 15:27:58",
         "updatedAt" : "2022-06-29 15:27:58"
@@ -40,42 +40,6 @@ module.exports = {
         "updatedAt" : "2022-07-06 04:25:25"
       },
       {
-        "id" : "8571e20e-1b5c-42e8-ab14-8e79266ff06d",
-        "name" : "Hoang",
-        "email" : "h1@g.e",
-        "password" : "$2a$10$t.xyj1m3BIqNfS4ShLTKwOjdS4ZQJyAJiL8Kh/S2ZdWbpTHox0zly",
-        "role" : 0,
-        "createdAt" : "2022-06-28 07:45:03",
-        "updatedAt" : "2022-06-28 07:45:03"
-      },
-      {
-        "id" : "8f0edb3d-1bcd-4a3d-82d6-ea25387167a5",
-        "name" : "Hoang",
-        "email" : "h1@g.b",
-        "password" : "$2a$10$0ONWDCZ8ogNWcqNs9aI2oO1nYycmGWpKQ3NQQBuGJ7hS.HPtwQdJ.",
-        "role" : 0,
-        "createdAt" : "2022-06-28 06:19:49",
-        "updatedAt" : "2022-06-28 06:19:49"
-      },
-      {
-        "id" : "961aaeb6-f307-40e6-92ab-4b9d37166121",
-        "name" : "Hoang",
-        "email" : "h1@g.e",
-        "password" : "$2a$10$wGm0WDp4RUAEJONtLFFu4upKSOXLS7G8zJwyWqjSB0WZIQuBup5n.",
-        "role" : 0,
-        "createdAt" : "2022-06-28 06:32:10",
-        "updatedAt" : "2022-06-28 06:32:10"
-      },
-      {
-        "id" : "9e8fb82d-8545-4961-bdbf-ccaa1c508861",
-        "name" : "Hoang",
-        "email" : "h1@g.a",
-        "password" : "$2a$10$0ONWDCZ8ogNWcqNs9aI2oO1nYycmGWpKQ3NQQBuGJ7hS.HPtwQdJ.",
-        "role" : 0,
-        "createdAt" : "2022-06-28 06:20:00",
-        "updatedAt" : "2022-06-28 06:20:00"
-      },
-      {
         "id" : "a34d6dac-73e3-4734-bb15-d2572c6ff585",
         "name" : "Jane Doe",
         "email" : "jane9@gmail.com",
@@ -83,24 +47,6 @@ module.exports = {
         "role" : 0,
         "createdAt" : "2022-06-28 07:47:07",
         "updatedAt" : "2022-06-28 07:47:07"
-      },
-      {
-        "id" : "aafa5f57-809c-47ac-af24-65856779dc64",
-        "name" : "Hoang",
-        "email" : "h1@g.c",
-        "password" : "$2a$10$mjftdjFfHS7HEw9sP0WP4.2KIG7jHHicGLEtoVAvclg7yZ0ZPUBdm",
-        "role" : 0,
-        "createdAt" : "2022-06-28 06:18:35",
-        "updatedAt" : "2022-06-28 06:18:35"
-      },
-      {
-        "id" : "adbe2d3e-f7ad-41c2-a439-62f01f41a035",
-        "name" : "Hoang",
-        "email" : "h1@g.e",
-        "password" : "$2b$10$cnCYNRMs5OypoUJhLseXguaBxR59oINENTf8FRceBkKfu.arJLMjS",
-        "role" : 0,
-        "createdAt" : "2022-06-28 06:31:05",
-        "updatedAt" : "2022-06-28 06:31:05"
       },
       {
         "id" : "b4949fb7-0a75-4033-a45d-798b3ce3ca70",

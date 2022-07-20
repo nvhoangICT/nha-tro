@@ -1,10 +1,32 @@
-import React, {useState} from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./style.css";
+
+const baseURL = "http://localhost:8081";
 
 function SearchBar({data}) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [post, setPost] = useState(null);
+  const [listProps, setListProps] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .post(`${baseURL}/api/read-property`, {
+          headers: {"Content-Type": "application/json"},
+        })
+        .then((response) => {
+          setPost(response.data.data);
+          setLoading(true);
+          setListProps((listProps) => (listProps = response.data.data));
+          console.log(listProps);
+        });
+    };
+    fetchData();
+  }, [loading]);
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
