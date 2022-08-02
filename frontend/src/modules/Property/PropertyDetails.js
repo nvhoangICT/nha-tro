@@ -162,6 +162,8 @@ const PropertyDetails = (props) => {
         withCredentials: true,
       }
     );
+    alert("Gửi email thành công");
+    setOpen(false);
   };
 
   return (
@@ -341,6 +343,7 @@ const PropertyDetails = (props) => {
                             href="#outlined-buttons"
                             onClick={(e) => {
                               HandleSubmit(e);
+                              handleClose();
                             }}
                           >
                             Gửi

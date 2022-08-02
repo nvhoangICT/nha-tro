@@ -24,7 +24,7 @@ module.exports = {
       {
         "id" : "4b1f7063-53c6-4438-9420-d46acd1df34e",
         "name" : "Nguyễn Việt Hoàng",
-        "email" : "admin@gmail.com",
+        "email" : "hoangnvdk1@gmail.com",
         "password" : "$2a$10$IhonbqZkWqjUR.Pb2f2BUehUMtcPB01yuaEriuR1Dm.sSCfDgCyNe",
         "role" : 0,
         "createdAt" : "2022-06-30 12:26:16",
