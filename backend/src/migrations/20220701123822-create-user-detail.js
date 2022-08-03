@@ -23,9 +23,6 @@ module.exports = {
       citizenId: {
         type: Sequelize.STRING
       },
-      avatar: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
